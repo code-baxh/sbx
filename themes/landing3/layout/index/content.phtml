@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title><?php echo $sm['seoLang']['landing'][1]['text']; ?></title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
+<meta name="description" content="<?php echo $sm['seoLang']['landing'][2]['text']; ?>">
+<meta name="keywords" content="<?php echo $sm['seoLang']['landing'][3]['text']; ?>">
+<meta name="author" content="<?php echo $sm['config']['name']; ?>">
+<link rel="icon" type="image/png" href="<?= $sm['landing']['favicon']['val']; ?>" sizes="32x32">
+
+<link rel="stylesheet" href="<?php echo $sm['config']['theme_url_landing']; ?>/css/libs.bundle.css">
+<link rel="stylesheet" href="<?php echo $sm['config']['theme_url_landing']; ?>/css/index.bundle.css">
+
+<link href="<?php echo $sm['config']['theme_url']; ?>/css/vendor/autocomplete.css" rel="stylesheet" type="text/css" />
+<?php $fonts = getArrayDSelected('font','theme_preset_fonts','where preset = "'.$_SESSION['landingPreset'].'"');
+foreach ($fonts as $font) { 
+    $f = $font['font'];
+    $f = str_replace(' ','+', $f);
+    echo '<link href="https://fonts.googleapis.com/css?family='.$f.'" rel="stylesheet" type="text/css"/>';
+} ?>
+<style id="themeData">
+    <?= getLandingAbsolutePage('styles'); ?>
+</style>
+<script type="text/javascript">
+function inIframe () {
+    try {
+      return window.self !== window.top;
+    } catch (e) {
+      return true;
+    }
+}    
+function detect_device() {
+    var w = window,
+        d = document,
+        e = d.documentElement,
+        g = d.getElementsByTagName('body')[0],
+        x = w.innerWidth || e.clientWidth || g.clientWidth,
+        y = w.innerHeight|| e.clientHeight|| g.clientHeight;    
+    if(x <= 768){
+        window.location= '<?= $sm['config']['site_url']; ?>mobile';
+    }
+}
+<?php if($sm['landing']['show_mobile']['val'] == 'No'){ ?>
+  if(inIframe() !== true){
+      detect_device();
+      window.onresize = function() {
+          var w = window,
+              d = document,
+              e = d.documentElement,
+              g = d.getElementsByTagName('body')[0],
+              x = w.innerWidth || e.clientWidth || g.clientWidth,
+              y = w.innerHeight|| e.clientHeight|| g.clientHeight;    
+          if(x <= 768){
+              window.location= '<?= $sm['config']['site_url']; ?>mobile';   
+          }
+      };    
+  }
+<?php } ?>
+</script>
+<?php
+function getSiteLangsLanding($start,$finish){
+    global $mysqli,$sm;
+    $ret = '';
+    $query = $mysqli->query("SELECT * FROM languages where visible = 1 ORDER BY id ASC LIMIT $start,$finish");
+    if($query->num_rows > 1) {
+        while($result = $query->fetch_object()){
+            $ret.='<li class="drop-menu-item"><a data-lang="'.$result->id.'" href="index.php?lang='.$result->id.'">'.$result->name.'</a>
+            </li>';    
+        }
+    }
+    return $ret;    
+}
+$sm['genders'] = siteGenders($_SESSION['lang']);
+$site_config = json_encode($sm['config']);
+$site_theme = json_encode($sm['landing']);
+$site_lang = json_encode($sm['lang']);
+$filter_age = 0;
+echo 
+'<script>
+var url;
+var mobile = false;
+var softwareVersion = "'.$sm['settings']['currentVersion'].'";
+var site_config = '. $site_config  . ';
+var site_lang = '. $site_lang  . ';
+var site_theme = '. $site_theme  . ';  
+
+function request_source(){
+    return \'' . $sm['config']['ajax_path'] . '\';
+}
+function site_title(){
+    return \'' . $sm['config']['title'] . '\';
+}   
+function theme_source(){
+    return \'' . $sm['config']['theme_url'] . '\';
+}
+function site_url(){
+    return \'' . $sm['config']['site_url'] . '\';
+}   
+var current_user_id = 0;
+var user_name;  
+</script>';
+?>
+
+<?php if(!empty($sm['plugins']['analytics']['ga_id'])){ ?>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=<?= $sm['plugins']['analytics']['ga_id']; ?>"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', '<?= $sm['plugins']['analytics']['ga_id']; ?>');
+</script>    
+<?php } ?>
+
+<?= $sm['plugins']['customHtml']['landing_header']; ?>
+
+<style>
+  .cities-list{
+    display:inline-table;width: 19%;
+  }
+  @media only screen and (max-width: 600px) {
+    .cities-list{
+      width: 49%;
+    }
+  }  
+</style>
+</head>
+
+<body>
+
+  <!-- navbar -->
+  <nav class="navbar navbar-expand-lg navbar-sticky navbar-dark">
+    <div class="container">
+      <a href="<?= $sm['config']['site_url']; ?>" class="navbar-brand"><img src="<?= $sm['landing']['logo']['val']; ?>" alt="Logo"></a>
+  
+      <ul class="navbar-nav navbar-nav-secondary order-lg-3">
+        <li class="nav-item">
+          <a class="nav-link nav-icon" data-bs-toggle="offcanvas" href="#offcanvasNav" role="button" aria-controls="offcanvasNav">
+            <span class="bi bi-list"></span>
+          </a>
+        </li>
+      </ul>
+  
+      <!-- mobile user menu -->
+    </div>
+  </nav>
+  
+  <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNav" aria-labelledby="offcanvasNavLabel">
+    <div class="offcanvas-header">
+      <h5 class="offcanvas-title" id="offcanvasNavLabel">Menu</h5>
+      <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+      <ul class="nav nav-minimal" id="toc-nav">
+        <li class="nav-item">
+          <a class="nav-link fs-4" href="<?= $sm['config']['site_url']; ?>login"><?= $sm['lang'][1]['text']; ?></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link fs-4" href="<?= $sm['config']['site_url']; ?>register"><?= $sm['lang'][8]['text']; ?></a>
+        </li>
+      </ul>
+    </div>
+
+  </div>
+  
+
+
+
+  <div class="offcanvas-wrap">
+    <div >
+      <span class="bg-color bg-black"></span>
+
+      <!-- hero -->
+      <section class="overflow-hidden bg-black inverted">
+        <div class="d-flex flex-column container py-20 min-vh-100 level-1">
+          <div class="row align-items-center justify-content-center justify-content-lg-end my-auto">
+            <div class="col-md-8 col-lg-5 text-center text-lg-start">
+              <span class="badge bg-opaque-yellow text-yellow rounded-pill"><?= $sm['landingLang'][1]['text'];?></span>
+              <h1 class="display-2 fw-bold lh-sm my-2 my-xl-4"><?= $sm['landingLang'][2]['text'];?></h1>
+              <a href="<?= $sm['config']['site_url']; ?>register" class="btn btn-with-icon btn-yellow rounded-pill"><?= $sm['landingLang'][3]['text'];?> <i class="bi bi-arrow-right"></i></a>
+            </div>
+          </div>
+        </div>
+        <div class="container-fluid back back-background">
+          <div class="row h-100">
+            <div class="col-lg-6" data-aos="fade-in">
+              <figure class="background" style="background-image: url('<?= $sm['landing']['bg_image']['val']; ?>')" data-top-top="transform: translateY(0%);" data-top-bottom="transform: translateY(10%);"></figure>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+      <!-- accordion -->
+      <section class="pb-5 pt-15 bg-black">
+        <div class="container">
+          <div class="row justify-content-center mb-8">
+            <div class="col-lg-10">
+              <h2 class="fw-bold text-center text-yellow"><span class="d-lg-block"><?= $sm['landingLang'][4]['text'];?></h2>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+
+
+    </div>
+
+    </section>
+
+
+    <!-- footer -->
+    <footer class="bg-black py-2">
+      <div class="container">
+        <div class="row g-4 g-lg-5 mb-10">
+
+          <div class="col-md-12 text-center text-md-start">
+            <ul class="list-unstyled text-center">
+              <?php $cities = getArrayDSelected('city','users'); 
+              foreach ($cities as $c) { 
+                if($c['city'] == ''){
+                  continue;
+                }
+              ?>
+              <li class="mb-1 cities-list">
+                <a href="<?= $sm['config']['site_url']; ?>register" class="text-reset text-primary-hover text-gray"><?= $c['city']; ?></a>
+              </li>
+              <?php } ?>
+            </ul>            
+          </div>                
+        </div>
+        <div class="row align-items-center g-1 g-lg-6 text-muted">
+          <div class="col-md-6 col-lg-3 order-lg-2 text-center text-md-start">
+          </div>
+          <div class="col-md-6 col-lg-6 text-center text-md-end order-lg-2" style="padding-right:125px">
+            <ul class="list-inline small">
+                <li class="list-inline-item">
+                    <a class="text-reset text-primary-hover" href="mailto:<?= $sm['config']['email']; ?>">
+                        <?= $sm['lang'][64]['text']; ?>
+                    </a>
+                </li>
+                <li class="list-inline-item ms-1">
+                    <a class="text-reset text-primary-hover" class="text-rest" href="<?= $sm['config']['site_url']; ?>/index.php?page=tac" target="_blank">
+                        <?= $sm['lang'][43]['text']; ?>
+                    </a>
+                </li>
+                <li class="list-inline-item ms-1">
+                    <a class="text-reset text-primary-hover" href="<?= $sm['config']['site_url']; ?>/index.php?page=pp" target="_blank">
+                        <?= $sm['lang'][45]['text']; ?>    
+                    </a>
+                </li>
+              </ul>
+          </div>
+          <div class="col-lg-3 order-lg-1 text-center text-md-start" style="padding-left: 115px;">
+            <p class="small">&copy; <?= date('Y'); ?> <?= $sm['config']['name']; ?></p>
+          </div>
+        </div>
+      </div>
+    </footer> 
+  </div>
+
+
+
+
+
+
+<script src="<?php echo $sm['config']['theme_url_landing']; ?>/js/vendor.bundle.js"></script>
+<script src="<?php echo $sm['config']['theme_url_landing']; ?>/js/index.bundle.js"></script></body>
+
+<?= $sm['plugins']['customHtml']['landing_footer']; ?>
+</body>
+
+</html>
+
+

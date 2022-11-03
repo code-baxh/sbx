@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title><?php echo $sm['seoLang']['landing'][1]['text']; ?></title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
+<meta name="description" content="<?php echo $sm['seoLang']['landing'][2]['text']; ?>">
+<meta name="keywords" content="<?php echo $sm['seoLang']['landing'][3]['text']; ?>">
+<meta name="author" content="<?php echo $sm['config']['name']; ?>">
+<link rel="icon" type="image/png" href="<?= $sm['landing']['favicon']['val']; ?>" sizes="32x32">
+
+<link rel="stylesheet" href="<?php echo $sm['config']['theme_url_landing']; ?>/css/libs.bundle.css">
+<link rel="stylesheet" href="<?php echo $sm['config']['theme_url_landing']; ?>/css/index.bundle.css">
+
+<link href="<?php echo $sm['config']['theme_url']; ?>/css/vendor/autocomplete.css" rel="stylesheet" type="text/css" />
+<?php $fonts = getArrayDSelected('font','theme_preset_fonts','where preset = "'.$_SESSION['landingPreset'].'"');
+foreach ($fonts as $font) { 
+    $f = $font['font'];
+    $f = str_replace(' ','+', $f);
+    echo '<link href="https://fonts.googleapis.com/css?family='.$f.'" rel="stylesheet" type="text/css"/>';
+} ?>
+<style id="themeData">
+    <?= getLandingAbsolutePage('styles'); ?>
+</style>
+<script type="text/javascript">
+function inIframe () {
+    try {
+      return window.self !== window.top;
+    } catch (e) {
+      return true;
+    }
+}    
+function detect_device() {
+    var w = window,
+        d = document,
+        e = d.documentElement,
+        g = d.getElementsByTagName('body')[0],
+        x = w.innerWidth || e.clientWidth || g.clientWidth,
+        y = w.innerHeight|| e.clientHeight|| g.clientHeight;    
+    if(x <= 768){
+        window.location= '<?= $sm['config']['site_url']; ?>mobile';
+    }
+}
+<?php if($sm['landing']['show_mobile']['val'] == 'No'){ ?>
+  if(inIframe() !== true){
+      detect_device();
+      window.onresize = function() {
+          var w = window,
+              d = document,
+              e = d.documentElement,
+              g = d.getElementsByTagName('body')[0],
+              x = w.innerWidth || e.clientWidth || g.clientWidth,
+              y = w.innerHeight|| e.clientHeight|| g.clientHeight;    
+          if(x <= 768){
+              window.location= '<?= $sm['config']['site_url']; ?>mobile';   
+          }
+      };    
+  }
+<?php } ?>
+</script>
+<?php
+function getSiteLangsLanding($start,$finish){
+    global $mysqli,$sm;
+    $ret = '';
+    $query = $mysqli->query("SELECT * FROM languages where visible = 1 ORDER BY id ASC LIMIT $start,$finish");
+    if($query->num_rows > 1) {
+        while($result = $query->fetch_object()){
+            $ret.='<li class="drop-menu-item"><a data-lang="'.$result->id.'" href="index.php?lang='.$result->id.'">'.$result->name.'</a>
+            </li>';    
+        }
+    }
+    return $ret;    
+}
+$sm['genders'] = siteGenders($_SESSION['lang']);
+$site_config = json_encode($sm['config']);
+$site_theme = json_encode($sm['landing']);
+$site_lang = json_encode($sm['lang']);
+$filter_age = 0;
+echo 
+'<script>
+var url;
+var mobile = false;
+var softwareVersion = "'.$sm['settings']['currentVersion'].'";
+var site_config = '. $site_config  . ';
+var site_lang = '. $site_lang  . ';
+var site_theme = '. $site_theme  . ';  
+
+function request_source(){
+    return \'' . $sm['config']['ajax_path'] . '\';
+}
+function site_title(){
+    return \'' . $sm['config']['title'] . '\';
+}   
+function theme_source(){
+    return \'' . $sm['config']['theme_url'] . '\';
+}
+function site_url(){
+    return \'' . $sm['config']['site_url'] . '\';
+}   
+var current_user_id = 0;
+var user_name;  
+</script>';
+?>
+
+<?php if(!empty($sm['plugins']['analytics']['ga_id'])){ ?>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=<?= $sm['plugins']['analytics']['ga_id']; ?>"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', '<?= $sm['plugins']['analytics']['ga_id']; ?>');
+</script>    
+<?php } ?>
+
+<?= $sm['plugins']['customHtml']['landing_header']; ?>
+<style>
+  .cities-list{
+    display:inline-table;width: 19%;
+  }
+  @media only screen and (max-width: 600px) {
+    .cities-list{
+      width: 49%;
+    }
+  }
+.twigo-gradient1{
+    background: -moz-linear-gradient(95deg, rgba(255,98,165,1) 0%, rgba(255,98,165,1) 22%, rgba(255,137,97,1) 100%)!important; /* ff3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(255,137,97,1)), color-stop(78%, rgba(255,98,165,1)), color-stop(100%, rgba(255,98,165,1)))!important; /* safari4+,chrome */
+    background: -webkit-linear-gradient(95deg, rgba(255,98,165,1) 0%, rgba(255,98,165,1) 22%, rgba(255,137,97,1) 100%)!important; /* safari5.1+,chrome10+ */
+    background: -o-linear-gradient(95deg, rgba(255,98,165,1) 0%, rgba(255,98,165,1) 22%, rgba(255,137,97,1) 100%)!important; /* opera 11.10+ */
+    background: -ms-linear-gradient(95deg, rgba(255,98,165,1) 0%, rgba(255,98,165,1) 22%, rgba(255,137,97,1) 100%)!important; /* ie10+ */
+    background: linear-gradient(355deg, rgba(255,98,165,1) 0%, rgba(255,98,165,1) 22%, rgba(255,137,97,1) 100%)!important; /* w3c */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff8961', endColorstr='#ff62a5',GradientType=0 ); /* ie6-9 */
+    border-radius: 25px !important;
+    font-weight: bold;
+    letter-spacing: 2px;
+    border: none;
+}   
+</style>
+</head>
+
+<body style="overflow-x: hidden;">
+
+  <nav id="mainNav" class="navbar navbar-expand-lg navbar-sticky navbar-dark">
+    <div class="container">
+      <a href="index.html" class="navbar-brand"><img src="<?= $sm['landing']['logo']['val']; ?>" alt="Logo"></a>
+  
+      <!-- secondary -->
+      <ul class="navbar-nav navbar-nav-secondary order-lg-3">
+        <li class="nav-item d-none">
+          <a class="nav-link nav-icon" href="" role="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="bi bi-list"></span>
+          </a>
+        </li>
+        <li class="nav-item d-none d-lg-block">
+          <a href="<?= $sm['config']['site_url']; ?>register" class="btn btn-outline-white rounded-pill ms-2">
+            <?= $sm['lang'][8]['text']; ?>
+          </a>
+        </li>
+        <li class="nav-item d-block">
+          <a href="<?= $sm['config']['site_url']; ?>login" class="btn ms-2 text-white">
+            <?= $sm['lang'][1]['text']; ?>
+          </a>
+        </li>               
+      </ul>
+  
+    </div>
+  </nav>
+  
+    <style>
+        .app-section-buttons{font-size:0;line-height:0;text-align:center;margin:0 0 10px}
+        .app-section-btn{display:inline-block;vertical-align:middle;width:22%;margin:0 10px}
+        .app-section-btn img{width:100%;max-width:100%;vertical-align:top}
+    </style>
+
+  <!-- hero -->
+  <section class="cover overflow-hidden bg-black inverted">
+    <div class="d-flex flex-column py-20 min-vh-100 container foreground">
+      <div class="row justify-content-center my-auto">
+        <div class="col-md-8 text-center">
+          <h1 class="title"><?= $sm['landingLang'][1]['text'];?></h1>
+          <a href="<?= $sm['config']['site_url']; ?>register" class="btn btn-white rounded-pill text-white" style="background: linear-gradient(to bottom right, #ffa42b, #eb4227) !important;"> <?= $sm['landingLang'][2]['text'];?></a>
+          
+          <h4 class="heading mt-8" style="color: #fff">Download our Free Android or Iphone App</h4>
+            <div class="app-section-buttons" style="margin-bottom: 45px">
+                <a href="#" class="app-section-btn gplay">
+                    <img src="https://www.belloo.date/3.5/assets/sources/uploads/5d6fbf99606db_buttonplaystore.png" alt="Google Play">
+                </a>
+                <a href="#" class="app-section-btn appstore">
+                    <img src="https://www.belloo.date/3.5/assets/sources/uploads/5d6fbf96e307c_buttonappstore.png" alt="Appstore">
+                </a>
+            </div>
+        </div>
+        
+      </div>
+    </div>
+    <div class="background background-overlay text-black" data-aos="zoom-out" data-aos-delay="200">
+      <video playsinline="" autoplay="" muted="" loop="" data-video="">
+        <source src="<?= $sm['landing']['bg_video']['val']; ?>" type="video/mp4">
+      </video>
+    </div>
+    <span class="scroll-down"></span>
+  </section>
+
+
+
+  <!-- features 
+  <section class="py-15 py-xl-20 overflow-hidden">
+    <div class="container">
+      <div class="row justify-content-center position-relative">
+        <div class="col-xl-10">
+          <p class="fs-4"><?= $sm['config']['name']; ?> <?= $sm['landingLang'][3]['text'];?></p>
+        </div>
+      </div>
+    </div>
+  </section> -->
+  
+  <!-- added sections from landing1 -->
+  
+  <!-- <style>
+    .loginbox-title,.stats-column,.stats-section{text-align:center}
+    .stats-section-intro{padding:0 10% 20px}
+    .heading{font-family:'Noto Sans'!important;font-size:45px!important;line-height:45px!important;display:block;margin:0 0 20px;padding:0;font-weight:700;text-align:center}
+    .stats-section-intro p{font-size:18px!important;color:#000!important;line-height:18px!important;margin:0 0 18px}
+    .stats-column{font-size:0;line-height:0;text-align:center}
+    .stats-column-item{display:inline-block;vertical-align:top;font-size:14px;line-height:18px;margin:0 30px}
+    .stats-value-box{font-family:'Noto Sans'!important;font-size:45px!important;color:#000!important;line-height:45px!important;padding:10px 40px 10px 40px;margin:0 0 20px;font-weight:700;min-width:230px;box-sizing:border-box;border-radius:50px;display:inline-block;vertical-align:middle}
+    .gradient28{background:#373b44!important;background:-webkit-linear-gradient(to left,#4286f4,#373b44)!important;background:linear-gradient(to left,#4286f4,#373b44)!important}
+    .stats-title{font-size:18px!important;color:#000!important;line-height:18px!important;display:block}
+    .stats-section.container{max-width:740px;margin:0 auto;box-sizing:border-box;padding:45px 20px}
+  </style>
+  
+    <div class="stats-section container mt-10" data-scroll="stats-section" >
+        <div class="omga-07__content-text">
+              <h2 class="title">join in</h2>
+                <div class="stats-value-box gradient28" style="background: gradient28;">
+                    <span style="color: #ffffff;">1,000's</span>
+                </div>
+                <p style="color: #000000">Be Discovered by potential clients and customers for free</p>
+                
+               <p style="color: #000000">network users</h3>
+            </div>
+        
+        
+        
+    </div>
+    
+    <style>
+        .two-column-section{position:relative;font-size:0;line-height:0}
+        .two-column-section-item{display:inline-block;vertical-align:middle;width:50%;box-sizing:border-box}
+        .sympaty-visual{text-align:center;font-size:0;line-height:0;position:relative}
+        .scrolled .sympaty-visual-photo{margin-left:0;margin-right:0;transform:none}
+        .sympaty-visual-photo{background:#fff;border:2px solid #fff;display:inline-block;vertical-align:bottom;width:40%;overflow:hidden;box-sizing:border-box;border-radius:50%;position:relative;z-index:2;transition:all .2s ease-in-out;margin-bottom:17%}
+        .sympaty-visual-photo img{vertical-align:top;width:100%;max-width:100%;border-radius:50%}
+        .scrolled .sympaty-visual-photo.center,.sympaty-visual-photo.center{width:65%;border-width:1px;z-index:5;margin:0 -23% 5%}
+        .sympaty-button{position:absolute;bottom:0;left:0;right:0;margin:auto;width:45%;z-index:6}
+        .two-column-section-item.description{padding:0 10%;font-size:14px;line-height:18px;text-align:left}
+        .subheading{font-family:'Noto Sans'!important;font-size:36px!important;color:#000!important;line-height:36px!important;font-weight:400;display:block;margin:0 0 20px;padding:0}
+        .description p{font-size:16.2px!important;color:#000!important;line-height:18px!important}
+        .two-column-section.sympaty-section.container{max-width:740px;margin:0 auto;box-sizing:border-box;padding:45px 20px}
+    </style>
+    
+    <div class="two-column-section sympaty-section container" data-scroll="sympaty-section">
+        <div class="two-column-section-item">
+            <div class="sympaty-visual">
+                <div class="sympaty-visual-photo left">
+                    <img src="https://www.belloo.date/3.5/assets/sources/uploads/5d6fbf741caa2_sympaty-photo-01.png">
+                </div>
+                <div class="sympaty-visual-photo center">
+                    <img src="https://www.belloo.date/3.5/assets/sources/uploads/5d6fbf70d9579_maingirl.jpg">
+                </div>
+                <div class="sympaty-visual-photo right">
+                    <img src="https://www.belloo.date/3.5/assets/sources/uploads/5d6fbf75e0a9a_girl2.jpg">
+                </div>
+                <div class="sympaty-button">
+                    <img src="https://www.belloo.date/3.5/assets/sources/uploads/5d6fbf7a4633b_discovery-buttons.png">
+                </div>
+            </div>
+        </div>
+        <div class="two-column-section-item description">
+            <h3 class="subheading" style="color: #000000">Easy to make new friends</h3>
+            <p>Play our popular Discovery game and get matched with other users. "Like" is a great way to break the ice and chat with new people.</p>
+        </div>
+    </div>
+    
+    <style>
+        .two-column-section.radar-section.container{max-width:740px;margin:0 auto;box-sizing:border-box;padding:45px 20px}
+        .radar-visual{background:#dbf6f9;width:80%;border-radius:50%;position:relative;margin:0 auto;box-sizing:border-box}
+        .radar-visual:after{padding-bottom:100%;display:block;content:''}
+        .scrolled .radar-visual-photo{transform:scale(1)}
+        .radar-visual-photo.photo-01{bottom:2%;left:8%;transition-delay:.1s}
+        .radar-visual-photo{border:2px solid #fff;background-position:50%;background-repeat:no-repeat;background-size:cover;position:absolute;width:20%;border-radius:50%;box-sizing:border-box;transition:all .3s ease}
+        .radar-visual-photo:after{padding-bottom:100%;display:block;content:''}
+        .radar-visual-photo.photo-02{top:5%;left:9%;transition-delay:.15s}
+        .radar-visual-photo.photo-03{top:40%;right:-5%;transition-delay:.3s}
+        .radar-visual-photo.photo-04{bottom:0;right:10%;transition-delay:.2s}
+        .radar-visual-photo.photo-05{top:45%;left:-6%;transition-delay:.25s}
+        .radar-visual-photo.photo-06{bottom:14%;left:42%;transition-delay:.4s}
+        .radar-visual-photo.photo-07{top:2%;right:12%;transition-delay:.35s}
+        .radar-visual-photo.photo-08{top:14%;left:42%;transition-delay:.45s}
+    </style>
+    
+    <div class="two-column-section radar-section container" data-scroll="radar-section">
+        <div class="two-column-section-item description">
+             <div class="omga-07__content-text">
+                Interesting people nearby
+            
+            <p>Find remarkable people on your city map, get in touch and have a great time together!</p>
+        </div>
+        <div class="two-column-section-item">
+            <div class="radar-visual" style="background-image: url(https://www.belloo.date/3.5/assets/sources/uploads/5d6fbf7f7d289_map.jpg);">
+                <div class="radar-visual-photo photo-01" style="background-image: url(https://www.belloo.date/3.5/assets/sources/uploads/5d6fbf83c3e74_radar-photo-01.png);"></div>
+                <div class="radar-visual-photo photo-02" style="background-image: url(https://www.belloo.date/3.5/assets/sources/uploads/5d6fbf85a7c13_radar-photo-02.png);"></div>
+                <div class="radar-visual-photo photo-03" style="background-image: url(https://www.belloo.date/3.5/assets/sources/uploads/5d6fbf8776469_radar-photo-03.png);"></div>
+                <div class="radar-visual-photo photo-04" style="background-image: url(https://www.belloo.date/3.5/assets/sources/uploads/5d6fbf8a7fede_radar-photo-04.png);"></div>
+                <div class="radar-visual-photo photo-05" style="background-image: url(https://www.belloo.date/3.5/assets/sources/uploads/5d6fbf8c90625_radar-photo-05.png);"></div>
+                <div class="radar-visual-photo photo-06" style="background-image: url(https://www.belloo.date/3.5/assets/sources/uploads/5d6fbf8e4e571_radar-photo-06.png);"></div>
+                <div class="radar-visual-photo photo-07" style="background-image: url(https://www.belloo.date/3.5/assets/sources/uploads/5d6fbf8fd1e30_radar-photo-07.png);"></div>
+                <div class="radar-visual-photo photo-08" style="background-image: url(https://www.belloo.date/3.5/assets/sources/uploads/5d6fbf92809f2_radar-photo-08.png);"></div>
+            </div>
+        </div>
+    </div> -->
+    
+  <!-- end added sections from landing1 -->
+  
+  <!-- added sections from landing2 -->
+  
+  <style>
+    .omga-07__content-image-group{display:-webkit-box;display:flex;margin-right:-15px}
+    .omga-07__content-image-group .single-image{display:-webkit-box;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;flex-direction:column}
+    .omga-07__content-image-group .single-image img{padding-bottom:15px;padding-right:15px;border-radius:8px}
+    .omga-07__content-section-2 .container{max-width:1140px}
+    .omga-07__content-image-group .single-image:nth-child(2){padding-top:43px}
+    .omga-07__content-text .title{color:#19191b;font-weight:700;letter-spacing:-1.88px;padding-bottom:20px;font-size:60px;line-height:70px}
+    .omga-07__content-text p{color:#696871;font-size:21px;font-weight:300;letter-spacing:-.66px;line-height:39px}.py--60{padding-top:60px!important;padding-bottom:60px!important}
+  </style>
+  
+  <div class="omga-07__content-section-2 py--60 mt-10">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-lg-6 mb--30 mb--md-0">
+            <div class="omga-07__content-image-2 omga-07__content-image-group">
+                <div class="col-lg-6 mb--30 mb--md-0 order-lg-2">
+                    <div class="comga-07__ontent-image-3" data-aos="fade-right" data-aos-duration="500" data-aos-delay="200" data-aos-once="true">
+                        <img src="themes/landing4/img/1109.png" alt="">
+                    </div>
+                </div>
+            </div>
+          </div>
+          <div class="col-lg-6 col-md-9 ">
+            <div class="omga-07__content-text">
+              <h2 class="title">Be Discovered by potential clients and customers for free</h2>
+                <!-- <p>Interesting people nearby, find remarkable people close to you, get in touch and have a great time together! a nice opportunity to make both friendly and romantic connections with real people.</p> -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <style>
+        .omga-07__content-section-3 .container{max-width: 1140px;}
+    </style>
+    
+    <div class="omga-07__content-section-3" style="margin-bottom: 60px;">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-lg-6 mb--30 mb--md-0 order-lg-2">
+            <div class="comga-07__ontent-image-3" data-aos="fade-right" data-aos-duration="500" data-aos-delay="200" data-aos-once="true">
+              <img src="themes/landing4/img/1110.png" alt="">
+            </div>
+          </div>
+          <div class="col-lg-6 col-md-9 order-lg-1">
+            <div class="omga-07__content-text">
+              <h2 class="title">Find professionals near you, or across the country, with our simple search feature</h2>
+                <!--<p>Our mobile site is fully synchronized with all our platforms so you can date from any device.</p>-->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+  <!-- end added sections from landing2 -->
+  
+    <style>
+    .omga-07__content-image-group{display:-webkit-box;display:flex;margin-right:-15px}
+    .omga-07__content-image-group .single-image{display:-webkit-box;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;flex-direction:column}
+    .omga-07__content-image-group .single-image img{padding-bottom:15px;padding-right:15px;border-radius:8px}
+    .omga-07__content-section-2 .container{max-width:1140px}
+    .omga-07__content-image-group .single-image:nth-child(2){padding-top:43px}
+    .omga-07__content-text .title{color:#19191b;font-weight:700;letter-spacing:-1.88px;padding-bottom:20px;font-size:60px;line-height:70px}
+    .omga-07__content-text p{color:#696871;font-size:21px;font-weight:300;letter-spacing:-.66px;line-height:39px}.py--60{padding-top:60px!important;padding-bottom:60px!important}
+  </style>
+  
+  <div class="omga-07__content-section-2 py--60 mt-10">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-lg-6 mb--30 mb--md-0">
+            <div class="omga-07__content-image-2 omga-07__content-image-group">
+              <div class="col-lg-6 mb--30 mb--md-0 order-lg-2">
+            <div class="comga-07__ontent-image-3" data-aos="fade-right" data-aos-duration="500" data-aos-delay="200" data-aos-once="true">
+               <img src="themes/landing4/img/1111.png" alt="">
+            </div>
+          </div>
+            </div>
+          </div>
+          <div class="col-lg-6 col-md-9 ">
+            <div class="omga-07__content-text">
+              <h2 class="title">Connect and message in a single step</h2>
+                <!-- <p>Interesting people nearby, find remarkable people close to you, get in touch and have a great time together! a nice opportunity to make both friendly and romantic connections with real people.</p> -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <style>
+        .omga-07__content-section-3 .container{max-width: 1140px;}
+    </style>
+    
+    <div class="omga-07__content-section-3" style="margin-bottom: 60px;">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-lg-6 mb--30 mb--md-0 order-lg-2">
+            <div class="comga-07__ontent-image-3" data-aos="fade-right" data-aos-duration="500" data-aos-delay="200" data-aos-once="true">
+              <img src="https://cdn.discordapp.com/attachments/376210432681050112/754029452073369801/1109.png" alt="">
+            </div>
+          </div>
+          <div class="col-lg-6 col-md-9 order-lg-1">
+            <div class="omga-07__content-text">
+              <h2 class="title">Quickly and confidently find service providers for hire</h2>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    
+    <style>
+        .two-column-section.radar-section.container{max-width:740px;margin:0 auto;box-sizing:border-box;padding:45px 20px}
+        .radar-visual{background:#dbf6f9;width:80%;border-radius:50%;position:relative;margin:0 auto;box-sizing:border-box}
+        .radar-visual:after{padding-bottom:100%;display:block;content:''}
+        .scrolled .radar-visual-photo{transform:scale(1)}
+        .radar-visual-photo.photo-01{bottom:2%;left:8%;transition-delay:.1s}
+        .radar-visual-photo{border:2px solid #fff;background-position:50%;background-repeat:no-repeat;background-size:cover;position:absolute;width:20%;border-radius:50%;box-sizing:border-box;transition:all .3s ease}
+        .radar-visual-photo:after{padding-bottom:100%;display:block;content:''}
+        .radar-visual-photo.photo-02{top:5%;left:9%;transition-delay:.15s}
+        .radar-visual-photo.photo-03{top:40%;right:-5%;transition-delay:.3s}
+        .radar-visual-photo.photo-04{bottom:0;right:10%;transition-delay:.2s}
+        .radar-visual-photo.photo-05{top:45%;left:-6%;transition-delay:.25s}
+        .radar-visual-photo.photo-06{bottom:14%;left:42%;transition-delay:.4s}
+        .radar-visual-photo.photo-07{top:2%;right:12%;transition-delay:.35s}
+        .radar-visual-photo.photo-08{top:14%;left:42%;transition-delay:.45s}
+    </style>
+    
+    <div class="two-column-section radar-section container" data-scroll="radar-section">
+        <div class="row justify-content-center my-auto mt-10">
+            <div class="col-md-8 text-center omga-07__content-text">
+              <h2 class="title">What is SBX?</h2>
+            </div>
+        
+        <h4 class="heading text-center mb-10" style="color: #000000">SBX is an innovative social media platform for business networking. We help professionals, service providers, and business owners connect and market themselves in a personalized and genuine way. </h4>
+        </div>
+        <div class="two-column-section-item">
+            <div class="radar-visual" style="background-image: url(https://www.belloo.date/3.5/assets/sources/uploads/5d6fbf7f7d289_map.jpg);">
+                <div class="radar-visual-photo photo-01" style="background-image: url(https://www.belloo.date/3.5/assets/sources/uploads/5d6fbf83c3e74_radar-photo-01.png);"></div>
+                <div class="radar-visual-photo photo-02" style="background-image: url(https://www.belloo.date/3.5/assets/sources/uploads/5d6fbf85a7c13_radar-photo-02.png);"></div>
+                <div class="radar-visual-photo photo-03" style="background-image: url(https://www.belloo.date/3.5/assets/sources/uploads/5d6fbf8776469_radar-photo-03.png);"></div>
+                <div class="radar-visual-photo photo-04" style="background-image: url(https://www.belloo.date/3.5/assets/sources/uploads/5d6fbf8a7fede_radar-photo-04.png);"></div>
+                <div class="radar-visual-photo photo-05" style="background-image: url(https://www.belloo.date/3.5/assets/sources/uploads/5d6fbf8c90625_radar-photo-05.png);"></div>
+                <div class="radar-visual-photo photo-06" style="background-image: url(https://www.belloo.date/3.5/assets/sources/uploads/5d6fbf8e4e571_radar-photo-06.png);"></div>
+                <div class="radar-visual-photo photo-07" style="background-image: url(https://www.belloo.date/3.5/assets/sources/uploads/5d6fbf8fd1e30_radar-photo-07.png);"></div>
+                <div class="radar-visual-photo photo-08" style="background-image: url(https://www.belloo.date/3.5/assets/sources/uploads/5d6fbf92809f2_radar-photo-08.png);"></div>
+            </div>
+        </div>
+    </div>
+
+  <footer class="py-2">
+    <div class="container">
+      <div class="row g-4 g-lg-5 mb-10">
+    <style>
+        .app-section.container{padding-bottom:0;max-width:740px;margin:0 auto;box-sizing:border-box;padding:45px 20px}
+        .app-section{text-align:center}
+        .app-section-intro{padding:20px 0;font-size:16px}
+        .app-section-intro .heading{margin:0 0 10px}
+        .app-section-intro p{margin:0 0 18px}
+        .app-section-buttons{font-size:0;line-height:0;text-align:center;margin:0 0 10px}
+        .app-section-btn{display:inline-block;vertical-align:middle;width:22%;margin:0 10px}
+        .app-section-btn img{width:100%;max-width:100%;vertical-align:top}
+    </style>
+  
+    <div class="app-section container" style="margin-bottom: 60px;margin-top:60px">
+        <div class="app-section-intro">
+            <div class="col-md-12 text-center omga-07__content-text">
+              <h2 class="title">Get the app now</h2>
+            </div>
+            <h4 class="heading" style="color: #000000">Download our Free Android or Iphone App</h4>
+        </div>
+    
+        <div class="app-section-buttons" style="margin-bottom: 45px">
+            <a href="#" class="app-section-btn gplay">
+                <img src="https://www.belloo.date/3.5/assets/sources/uploads/5d6fbf99606db_buttonplaystore.png" alt="Google Play">
+            </a>
+            <a href="#" class="app-section-btn appstore">
+                <img src="https://www.belloo.date/3.5/assets/sources/uploads/5d6fbf96e307c_buttonappstore.png" alt="Appstore">
+            </a>
+        </div>
+    </div>
+        
+      <div class="row align-items-center g-1 g-lg-6 text-muted">
+        <div class="col-md-6 col-lg-3 order-lg-2 text-center text-md-start">
+        </div>
+        <div class="col-md-6 col-lg-6 text-center text-md-end order-lg-2" style="padding-right:125px">
+          <ul class="list-inline small">
+              <li class="list-inline-item">
+                  <a class="text-reset text-primary-hover" href="mailto:<?= $sm['config']['email']; ?>">
+                      <?= $sm['lang'][64]['text']; ?>
+                  </a>
+              </li>
+              <li class="list-inline-item ms-1">
+                  <a class="text-reset text-primary-hover" class="text-rest" href="<?= $sm['config']['site_url']; ?>/index.php?page=tac" target="_blank">
+                      <?= $sm['lang'][43]['text']; ?>
+                  </a>
+              </li>
+              <li class="list-inline-item ms-1">
+                  <a class="text-reset text-primary-hover" href="<?= $sm['config']['site_url']; ?>/index.php?page=pp" target="_blank">
+                      <?= $sm['lang'][45]['text']; ?>    
+                  </a>
+              </li>
+            </ul>
+        </div>
+        <div class="col-lg-3 order-lg-1 text-center text-md-start" style="padding-left: 115px;">
+          <p class="small">&copy; <?= date('Y'); ?> <?= $sm['config']['name']; ?></p>
+        </div>
+      </div>
+    </div>
+    </div>
+  </footer> 
+
+
+
+
+<script src="<?php echo $sm['config']['theme_url_landing']; ?>/js/vendor.bundle.js"></script>
+<script src="<?php echo $sm['config']['theme_url_landing']; ?>/js/index.bundle.js"></script></body>
+
+<?= $sm['plugins']['customHtml']['landing_footer']; ?>
+</body>
+
+</html>
+
+

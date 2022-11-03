@@ -1,0 +1,8 @@
+[10-Mar-2022 12:36:57 America/Detroit] PHP Fatal error:  Uncaught PusherException: Invalid channel name Your Pusher Key in /home/firstdecddfs/public_html/sbx2/assets/sources/pusher.php:220
+Stack trace:
+#0 /home/firstdecddfs/public_html/sbx2/assets/sources/pusher.php(207): Pusher->validate_channel('Your Pusher Key')
+#1 /home/firstdecddfs/public_html/sbx2/assets/sources/pusher.php(390): Pusher->validate_channels(Array)
+#2 /home/firstdecddfs/public_html/sbx2/assets/sources/appupload.php(163): Pusher->trigger(Array, 'chat162', Array)
+#3 /home/firstdecddfs/public_html/sbx2/assets/sources/appupload.php(190): sendPhoto('/9j/4AAQSkZJRgA...', '2', '16')
+#4 {main}
+  thrown in /home/firstdecddfs/public_html/sbx2/assets/sources/pusher.php on line 220
