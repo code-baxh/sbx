@@ -1,0 +1,364 @@
+<?php
+  if($sm['admin_ajax'] == false){
+    header('Location:'.$sm['config']['site_url'].'index.php?page=admin');
+  }
+?>
+<script>
+  aurl = 'adsManager';
+  currentMenu = '';
+  currentMenuCollapse = ''; 
+</script>
+<!-- SECTION CONTENT -->
+<div class="container-fluid page__container" id="mediaContainer" style="padding-top:25px;min-height: 800px ">
+  <div class="card-group" id="globalResult">
+      <div class="card card-body text-center">
+          <div class="d-flex flex-row align-items-center">
+              <div class="card-header__title m-0">Total</div>
+              <div class="text-amount ml-auto font16"><?= selectC('ads',''); ?></div>
+          </div>
+      </div>
+      <div class="card card-body text-center">
+          <div class="d-flex flex-row align-items-center">
+              <div class="card-header__title m-0">970x90</div>
+              <div class="text-amount ml-auto font16"><?= selectC('ads','where ad_size = "970x90"'); ?></div>
+          </div>
+      </div>      
+      <div class="card card-body text-center">
+          <div class="d-flex flex-row align-items-center">
+              <div class="card-header__title m-0">728x90</div>
+              <div class="text-amount ml-auto font16"><?= selectC('ads','where ad_size = "728x90"'); ?></div>
+          </div>
+      </div>
+      <div class="card card-body text-center">
+          <div class="d-flex flex-row align-items-center">
+              <div class="card-header__title m-0">160x600</div>
+              <div class="text-amount ml-auto font16"><?= selectC('ads','where ad_size = "160x600"'); ?></div>
+          </div>
+      </div>
+      <div class="card card-body text-center">
+          <div class="d-flex flex-row align-items-center">
+              <div class="card-header__title m-0">300x250</div>
+              <div class="text-amount ml-auto font16"><?= selectC('ads','where ad_size = "300x250"'); ?></div>
+          </div>
+      </div>                                                    
+  </div>
+
+<div class="alert alert-soft-info d-flex align-items-center card-margin" role="alert">
+    <i class="material-icons mr-3">error_outline</i>
+    <div class="text-body"><strong>ADS MANAGER</strong> For show the ads from the ads manager in your website you have to write <strong>[ADSMANAGER]</strong> in the <a href="javascript:;" onclick="goTo('plugin','adsWeb','Tools')">Webiste Ads manager</a><br>Check out this sample <a href="http://prntscr.com/21oeb0l" target="_blank">screenshot</a></div>
+</div>
+
+  <div class="card card-form d-flex flex-column flex-sm-row" >
+      <div class="card-form__body card-body-form-group flex">
+          <div class="row">
+              <div class="col-sm-3" data-media-filter-col="userid">
+                  <div class="form-group">
+                      <label for="filter_id">Search By AD Custom ID</label>
+                      <input id="filter_id" type="search" data-sfmedia="search" class="form-control" placeholder="Search">
+                  </div>
+              </div>
+              <div class="col-sm-3" data-media-filter-col>
+                  <div class="form-group">
+                      <label for="filter_category">Size</label><br>
+                      <select id="filter_category" data-sfmedia="size" class="custom-select">
+                          <option value="All">All</option>
+                          <option value="970x90">970x90</option>
+                          <option value="728x90">728x90</option>
+                          <option value="160x600">160x600</option>
+                          <option value="250x300">250x300</option>
+                      </select>
+                  </div>
+              </div>              
+              <div class="col-sm-3" data-media-filter-col>
+                  <div class="form-group">
+                      <label for="filter_status">Status</label><br>
+                      <select id="filter_status" data-sfmedia="status" class="custom-select">
+                          <option value="All">All</option>
+                          <option value="1">Active</option>                          
+                          <option value="0">Inactive</option>
+                      </select>
+                  </div>
+              </div> 
+              <div class="col-sm-3" data-media-filter-col="orderby">
+                  <div class="form-group">
+                      <label for="filter_orderby">ORDER BY</label><br>
+                      <select id="filter_orderby" data-sfmedia="orderby" class="custom-select">
+                          <option value="ad_created_date">Last Created</option>
+                          <option value="ad_impresions">Impresions</option>                          
+                          <option value="ad_clicks">Clicks</option>              
+                      </select>
+                  </div>
+              </div>                                        
+          </div>
+      </div>
+      <button class="btn bg-white border-left border-top border-top-sm-0 rounded-top-0 rounded-top-sm rounded-left-sm-0" data-update-media-search style="outline: none">
+        <i class="material-icons text-primary icon-30pt" data-update-media-search-btn>refresh</i></button>
+  </div>
+
+
+<div class="card-header card-header-large bg-light" data-user-search-result="" style="position: relative;height:60px;">
+   <button type="button" class="btn btn-success" onclick="openAdModal('create')" style="position: absolute;top: 10px;right: 10px;">
+      <i class="material-icons mr-1">attach_money</i> Create Ad Banner
+   </button>       
+</div>
+
+
+  <div class="card card-form  flex-column flex-sm-row divHidden" data-selected-data style="display: none">
+      <div class="card-form__body card-body-form-group flex">
+          <div class="row">
+              <div class="col-sm-12">
+                  <div class="form-group">
+                      <label for="filter_name">Selected <strong data-selected-data-total></strong> ads</label>                    
+                  </div>
+                  <div class="avatar-group" data-checkedData style="position: absolute;top: -7px;left: 180px">
+
+
+                  </div>
+              </div>                                                 
+          </div>
+      </div>
+
+      <div class="dropdown">
+          <button class="btn bg-white border-left border-top border-top-sm-0 rounded-top-0 rounded-top-sm rounded-left-sm-0" data-toggle="dropdown" data-caret="false" style="border-radius:0px;background: #fff;width: 100%;height: 100%">
+             <i class="material-icons icon-30pt" style="color: #000">more_horiz</i>
+           </button> 
+          <div class="dropdown-menu dropdown-menu-right">
+              <a class="dropdown-item" href="javascript:;" onclick="adminBulkAction('approve','media');" style="font-size: 13px;">
+                Approve <span data-selected-data-total></span> media objects
+              </a>
+              
+              <a class="dropdown-item" href="javascript:;" id="reUploadStoryBulk" onclick="adminBulkAction('reUploadStory','media');" style="font-size: 13px;display: none">
+                Re-upload <span data-selected-data-total></span> stories
+              </a>              
+              <div class="dropdown-divider"></div>                            
+              <a class="dropdown-item" href="javascript:;" onclick="adminBulkAction('delete','media');" style="font-size: 13px;color: #b50000">
+                Delete <span data-selected-data-total></span> media objects
+              </a>                                                 
+          </div>
+      </div>      
+  </div>
+
+  <div class="card card-form">
+      <div class="row no-gutters">
+          <div class="col-lg-12 col-md-12 col-sm-12 card-form__body" style="min-height: 700px">              
+              <div class="table-responsive border-bottom" data-search data-toggle="lists" data-lists-values='["js-lists-values-employee-name"]' style="min-height: 700px" data-table="result">   
+
+
+                  <table class="table mb-0 thead-border-top-0" style="">
+                      <thead>
+                          <tr style="background: #fff">
+                              <th style="width: 120px;">Custom ID</th>
+                              <th style="width: 90px;">Size</th>
+                              <th style="width: 280px;">Banner</th>
+                              <th style="width: 80px;">Status</th>                              
+                              <th style="width: 70px;">Impresions</th>
+                              <th style="width: 70px;">Clicks</th>
+                              <th style="width: 120px;">Created</th>
+                              <th style="width: 24px;"></th>
+                          </tr>
+                      </thead>
+
+                      <tbody class="list" id="dataTable" style="overflow-y: scroll">
+                      </tbody>
+                  </table>
+              </div>
+ 
+              <div class="card-footer text-center">
+                <span class="text-muted">Showing </span>
+                <span data-current-view></span>
+                <span class="text-muted">of </span>
+                <span data-current-total-users></span> 
+                <span class="text-muted">results</span>
+                <a href="#results" data-nextPage-search>
+                  <i class="material-icons icon-muted float-right">arrow_forward</i>
+                </a>
+                <a href="#results" data-backPage-search style="display: none">
+
+                  <i class="material-icons icon-muted float-left" >arrow_backward</i>
+                </a>
+              </div> 
+
+          </div>                    
+      </div>
+  </div>    
+
+  <div class="v-wrapper">
+    <a href="#" class="btn btn-light ml-3" data-close-video><i class="material-icons mr-1">close</i> Close video</a>
+    <video id="playVideo" controls >
+      <source />
+    </video>
+  </div>
+</div>
+
+
+<script>
+    var viewer;
+    var dataPerPage = 150;
+    var viewedData = 0;
+    var lastPageSearch = 0;
+    var search = {};
+    var searchData = [];
+    var checkedData = [];    
+    search['action'] = 'search_ads';
+
+    $('[data-sfmedia]').each(function(){
+        var current = $(this).attr('data-sfmedia');
+        search[current] = $(this).val();
+    });
+    $('[data-sfmedia]').change(function(){
+        var current = $(this).attr('data-sfmedia');
+        search[current] = $(this).val();       
+    });
+
+    console.log(search);
+
+
+    //next result page
+     $('[data-nextPage-search]').click(function(e){
+    
+      $('#customCheckAll').prop("checked",false);         
+        if(searchData.length > viewedData){
+            $('#dataTable').html('');
+            var maxResult = viewedData+dataPerPage;
+
+            lastPageSearch = dataPerPage;
+            if(searchData.length <= maxResult ){
+                maxResult = searchData.length;
+                lastPageSearch = maxResult;
+            }                    
+            for (i = viewedData; i < maxResult; i++) {
+              viewedData++;
+              $('#dataTable').append(searchData[i]);
+              
+
+              
+            }
+            $('[data-current-view]').text(viewedData);  
+            $('[data-backPage-search]').fadeIn(); 
+            viewer = new slimLightbox();
+            checkIfChecked();  
+            tableDropdownEffect();               
+        }                
+     });  
+
+
+     //back page
+     $('[data-backPage-search]').click(function(e){
+        
+        $('#dataTable').html('');
+        $('#customCheckAll').prop("checked",false);
+        var firstBack = dataPerPage*2;
+        viewedData = viewedData-firstBack;
+        console.log(viewedData);
+        if(viewedData <= 0){
+            $('[data-backPage-search]').hide();
+            viewedData = 0;
+        } 
+        var maxResult = viewedData+dataPerPage;
+        if(searchData.length <= maxResult ){
+            maxResult = searchData.length;
+        }                                
+        for (i = viewedData; i < maxResult; i++) {
+          viewedData++;
+          $('#dataTable').append(searchData[i]);
+        }
+        $('[data-current-view]').text(viewedData); 
+        viewer = new slimLightbox();
+        checkIfChecked();  
+        tableDropdownEffect();                               
+     });  
+       
+
+    //load data
+    function loadDataAds(){
+      $('#dataTable').css('opacity','0.5');
+      
+      $.ajax({
+        url: request_source()+'/admin.php', 
+        data: search,  
+        type: "post",
+        dataType: 'JSON',        
+        success: function(response) {
+
+            $('#dataTable').html('');
+            $('#dataTable').css('opacity','1');
+            $('[data-search]').show();
+
+            setTimeout(function(){
+              checkedData = [];
+            },500);
+            searchData = response['data'];
+
+            for (i = 0; i < dataPerPage; i++) {
+              viewedData++; 
+              $('#dataTable').append(response['data'][i]);
+            }
+
+            $('#totalResult').text(response.total);
+
+            if(response['total'] < 49){
+              viewedData = response['total'];
+            }
+       
+            if(response['total'] == 0){
+               $('[data-table="result"]').hide();
+            }
+            viewer = new slimLightbox();
+            $('#searching').hide();
+            $('#searchComplete').show();
+            $('[data-current-total-users]').text(response.total);
+            $('[data-current-view]').text(viewedData);
+
+            tableDropdownEffect();                        
+        },
+      });
+    }
+
+   loadDataAds();
+
+    $('[data-update-media-search]').click(function(){
+        $('#dataTable').css('opacity','0.5');
+        checkedData = [];
+        viewedData = 0;
+        searchData = [];
+        loadDataAds();        
+    })
+
+    //play video
+    function playVideo(video){    
+      var $video = $('#playVideo'),
+      videoSrc = $('source', $video).attr('src', video);
+      $video[0].load();
+      $('.v-wrapper').fadeIn();
+      $video[0].play();
+      $('html,body').scrollTop(0);
+    } 
+
+    //close video
+
+    $('[data-close-video]').click(function(e){
+      e.preventDefault();
+      var $video = $('#playVideo');
+      $video[0].pause();
+      $('.v-wrapper').hide();
+    });  
+    fullHeightElement('.v-wrapper',60);
+    fullHeightElement('#playVideo',60);
+    
+    document.onkeydown = checkKey;
+
+    function checkKey(e) {
+        e = e || window.event;
+        if (e.keyCode == '27') {
+          $('[data-close-video]').click();      
+        }    
+    }  
+
+    function searchMediaById(id){
+      $('#filter_id').val(id);
+      search['search'] = id;
+      loadDataMedia();
+      $('html,body').scrollTop(0);
+    }
+   
+</script>

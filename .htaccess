@@ -1,0 +1,31 @@
+Options +FollowSymLinks
+Options -Indexes
+RewriteEngine On
+RewriteBase /
+RewriteCond %{SCRIPT_FILENAME} !-d
+RewriteCond %{SCRIPT_FILENAME} !-f
+RewriteRule ^([A-Za-z0-9-]+)/?$ index.php?page=$1
+RewriteRule ^profile/([0-9]+)/([A-Za-z0-9-]+)/?$ index.php?page=profile&id=$1
+RewriteRule ^ref/([A-Za-z0-9-]+)/?$ index.php?page=ref&id=$1
+RewriteRule ^@([A-Za-z0-9_.]+)/?$ index.php?page=profile&id=$1
+RewriteRule ^@([A-Za-z0-9-]+)/([A-Za-z0-9-]+)?$ index.php?page=profile&id=$1&s=$2
+RewriteRule ^administrator/editor/theme/([A-Za-z0-9-]+)/([A-Za-z0-9-]+)/?$ administrator/editor/index.php?theme=$1&preset=$2
+RewriteRule ^administrator/([A-Za-z0-9-]+)/?$ index.php?page=admin&p=$1
+RewriteRule ^m_profile/([0-9]+)/([A-Za-z0-9-]+)/?$ mobile.php?page=profile&id=$1
+RewriteRule ^chat/([0-9]+)/([A-Za-z0-9-]+)/?$ index.php?page=chat&id=$1
+RewriteRule ^search/([A-Za-z0-9-]+)/?$ index.php?page=logout
+RewriteRule ^search/([A-Za-z0-9-]+)/([A-Za-z0-9-]+)/?$ index.php?page=logout
+
+# php -- BEGIN cPanel-generated handler, do not edit
+# Set the “ea-php74” package as the default “PHP” programming language.
+<IfModule mime_module>
+  AddHandler application/x-httpd-ea-php74 .php .php7 .phtml
+</IfModule>
+# php -- END cPanel-generated handler, do not edit
+
+<Files 403.shtml>
+order allow,deny
+allow from all
+</Files>
+
+deny from 110.93.246.67

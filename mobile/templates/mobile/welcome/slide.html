@@ -1,0 +1,727 @@
+<link rel="icon" type="image/png" href="../../../../assets/sources/uploads/6229f07fc4cc7_favicon.png" sizes="32x32">
+<link rel="stylesheet" href="../../../../themes/landing4/css/libs.bundle.css">
+<link rel="stylesheet" href="../../../../themes/landing4/css/index.bundle.css">
+<link href="../../../../themes/default/css/vendor/autocomplete.css" rel="stylesheet" type="text/css">
+<style>
+    ion-header-bar {
+        background: none !important;
+        pointer-events: none !important;
+    }
+</style>
+<ion-view title="" hide-nav-bar="true">
+    <ion-content>
+        <div style="overflow-x: hidden;" class="headroom headroom--top headroom--not-bottom" data-aos-easing="ease"
+            data-aos-duration="800" data-aos-delay="0" cz-shortcut-listen="true">
+            <div hidden="" id="sprite-plyr">
+                <!--?xml version="1.0" encoding="UTF-8"?-->
+                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                    <symbol id="plyr-airplay" viewBox="0 0 18 18">
+                        <path d="M16 1H2a1 1 0 00-1 1v10a1 1 0 001 1h3v-2H3V3h12v8h-2v2h3a1 1 0 001-1V2a1 1 0 00-1-1z">
+                        </path>
+                        <path d="M4 17h10l-5-6z"></path>
+                    </symbol>
+                    <symbol id="plyr-captions-off" viewBox="0 0 18 18">
+                        <path
+                            d="M1 1c-.6 0-1 .4-1 1v11c0 .6.4 1 1 1h4.6l2.7 2.7c.2.2.4.3.7.3.3 0 .5-.1.7-.3l2.7-2.7H17c.6 0 1-.4 1-1V2c0-.6-.4-1-1-1H1zm4.52 10.15c1.99 0 3.01-1.32 3.28-2.41l-1.29-.39c-.19.66-.78 1.45-1.99 1.45-1.14 0-2.2-.83-2.2-2.34 0-1.61 1.12-2.37 2.18-2.37 1.23 0 1.78.75 1.95 1.43l1.3-.41C8.47 4.96 7.46 3.76 5.5 3.76c-1.9 0-3.61 1.44-3.61 3.7 0 2.26 1.65 3.69 3.63 3.69zm7.57 0c1.99 0 3.01-1.32 3.28-2.41l-1.29-.39c-.19.66-.78 1.45-1.99 1.45-1.14 0-2.2-.83-2.2-2.34 0-1.61 1.12-2.37 2.18-2.37 1.23 0 1.78.75 1.95 1.43l1.3-.41c-.28-1.15-1.29-2.35-3.25-2.35-1.9 0-3.61 1.44-3.61 3.7 0 2.26 1.65 3.69 3.63 3.69z"
+                            fill-rule="evenodd" fill-opacity=".5"></path>
+                    </symbol>
+                    <symbol id="plyr-captions-on" viewBox="0 0 18 18">
+                        <path
+                            d="M1 1c-.6 0-1 .4-1 1v11c0 .6.4 1 1 1h4.6l2.7 2.7c.2.2.4.3.7.3.3 0 .5-.1.7-.3l2.7-2.7H17c.6 0 1-.4 1-1V2c0-.6-.4-1-1-1H1zm4.52 10.15c1.99 0 3.01-1.32 3.28-2.41l-1.29-.39c-.19.66-.78 1.45-1.99 1.45-1.14 0-2.2-.83-2.2-2.34 0-1.61 1.12-2.37 2.18-2.37 1.23 0 1.78.75 1.95 1.43l1.3-.41C8.47 4.96 7.46 3.76 5.5 3.76c-1.9 0-3.61 1.44-3.61 3.7 0 2.26 1.65 3.69 3.63 3.69zm7.57 0c1.99 0 3.01-1.32 3.28-2.41l-1.29-.39c-.19.66-.78 1.45-1.99 1.45-1.14 0-2.2-.83-2.2-2.34 0-1.61 1.12-2.37 2.18-2.37 1.23 0 1.78.75 1.95 1.43l1.3-.41c-.28-1.15-1.29-2.35-3.25-2.35-1.9 0-3.61 1.44-3.61 3.7 0 2.26 1.65 3.69 3.63 3.69z"
+                            fill-rule="evenodd"></path>
+                    </symbol>
+                    <symbol id="plyr-download" viewBox="0 0 18 18">
+                        <path
+                            d="M9 13c.3 0 .5-.1.7-.3L15.4 7 14 5.6l-4 4V1H8v8.6l-4-4L2.6 7l5.7 5.7c.2.2.4.3.7.3zm-7 2h14v2H2z">
+                        </path>
+                    </symbol>
+                    <symbol id="plyr-enter-fullscreen" viewBox="0 0 18 18">
+                        <path d="M10 3h3.6l-4 4L11 8.4l4-4V8h2V1h-7zM7 9.6l-4 4V10H1v7h7v-2H4.4l4-4z"></path>
+                    </symbol>
+                    <symbol id="plyr-exit-fullscreen" viewBox="0 0 18 18">
+                        <path d="M1 12h3.6l-4 4L2 17.4l4-4V17h2v-7H1zM16 .6l-4 4V1h-2v7h7V6h-3.6l4-4z"></path>
+                    </symbol>
+                    <symbol id="plyr-fast-forward" viewBox="0 0 18 18">
+                        <path d="M7.875 7.171L0 1v16l7.875-6.171V17L18 9 7.875 1z"></path>
+                    </symbol>
+                    <symbol id="plyr-logo-vimeo" viewBox="0 0 18 18">
+                        <path
+                            d="M17 5.3c-.1 1.6-1.2 3.7-3.3 6.4-2.2 2.8-4 4.2-5.5 4.2-.9 0-1.7-.9-2.4-2.6C5 10.9 4.4 6 3 6c-.1 0-.5.3-1.2.8l-.8-1c.8-.7 3.5-3.4 4.7-3.5 1.2-.1 2 .7 2.3 2.5.3 2 .8 6.1 1.8 6.1.9 0 2.5-3.4 2.6-4 .1-.9-.3-1.9-2.3-1.1.8-2.6 2.3-3.8 4.5-3.8 1.7.1 2.5 1.2 2.4 3.3z">
+                        </path>
+                    </symbol>
+                    <symbol id="plyr-logo-youtube" viewBox="0 0 18 18">
+                        <path
+                            d="M16.8 5.8c-.2-1.3-.8-2.2-2.2-2.4C12.4 3 9 3 9 3s-3.4 0-5.6.4C2 3.6 1.3 4.5 1.2 5.8 1 7.1 1 9 1 9s0 1.9.2 3.2c.2 1.3.8 2.2 2.2 2.4C5.6 15 9 15 9 15s3.4 0 5.6-.4c1.4-.3 2-1.1 2.2-2.4.2-1.3.2-3.2.2-3.2s0-1.9-.2-3.2zM7 12V6l5 3-5 3z">
+                        </path>
+                    </symbol>
+                    <symbol id="plyr-muted" viewBox="0 0 18 18">
+                        <path
+                            d="M12.4 12.5l2.1-2.1 2.1 2.1 1.4-1.4L15.9 9 18 6.9l-1.4-1.4-2.1 2.1-2.1-2.1L11 6.9 13.1 9 11 11.1zM3.786 6.008H.714C.286 6.008 0 6.31 0 6.76v4.512c0 .452.286.752.714.752h3.072l4.071 3.858c.5.3 1.143 0 1.143-.602V2.752c0-.601-.643-.977-1.143-.601L3.786 6.008z">
+                        </path>
+                    </symbol>
+                    <symbol id="plyr-pause" viewBox="0 0 18 18">
+                        <path
+                            d="M6 1H3c-.6 0-1 .4-1 1v14c0 .6.4 1 1 1h3c.6 0 1-.4 1-1V2c0-.6-.4-1-1-1zm6 0c-.6 0-1 .4-1 1v14c0 .6.4 1 1 1h3c.6 0 1-.4 1-1V2c0-.6-.4-1-1-1h-3z">
+                        </path>
+                    </symbol>
+                    <symbol id="plyr-pip" viewBox="0 0 18 18">
+                        <path d="M13.293 3.293L7.022 9.564l1.414 1.414 6.271-6.271L17 7V1h-6z"></path>
+                        <path d="M13 15H3V5h5V3H2a1 1 0 00-1 1v12a1 1 0 001 1h12a1 1 0 001-1v-6h-2v5z"></path>
+                    </symbol>
+                    <symbol id="plyr-play" viewBox="0 0 18 18">
+                        <path
+                            d="M15.562 8.1L3.87.225c-.818-.562-1.87 0-1.87.9v15.75c0 .9 1.052 1.462 1.87.9L15.563 9.9c.584-.45.584-1.35 0-1.8z">
+                        </path>
+                    </symbol>
+                    <symbol id="plyr-restart" viewBox="0 0 18 18">
+                        <path
+                            d="M9.7 1.2l.7 6.4 2.1-2.1c1.9 1.9 1.9 5.1 0 7-.9 1-2.2 1.5-3.5 1.5-1.3 0-2.6-.5-3.5-1.5-1.9-1.9-1.9-5.1 0-7 .6-.6 1.4-1.1 2.3-1.3l-.6-1.9C6 2.6 4.9 3.2 4 4.1 1.3 6.8 1.3 11.2 4 14c1.3 1.3 3.1 2 4.9 2 1.9 0 3.6-.7 4.9-2 2.7-2.7 2.7-7.1 0-9.9L16 1.9l-6.3-.7z">
+                        </path>
+                    </symbol>
+                    <symbol id="plyr-rewind" viewBox="0 0 18 18">
+                        <path d="M10.125 1L0 9l10.125 8v-6.171L18 17V1l-7.875 6.171z"></path>
+                    </symbol>
+                    <symbol id="plyr-settings" viewBox="0 0 18 18">
+                        <path
+                            d="M16.135 7.784a2 2 0 01-1.23-2.969c.322-.536.225-.998-.094-1.316l-.31-.31c-.318-.318-.78-.415-1.316-.094a2 2 0 01-2.969-1.23C10.065 1.258 9.669 1 9.219 1h-.438c-.45 0-.845.258-.997.865a2 2 0 01-2.969 1.23c-.536-.322-.999-.225-1.317.093l-.31.31c-.318.318-.415.781-.093 1.317a2 2 0 01-1.23 2.969C1.26 7.935 1 8.33 1 8.781v.438c0 .45.258.845.865.997a2 2 0 011.23 2.969c-.322.536-.225.998.094 1.316l.31.31c.319.319.782.415 1.316.094a2 2 0 012.969 1.23c.151.607.547.865.997.865h.438c.45 0 .845-.258.997-.865a2 2 0 012.969-1.23c.535.321.997.225 1.316-.094l.31-.31c.318-.318.415-.781.094-1.316a2 2 0 011.23-2.969c.607-.151.865-.547.865-.997v-.438c0-.451-.26-.846-.865-.997zM9 12a3 3 0 110-6 3 3 0 010 6z">
+                        </path>
+                    </symbol>
+                    <symbol id="plyr-volume" viewBox="0 0 18 18">
+                        <path
+                            d="M15.6 3.3c-.4-.4-1-.4-1.4 0-.4.4-.4 1 0 1.4C15.4 5.9 16 7.4 16 9c0 1.6-.6 3.1-1.8 4.3-.4.4-.4 1 0 1.4.2.2.5.3.7.3.3 0 .5-.1.7-.3C17.1 13.2 18 11.2 18 9s-.9-4.2-2.4-5.7z">
+                        </path>
+                        <path
+                            d="M11.282 5.282a.909.909 0 000 1.316c.735.735.995 1.458.995 2.402 0 .936-.425 1.917-.995 2.487a.909.909 0 000 1.316c.145.145.636.262 1.018.156a.725.725 0 00.298-.156C13.773 11.733 14.13 10.16 14.13 9c0-.17-.002-.34-.011-.51-.053-.992-.319-2.005-1.522-3.208a.909.909 0 00-1.316 0zm-7.496.726H.714C.286 6.008 0 6.31 0 6.76v4.512c0 .452.286.752.714.752h3.072l4.071 3.858c.5.3 1.143 0 1.143-.602V2.752c0-.601-.643-.977-1.143-.601L3.786 6.008z">
+                        </path>
+                    </symbol>
+                </svg>
+            </div>
+            <nav id="mainNav" class="navbar navbar-expand-lg navbar-sticky navbar-dark">
+                <div class="container"><a href="index.html" class="navbar-brand"><img
+                            src="../../../../assets/sources/uploads/6229f07732c81_sbxlogo-180.png" alt="Logo"></a>
+                    <!-- secondary -->
+                    <ul class="navbar-nav navbar-nav-secondary order-lg-3">
+                        <li class="nav-item d-none"><a class="nav-link nav-icon" href="" role="button"
+                                data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar"
+                                aria-expanded="false" aria-label="Toggle navigation"> <span class="bi bi-list"></span>
+                            </a></li>
+                        <li class="nav-item d-none d-lg-block"><a ui-sref="home.register"
+                                class="btn btn-outline-white rounded-pill ms-2">
+                                Create your
+                                account </a></li>
+                        <li class="nav-item d-block"><a ui-sref="home.welcome" class="btn ms-2 text-white"> Login </a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+            <style>
+                .app-section-buttons {
+                    font-size: 0;
+                    line-height: 0;
+                    text-align: center;
+                    margin: 0 0 10px
+                }
+
+                .app-section-btn {
+                    display: inline-block;
+                    vertical-align: middle;
+                    width: 22%;
+                    margin: 0 10px
+                }
+
+                .app-section-btn img {
+                    width: 100%;
+                    max-width: 100%;
+                    vertical-align: top
+                }
+            </style> 
+            <!-- hero -->
+            <section class="cover overflow-hidden bg-black inverted">
+                <div class="d-flex flex-column py-20 min-vh-100 container foreground">
+                    <div class="row justify-content-center my-auto">
+                        <div class="col-md-8 text-center">
+                            <h1 class="title">Grow your network with a swipe</h1>
+                            <a ui-sref="home.register" class="btn btn-white rounded-pill text-white"
+                                style="background: linear-gradient(to bottom right, #ffa42b, #eb4227) !important;">
+                                Join our
+                                network</a>
+                            <h4 class="heading mt-8" style="color: #fff">Download our
+                                Free Android or
+                                Iphone App</h4>
+                            <div class="app-section-buttons" style="margin-bottom: 45px" hidden>
+                                <a href="#"
+                                    class="app-section-btn gplay">
+                                    <img src="https://www.belloo.date/3.5/assets/sources/uploads/5d6fbf99606db_buttonplaystore.png"
+                                        alt="Google Play"> 
+                                </a> 
+                                <a href="#" class="app-section-btn appstore"> <img
+                                        src="https://www.belloo.date/3.5/assets/sources/uploads/5d6fbf96e307c_buttonappstore.png"
+                                        alt="Appstore"> 
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="background background-overlay text-black aos-init aos-animate" data-aos="zoom-out"
+                    data-aos-delay="200">
+                    <div tabindex="0"
+                        class="plyr plyr--full-ui plyr--video plyr--html5 plyr--fullscreen-enabled plyr--pip-supported plyr--is-touch plyr--playing plyr--hide-controls">
+                        <div class="plyr__controls"><button
+                                class="plyr__controls__item plyr__control plyr__control--pressed" type="button"
+                                data-plyr="play" aria-label="Pause"><svg class="icon--pressed" aria-hidden="true"
+                                    focusable="false">
+                                    <use xlink:href="#plyr-pause"></use>
+                                </svg><svg class="icon--not-pressed" aria-hidden="true" focusable="false">
+                                    <use xlink:href="#plyr-play"></use>
+                                </svg><span class="label--pressed plyr__sr-only">Pause</span><span
+                                    class="label--not-pressed plyr__sr-only">Play</span></button>
+                            <div class="plyr__controls__item plyr__progress__container">
+                                <div class="plyr__progress"><input data-plyr="seek" type="range" min="0" max="100"
+                                        step="0.01" value="0" autocomplete="off" role="slider" aria-label="Seek"
+                                        aria-valuemin="0" aria-valuemax="100" aria-valuenow="9.031584"
+                                        id="plyr-seek-4597" aria-valuetext="00:09 of 00:11"
+                                        style="--value:75.67%; user-select: none; touch-action: manipulation;"><progress
+                                        class="plyr__progress__buffer" min="0" max="100" value="100" role="progressbar"
+                                        aria-hidden="true">% buffered</progress><span class="plyr__tooltip">00:00</span>
+                                </div>
+                            </div>
+                            <div class="plyr__controls__item plyr__time--current plyr__time" aria-label="Current time">
+                                -00:02</div>
+                            <div class="plyr__controls__item plyr__volume"><button type="button"
+                                    class="plyr__control plyr__control--pressed" data-plyr="mute"><svg
+                                        class="icon--pressed" aria-hidden="true" focusable="false">
+                                        <use xlink:href="#plyr-muted"></use>
+                                    </svg><svg class="icon--not-pressed" aria-hidden="true" focusable="false">
+                                        <use xlink:href="#plyr-volume"></use>
+                                    </svg><span class="label--pressed plyr__sr-only">Unmute</span><span
+                                        class="label--not-pressed plyr__sr-only">Mute</span></button><input
+                                    data-plyr="volume" type="range" min="0" max="1" step="0.05" value="1"
+                                    autocomplete="off" role="slider" aria-label="Volume" aria-valuemin="0"
+                                    aria-valuemax="100" aria-valuenow="0" id="plyr-volume-4597" aria-valuetext="0.0%"
+                                    style="--value:0%; user-select: none; touch-action: manipulation;"></div><button
+                                class="plyr__controls__item plyr__control" type="button" data-plyr="captions"><svg
+                                    class="icon--pressed" aria-hidden="true" focusable="false">
+                                    <use xlink:href="#plyr-captions-on"></use>
+                                </svg><svg class="icon--not-pressed" aria-hidden="true" focusable="false">
+                                    <use xlink:href="#plyr-captions-off"></use>
+                                </svg><span class="label--pressed plyr__sr-only">Disable captions</span><span
+                                    class="label--not-pressed plyr__sr-only">Enable captions</span></button>
+                            <div class="plyr__controls__item plyr__menu"><button aria-haspopup="true"
+                                    aria-controls="plyr-settings-4597" aria-expanded="false" type="button"
+                                    class="plyr__control" data-plyr="settings"><svg aria-hidden="true"
+                                        focusable="false">
+                                        <use xlink:href="#plyr-settings"></use>
+                                    </svg><span class="plyr__sr-only">Settings</span></button>
+                                <div class="plyr__menu__container" id="plyr-settings-4597" hidden="">
+                                    <div>
+                                        <div id="plyr-settings-4597-home">
+                                            <div role="menu"><button data-plyr="settings" type="button"
+                                                    class="plyr__control plyr__control--forward" role="menuitem"
+                                                    aria-haspopup="true" hidden=""><span>Captions<span
+                                                            class="plyr__menu__value">Disabled</span></span></button><button
+                                                    data-plyr="settings" type="button"
+                                                    class="plyr__control plyr__control--forward" role="menuitem"
+                                                    aria-haspopup="true" hidden=""><span>Quality<span
+                                                            class="plyr__menu__value">0</span></span></button><button
+                                                    data-plyr="settings" type="button"
+                                                    class="plyr__control plyr__control--forward" role="menuitem"
+                                                    aria-haspopup="true"><span>Speed<span
+                                                            class="plyr__menu__value">Normal</span></span></button>
+                                            </div>
+                                        </div>
+                                        <div id="plyr-settings-4597-captions" hidden=""><button type="button"
+                                                class="plyr__control plyr__control--back"><span
+                                                    aria-hidden="true">Captions</span><span class="plyr__sr-only">Go
+                                                    back to previous menu</span></button>
+                                            <div role="menu"></div>
+                                        </div>
+                                        <div id="plyr-settings-4597-quality" hidden=""><button type="button"
+                                                class="plyr__control plyr__control--back"><span
+                                                    aria-hidden="true">Quality</span><span class="plyr__sr-only">Go back
+                                                    to previous menu</span></button>
+                                            <div role="menu"></div>
+                                        </div>
+                                        <div id="plyr-settings-4597-speed" hidden=""><button type="button"
+                                                class="plyr__control plyr__control--back"><span
+                                                    aria-hidden="true">Speed</span><span class="plyr__sr-only">Go back
+                                                    to previous menu</span></button>
+                                            <div role="menu"><button data-plyr="speed" type="button"
+                                                    role="menuitemradio" class="plyr__control" aria-checked="false"
+                                                    value="0.5"><span>0.5×</span></button><button data-plyr="speed"
+                                                    type="button" role="menuitemradio" class="plyr__control"
+                                                    aria-checked="false" value="0.75"><span>0.75×</span></button><button
+                                                    data-plyr="speed" type="button" role="menuitemradio"
+                                                    class="plyr__control" aria-checked="true"
+                                                    value="1"><span>Normal</span></button><button data-plyr="speed"
+                                                    type="button" role="menuitemradio" class="plyr__control"
+                                                    aria-checked="false" value="1.25"><span>1.25×</span></button><button
+                                                    data-plyr="speed" type="button" role="menuitemradio"
+                                                    class="plyr__control" aria-checked="false"
+                                                    value="1.5"><span>1.5×</span></button><button data-plyr="speed"
+                                                    type="button" role="menuitemradio" class="plyr__control"
+                                                    aria-checked="false" value="1.75"><span>1.75×</span></button><button
+                                                    data-plyr="speed" type="button" role="menuitemradio"
+                                                    class="plyr__control" aria-checked="false"
+                                                    value="2"><span>2×</span></button><button data-plyr="speed"
+                                                    type="button" role="menuitemradio" class="plyr__control"
+                                                    aria-checked="false" value="4"><span>4×</span></button></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div><button class="plyr__controls__item plyr__control" type="button" data-plyr="pip"><svg
+                                    aria-hidden="true" focusable="false">
+                                    <use xlink:href="#plyr-pip"></use>
+                                </svg><span class="plyr__sr-only">PIP</span></button><button
+                                class="plyr__controls__item plyr__control" type="button" data-plyr="fullscreen"><svg
+                                    class="icon--pressed" aria-hidden="true" focusable="false">
+                                    <use xlink:href="#plyr-exit-fullscreen"></use>
+                                </svg><svg class="icon--not-pressed" aria-hidden="true" focusable="false">
+                                    <use xlink:href="#plyr-enter-fullscreen"></use>
+                                </svg><span class="label--pressed plyr__sr-only">Exit fullscreen</span><span
+                                    class="label--not-pressed plyr__sr-only">Enter fullscreen</span></button>
+                        </div>
+                        <div class="plyr__video-wrapper"><video playsinline="" autoplay="" muted="" loop=""
+                                data-video="">
+                                <source
+                                    src="../../../../assets/sources/uploads/622a091e37215_sbx-networking-headervideo.mp4"
+                                    type="video/mp4">
+                            </video>
+                            <div class="plyr__poster"></div>
+                        </div>
+                        <div class="plyr__captions"></div><button type="button"
+                            class="plyr__control plyr__control--overlaid plyr__control--pressed" data-plyr="play"
+                            aria-label="Pause"><svg aria-hidden="true" focusable="false">
+                                <use xlink:href="#plyr-play"></use>
+                            </svg><span class="plyr__sr-only">Play</span></button>
+                    </div>
+                </div>
+                <span class="scroll-down"></span>
+            </section>
+            <!-- features   
+                <section class="py-15 py-xl-20 overflow-hidden">    <div class="container">      <div class="row justify-content-center position-relative">        <div class="col-xl-10">          <p class="fs-4">Social Business Experience  is a  networking platform that allows you to swipe to quickly and confidently find verified and trusted professionals, nationwide.</p>        </div>      </div>    </div>  </section> -->
+            <!-- added sections from landing1 -->
+            <!-- <style>    .loginbox-title,.stats-column,.stats-section{text-align:center}    .stats-section-intro{padding:0 10% 20px}    .heading{font-family:'Noto Sans'!important;font-size:45px!important;line-height:45px!important;display:block;margin:0 0 20px;padding:0;font-weight:700;text-align:center}    .stats-section-intro p{font-size:18px!important;color:#000!important;line-height:18px!important;margin:0 0 18px}    .stats-column{font-size:0;line-height:0;text-align:center}    .stats-column-item{display:inline-block;vertical-align:top;font-size:14px;line-height:18px;margin:0 30px}    .stats-value-box{font-family:'Noto Sans'!important;font-size:45px!important;color:#000!important;line-height:45px!important;padding:10px 40px 10px 40px;margin:0 0 20px;font-weight:700;min-width:230px;box-sizing:border-box;border-radius:50px;display:inline-block;vertical-align:middle}    .gradient28{background:#373b44!important;background:-webkit-linear-gradient(to left,#4286f4,#373b44)!important;background:linear-gradient(to left,#4286f4,#373b44)!important}    .stats-title{font-size:18px!important;color:#000!important;line-height:18px!important;display:block}    .stats-section.container{max-width:740px;margin:0 auto;box-sizing:border-box;padding:45px 20px}  </style>      <div class="stats-section container mt-10" data-scroll="stats-section" >        <div class="omga-07__content-text">              <h2 class="title">join in</h2>                <div class="stats-value-box gradient28" style="background: gradient28;">                    <span style="color: #ffffff;">1,000's</span>                </div>                <p style="color: #000000">Be Discovered by potential clients and customers for free</p>                               <p style="color: #000000">network users</h3>            </div>                            </div>        <style>        .two-column-section{position:relative;font-size:0;line-height:0}        .two-column-section-item{display:inline-block;vertical-align:middle;width:50%;box-sizing:border-box}        .sympaty-visual{text-align:center;font-size:0;line-height:0;position:relative}        .scrolled .sympaty-visual-photo{margin-left:0;margin-right:0;transform:none}        .sympaty-visual-photo{background:#fff;border:2px solid #fff;display:inline-block;vertical-align:bottom;width:40%;overflow:hidden;box-sizing:border-box;border-radius:50%;position:relative;z-index:2;transition:all .2s ease-in-out;margin-bottom:17%}        .sympaty-visual-photo img{vertical-align:top;width:100%;max-width:100%;border-radius:50%}        .scrolled .sympaty-visual-photo.center,.sympaty-visual-photo.center{width:65%;border-width:1px;z-index:5;margin:0 -23% 5%}        .sympaty-button{position:absolute;bottom:0;left:0;right:0;margin:auto;width:45%;z-index:6}        .two-column-section-item.description{padding:0 10%;font-size:14px;line-height:18px;text-align:left}        .subheading{font-family:'Noto Sans'!important;font-size:36px!important;color:#000!important;line-height:36px!important;font-weight:400;display:block;margin:0 0 20px;padding:0}        .description p{font-size:16.2px!important;color:#000!important;line-height:18px!important}        .two-column-section.sympaty-section.container{max-width:740px;margin:0 auto;box-sizing:border-box;padding:45px 20px}    </style>        <div class="two-column-section sympaty-section container" data-scroll="sympaty-section">        <div class="two-column-section-item">            <div class="sympaty-visual">                <div class="sympaty-visual-photo left">                    <img src="https://www.belloo.date/3.5/assets/sources/uploads/5d6fbf741caa2_sympaty-photo-01.png">                </div>                <div class="sympaty-visual-photo center">                    <img src="https://www.belloo.date/3.5/assets/sources/uploads/5d6fbf70d9579_maingirl.jpg">                </div>                <div class="sympaty-visual-photo right">                    <img src="https://www.belloo.date/3.5/assets/sources/uploads/5d6fbf75e0a9a_girl2.jpg">                </div>                <div class="sympaty-button">                    <img src="https://www.belloo.date/3.5/assets/sources/uploads/5d6fbf7a4633b_discovery-buttons.png">                </div>            </div>        </div>        <div class="two-column-section-item description">            <h3 class="subheading" style="color: #000000">Easy to make new friends</h3>            <p>Play our popular Discovery game and get matched with other users. "Like" is a great way to break the ice and chat with new people.</p>        </div>    </div>        <style>        .two-column-section.radar-section.container{max-width:740px;margin:0 auto;box-sizing:border-box;padding:45px 20px}        .radar-visual{background:#dbf6f9;width:80%;border-radius:50%;position:relative;margin:0 auto;box-sizing:border-box}        .radar-visual:after{padding-bottom:100%;display:block;content:''}        .scrolled .radar-visual-photo{transform:scale(1)}        .radar-visual-photo.photo-01{bottom:2%;left:8%;transition-delay:.1s}        .radar-visual-photo{border:2px solid #fff;background-position:50%;background-repeat:no-repeat;background-size:cover;position:absolute;width:20%;border-radius:50%;box-sizing:border-box;transition:all .3s ease}        .radar-visual-photo:after{padding-bottom:100%;display:block;content:''}        .radar-visual-photo.photo-02{top:5%;left:9%;transition-delay:.15s}        .radar-visual-photo.photo-03{top:40%;right:-5%;transition-delay:.3s}        .radar-visual-photo.photo-04{bottom:0;right:10%;transition-delay:.2s}        .radar-visual-photo.photo-05{top:45%;left:-6%;transition-delay:.25s}        .radar-visual-photo.photo-06{bottom:14%;left:42%;transition-delay:.4s}        .radar-visual-photo.photo-07{top:2%;right:12%;transition-delay:.35s}        .radar-visual-photo.photo-08{top:14%;left:42%;transition-delay:.45s}    </style>        <div class="two-column-section radar-section container" data-scroll="radar-section">        <div class="two-column-section-item description">             <div class="omga-07__content-text">                Interesting people nearby                        <p>Find remarkable people on your city map, get in touch and have a great time together!</p>        </div>        <div class="two-column-section-item">            <div class="radar-visual" style="background-image: url(https://www.belloo.date/3.5/assets/sources/uploads/5d6fbf7f7d289_map.jpg);">                <div class="radar-visual-photo photo-01" style="background-image: url(https://www.belloo.date/3.5/assets/sources/uploads/5d6fbf83c3e74_radar-photo-01.png);"></div>                <div class="radar-visual-photo photo-02" style="background-image: url(https://www.belloo.date/3.5/assets/sources/uploads/5d6fbf85a7c13_radar-photo-02.png);"></div>                <div class="radar-visual-photo photo-03" style="background-image: url(https://www.belloo.date/3.5/assets/sources/uploads/5d6fbf8776469_radar-photo-03.png);"></div>                <div class="radar-visual-photo photo-04" style="background-image: url(https://www.belloo.date/3.5/assets/sources/uploads/5d6fbf8a7fede_radar-photo-04.png);"></div>                <div class="radar-visual-photo photo-05" style="background-image: url(https://www.belloo.date/3.5/assets/sources/uploads/5d6fbf8c90625_radar-photo-05.png);"></div>                <div class="radar-visual-photo photo-06" style="background-image: url(https://www.belloo.date/3.5/assets/sources/uploads/5d6fbf8e4e571_radar-photo-06.png);"></div>                <div class="radar-visual-photo photo-07" style="background-image: url(https://www.belloo.date/3.5/assets/sources/uploads/5d6fbf8fd1e30_radar-photo-07.png);"></div>                <div class="radar-visual-photo photo-08" style="background-image: url(https://www.belloo.date/3.5/assets/sources/uploads/5d6fbf92809f2_radar-photo-08.png);"></div>            </div>        </div>    </div> -->
+            <!-- end added sections from landing1 -->
+            <!-- added sections from landing2 -->
+            <style>
+                .omga-07__content-image-group {
+                    display: -webkit-box;
+                    display: flex;
+                    margin-right: -15px
+                }
+
+                .omga-07__content-image-group .single-image {
+                    display: -webkit-box;
+                    display: flex;
+                    -webkit-box-orient: vertical;
+                    -webkit-box-direction: normal;
+                    flex-direction: column
+                }
+
+                .omga-07__content-image-group .single-image img {
+                    padding-bottom: 15px;
+                    padding-right: 15px;
+                    border-radius: 8px
+                }
+
+                .omga-07__content-section-2 .container {
+                    max-width: 1140px
+                }
+
+                .omga-07__content-image-group .single-image:nth-child(2) {
+                    padding-top: 43px
+                }
+
+                .omga-07__content-text .title {
+                    color: #19191b;
+                    font-weight: 700;
+                    letter-spacing: -1.88px;
+                    padding-bottom: 20px;
+                    font-size: 60px;
+                    line-height: 70px
+                }
+
+                .omga-07__content-text p {
+                    color: #696871;
+                    font-size: 21px;
+                    font-weight: 300;
+                    letter-spacing: -.66px;
+                    line-height: 39px
+                }
+
+                .py--60 {
+                    padding-top: 60px !important;
+                    padding-bottom: 60px !important
+                }
+            </style>
+            <div class="omga-07__content-section-2 py--60 mt-10">
+                <div class="container">
+                    <div class="row align-items-center">
+                        <div class="col-lg-6 mb--30 mb--md-0">
+                            <div class="omga-07__content-image-2 omga-07__content-image-group">
+                                <div class="col-lg-6 mb--30 mb--md-0 order-lg-2">
+                                    <div class="comga-07__ontent-image-3 aos-init" data-aos="fade-right"
+                                        data-aos-duration="500" data-aos-delay="200" data-aos-once="true"><img
+                                            src="../../../../themes/landing4/img/1109.png" alt="">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-9 ">
+                            <div class="omga-07__content-text">
+                                <h2 class="title">Be Discovered by potential clients and
+                                    customers
+                                    for free</h2>
+                                <!-- <p>Interesting people nearby, find remarkable people close to you, get in touch and have a great time together! a nice opportunity to make both friendly and romantic connections with real people.</p> -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <style>
+                .omga-07__content-section-3 .container {
+                    max-width: 1140px;
+                }
+            </style>
+            <div class="omga-07__content-section-3" style="margin-bottom: 60px;">
+                <div class="container">
+                    <div class="row align-items-center">
+                        <div class="col-lg-6 mb--30 mb--md-0 order-lg-2">
+                            <div class="comga-07__ontent-image-3 aos-init" data-aos="fade-right" data-aos-duration="500"
+                                data-aos-delay="200" data-aos-once="true"><img
+                                    src="../../../../themes/landing4/img/1110.png" alt=""></div>
+                        </div>
+                        <div class="col-lg-6 col-md-9 order-lg-1">
+                            <div class="omga-07__content-text">
+                                <h2 class="title">Find professionals near you, or across
+                                    the country,
+                                    with our simple search feature</h2>
+                                <!--<p>Our mobile site is fully synchronized with all our platforms so you can date from any device.</p>-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> <!-- end added sections from landing2 -->
+            <style>
+                .omga-07__content-image-group {
+                    display: -webkit-box;
+                    display: flex;
+                    margin-right: -15px
+                }
+
+                .omga-07__content-image-group .single-image {
+                    display: -webkit-box;
+                    display: flex;
+                    -webkit-box-orient: vertical;
+                    -webkit-box-direction: normal;
+                    flex-direction: column
+                }
+
+                .omga-07__content-image-group .single-image img {
+                    padding-bottom: 15px;
+                    padding-right: 15px;
+                    border-radius: 8px
+                }
+
+                .omga-07__content-section-2 .container {
+                    max-width: 1140px
+                }
+
+                .omga-07__content-image-group .single-image:nth-child(2) {
+                    padding-top: 43px
+                }
+
+                .omga-07__content-text .title {
+                    color: #19191b;
+                    font-weight: 700;
+                    letter-spacing: -1.88px;
+                    padding-bottom: 20px;
+                    font-size: 60px;
+                    line-height: 70px
+                }
+
+                .omga-07__content-text p {
+                    color: #696871;
+                    font-size: 21px;
+                    font-weight: 300;
+                    letter-spacing: -.66px;
+                    line-height: 39px
+                }
+
+                .py--60 {
+                    padding-top: 60px !important;
+                    padding-bottom: 60px !important
+                }
+            </style>
+            <div class="omga-07__content-section-2 py--60 mt-10">
+                <div class="container">
+                    <div class="row align-items-center">
+                        <div class="col-lg-6 mb--30 mb--md-0">
+                            <div class="omga-07__content-image-2 omga-07__content-image-group">
+                                <div class="col-lg-6 mb--30 mb--md-0 order-lg-2">
+                                    <div class="comga-07__ontent-image-3 aos-init" data-aos="fade-right"
+                                        data-aos-duration="500" data-aos-delay="200" data-aos-once="true"><img
+                                            src="../../../../themes/landing4/img/1111.png" alt="">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-9 ">
+                            <div class="omga-07__content-text">
+                                <h2 class="title">Connect and message in a single
+                                    step</h2>
+                                <!-- <p>Interesting people nearby, find remarkable people close to you, get in touch and have a great time together! a nice opportunity to make both friendly and romantic connections with real people.</p> -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <style>
+                .omga-07__content-section-3 .container{max-width: 1140px;}
+            </style>
+            
+            <div class="omga-07__content-section-3" style="margin-bottom: 60px;">
+              <div class="container">
+                <div class="row align-items-center">
+                  <div class="col-lg-6 mb--30 mb--md-0 order-lg-2">
+                    <div class="comga-07__ontent-image-3" data-aos="fade-right" data-aos-duration="500" data-aos-delay="200" data-aos-once="true">
+                      <img src="https://cdn.discordapp.com/attachments/376210432681050112/754029452073369801/1109.png" alt="">
+                    </div>
+                  </div>
+                  <div class="col-lg-6 col-md-9 order-lg-1">
+                    <div class="omga-07__content-text">
+                      <h2 class="title">Quickly and confidently find service providers for hire</h2>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <style>
+                .two-column-section.radar-section.container {
+                    max-width: 740px;
+                    margin: 0 auto;
+                    box-sizing: border-box;
+                    padding: 45px 20px
+                }
+
+                .radar-visual {
+                    background: #dbf6f9;
+                    width: 80%;
+                    border-radius: 50%;
+                    position: relative;
+                    margin: 0 auto;
+                    box-sizing: border-box
+                }
+
+                .radar-visual:after {
+                    padding-bottom: 100%;
+                    display: block;
+                    content: ''
+                }
+
+                .scrolled .radar-visual-photo {
+                    transform: scale(1)
+                }
+
+                .radar-visual-photo.photo-01 {
+                    bottom: 2%;
+                    left: 8%;
+                    transition-delay: .1s
+                }
+
+                .radar-visual-photo {
+                    border: 2px solid #fff;
+                    background-position: 50%;
+                    background-repeat: no-repeat;
+                    background-size: cover;
+                    position: absolute;
+                    width: 20%;
+                    border-radius: 50%;
+                    box-sizing: border-box;
+                    transition: all .3s ease
+                }
+
+                .radar-visual-photo:after {
+                    padding-bottom: 100%;
+                    display: block;
+                    content: ''
+                }
+
+                .radar-visual-photo.photo-02 {
+                    top: 5%;
+                    left: 9%;
+                    transition-delay: .15s
+                }
+
+                .radar-visual-photo.photo-03 {
+                    top: 40%;
+                    right: -5%;
+                    transition-delay: .3s
+                }
+
+                .radar-visual-photo.photo-04 {
+                    bottom: 0;
+                    right: 10%;
+                    transition-delay: .2s
+                }
+
+                .radar-visual-photo.photo-05 {
+                    top: 45%;
+                    left: -6%;
+                    transition-delay: .25s
+                }
+
+                .radar-visual-photo.photo-06 {
+                    bottom: 14%;
+                    left: 42%;
+                    transition-delay: .4s
+                }
+
+                .radar-visual-photo.photo-07 {
+                    top: 2%;
+                    right: 12%;
+                    transition-delay: .35s
+                }
+
+                .radar-visual-photo.photo-08 {
+                    top: 14%;
+                    left: 42%;
+                    transition-delay: .45s
+                }
+            </style>
+            <div class="two-column-section radar-section container" data-scroll="radar-section">
+                <div class="row justify-content-center my-auto mt-10">
+                    <div class="col-md-8 text-center omga-07__content-text">
+                        <h2 class="title">What is SBX?</h2>
+                    </div>
+                    <h4 class="heading text-center mb-10" style="color: #000000">SBX is an innovative social media
+                        platform for
+                        business networking. We help professionals, service providers, and business owners connect and
+                        market
+                        themselves in a personalized and genuine way. </h4>
+                </div>
+                <div class="two-column-section-item">
+                    <div class="radar-visual"
+                        style="background-image: url(https://www.belloo.date/3.5/assets/sources/uploads/5d6fbf7f7d289_map.jpg);">
+                        <div class="radar-visual-photo photo-01"
+                            style="background-image: url(https://www.belloo.date/3.5/assets/sources/uploads/5d6fbf83c3e74_radar-photo-01.png);">
+                        </div>
+                        <div class="radar-visual-photo photo-02"
+                            style="background-image: url(https://www.belloo.date/3.5/assets/sources/uploads/5d6fbf85a7c13_radar-photo-02.png);">
+                        </div>
+                        <div class="radar-visual-photo photo-03"
+                            style="background-image: url(https://www.belloo.date/3.5/assets/sources/uploads/5d6fbf8776469_radar-photo-03.png);">
+                        </div>
+                        <div class="radar-visual-photo photo-04"
+                            style="background-image: url(https://www.belloo.date/3.5/assets/sources/uploads/5d6fbf8a7fede_radar-photo-04.png);">
+                        </div>
+                        <div class="radar-visual-photo photo-05"
+                            style="background-image: url(https://www.belloo.date/3.5/assets/sources/uploads/5d6fbf8c90625_radar-photo-05.png);">
+                        </div>
+                        <div class="radar-visual-photo photo-06"
+                            style="background-image: url(https://www.belloo.date/3.5/assets/sources/uploads/5d6fbf8e4e571_radar-photo-06.png);">
+                        </div>
+                        <div class="radar-visual-photo photo-07"
+                            style="background-image: url(https://www.belloo.date/3.5/assets/sources/uploads/5d6fbf8fd1e30_radar-photo-07.png);">
+                        </div>
+                        <div class="radar-visual-photo photo-08"
+                            style="background-image: url(https://www.belloo.date/3.5/assets/sources/uploads/5d6fbf92809f2_radar-photo-08.png);">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <footer class="py-2">
+                <div class="container">
+                    <div class="row g-4 g-lg-5 mb-10">
+                        <style>
+                            .app-section.container {
+                                padding-bottom: 0;
+                                max-width: 740px;
+                                margin: 0 auto;
+                                box-sizing: border-box;
+                                padding: 45px 20px
+                            }
+
+                            .app-section {
+                                text-align: center
+                            }
+
+                            .app-section-intro {
+                                padding: 20px 0;
+                                font-size: 16px
+                            }
+
+                            .app-section-intro .heading {
+                                margin: 0 0 10px
+                            }
+
+                            .app-section-intro p {
+                                margin: 0 0 18px
+                            }
+
+                            .app-section-buttons {
+                                font-size: 0;
+                                line-height: 0;
+                                text-align: center;
+                                margin: 0 0 10px
+                            }
+
+                            .app-section-btn {
+                                display: inline-block;
+                                vertical-align: middle;
+                                width: 22%;
+                                margin: 0 10px
+                            }
+
+                            .app-section-btn img {
+                                width: 100%;
+                                max-width: 100%;
+                                vertical-align: top
+                            }
+                        </style>
+                        <div class="app-section container" style="margin-bottom: 60px;margin-top:60px" hidden>
+                            <div class="app-section-intro">
+                                <div class="col-md-12 text-center omga-07__content-text">
+                                    <h2 class="title">Get the app
+                                        now</h2>
+                                </div>
+                                <h4 class="heading" style="color: #000000">Download our Free Android or Iphone App</h4>
+                            </div>
+                            <div class="app-section-buttons" style="margin-bottom: 45px"><a href="#"
+                                    class="app-section-btn gplay">
+                                    <img src="https://www.belloo.date/3.5/assets/sources/uploads/5d6fbf99606db_buttonplaystore.png"
+                                        alt="Google Play"> </a> <a href="#" class="app-section-btn appstore"> <img
+                                        src="https://www.belloo.date/3.5/assets/sources/uploads/5d6fbf96e307c_buttonappstore.png"
+                                        alt="Appstore"> </a></div>
+                        </div>
+                        <div class="row align-items-center g-1 g-lg-6 text-muted">
+                            <div class="col-md-6 col-lg-3 order-lg-2 text-center text-md-start"></div>
+                            <div class="col-md-6 col-lg-6 text-center text-md-end order-lg-2"
+                                style="padding-right:125px">
+                                <ul class="list-inline small">
+                                    <li class="list-inline-item"><a class="text-reset text-primary-hover"
+                                            href="mailto:notices@socialbusinessexperience.com">
+                                            Contact </a>
+                                    </li>
+                                    <li class="list-inline-item ms-1"><a class="text-reset text-primary-hover"
+                                            href="http://sbx2.test//index.php?page=tac" target="_blank"> Terms and
+                                            Conditions </a></li>
+                                    <li class="list-inline-item ms-1"><a class="text-reset text-primary-hover"
+                                            href="http://sbx2.test//index.php?page=pp" target="_blank">
+                                            Privacy Policy </a></li>
+                                </ul>
+                            </div>
+                            <div class="col-lg-3 order-lg-1 text-center text-md-start" style="padding-left: 115px;">
+                                <p class="small">© 2022 Social Business Experience </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+
+        </div>
+        <!-- <script src="http://sbx.test/themes/landing4/js/vendor.bundle.js"></script>
+        <script src="http://sbx.test/themes/landing4/js/index.bundle.js"></script>
+        <script>/* Add your custom javascript  here */</script> -->
+    </ion-content>
+</ion-view>

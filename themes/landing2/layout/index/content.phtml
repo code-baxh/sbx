@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title><?php echo $sm['seoLang']['landing'][1]['text']; ?></title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
+<meta name="description" content="<?php echo $sm['seoLang']['landing'][2]['text']; ?>">
+<meta name="keywords" content="<?php echo $sm['seoLang']['landing'][3]['text']; ?>">
+<meta name="author" content="<?php echo $sm['config']['name']; ?>">
+<link rel="icon" type="image/png" href="<?= $sm['landing']['favicon']['val']; ?>" sizes="32x32">
+<!-- Bootstrap , fonts & icons  -->
+<link rel="stylesheet" href="<?php echo $sm['config']['theme_url_landing']; ?>/plugins/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" href="<?php echo $sm['config']['theme_url_landing']; ?>/fonts/icon-font/css/style.css">
+<link rel="stylesheet" href="<?php echo $sm['config']['theme_url_landing']; ?>/fonts/typography-font/typo.css">
+<link rel="stylesheet" href="<?php echo $sm['config']['theme_url_landing']; ?>/fonts/fontawesome-5/css/all.css">
+<!-- Plugin'stylesheets  -->
+<link rel="stylesheet" href="<?php echo $sm['config']['theme_url_landing']; ?>/plugins/aos/aos.min.css">
+<link rel="stylesheet" href="<?php echo $sm['config']['theme_url_landing']; ?>/plugins/fancybox/jquery.fancybox.min.css">
+<link rel="stylesheet" href="<?php echo $sm['config']['theme_url_landing']; ?>/plugins/nice-select/nice-select.min.css">
+
+<!-- Vendor stylesheets  -->
+<link rel="stylesheet" href="<?php echo $sm['config']['theme_url_landing']; ?>/css/settings.css">
+<link rel="stylesheet" href="<?php echo $sm['config']['theme_url_landing']; ?>/css/main.css">
+<!-- Custom stylesheet -->
+<link rel="stylesheet" href="<?php echo $sm['config']['theme_url_landing']; ?>/css/custom.css">
+
+<link href="<?php echo $sm['config']['theme_url']; ?>/css/vendor/autocomplete.css" rel="stylesheet" type="text/css" />
+<?php $fonts = getArrayDSelected('font','theme_preset_fonts','where preset = "'.$_SESSION['landingPreset'].'"');
+foreach ($fonts as $font) { 
+    $f = $font['font'];
+    $f = str_replace(' ','+', $f);
+    echo '<link href="https://fonts.googleapis.com/css?family='.$f.'" rel="stylesheet" type="text/css"/>';
+} ?>
+<style id="themeData">
+    <?= getLandingAbsolutePage('styles'); ?>
+</style>
+<script type="text/javascript">
+function inIframe () {
+    try {
+      return window.self !== window.top;
+    } catch (e) {
+      return true;
+    }
+}    
+function detect_device() {
+    var w = window,
+        d = document,
+        e = d.documentElement,
+        g = d.getElementsByTagName('body')[0],
+        x = w.innerWidth || e.clientWidth || g.clientWidth,
+        y = w.innerHeight|| e.clientHeight|| g.clientHeight;    
+    if(x <= 768){
+        window.location= '<?= $sm['config']['site_url']; ?>mobile';
+    }
+}
+if(inIframe() !== true){
+    detect_device();
+    window.onresize = function() {
+        var w = window,
+            d = document,
+            e = d.documentElement,
+            g = d.getElementsByTagName('body')[0],
+            x = w.innerWidth || e.clientWidth || g.clientWidth,
+            y = w.innerHeight|| e.clientHeight|| g.clientHeight;    
+        if(x <= 768){
+            window.location= '<?= $sm['config']['site_url']; ?>mobile';   
+        }
+    };    
+}
+</script>
+<?php
+function getSiteLangsLanding($start,$finish){
+    global $mysqli,$sm;
+    $ret = '';
+    $query = $mysqli->query("SELECT * FROM languages where visible = 1 ORDER BY id ASC LIMIT $start,$finish");
+    if($query->num_rows > 1) {
+        while($result = $query->fetch_object()){
+            $ret.='<li class="drop-menu-item"><a data-lang="'.$result->id.'" href="index.php?lang='.$result->id.'">'.$result->name.'</a>
+            </li>';    
+        }
+    }
+    return $ret;    
+}
+$sm['genders'] = siteGenders($_SESSION['lang']);
+$site_config = json_encode($sm['config']);
+$site_theme = json_encode($sm['landing']);
+$site_lang = json_encode($sm['lang']);
+$filter_age = 0;
+echo 
+'<script>
+var url;
+var mobile = false;
+var softwareVersion = "'.$sm['settings']['currentVersion'].'";
+var site_config = '. $site_config  . ';
+var site_lang = '. $site_lang  . ';
+var site_theme = '. $site_theme  . ';    
+function request_source(){
+    return \'' . $sm['config']['ajax_path'] . '\';
+}
+function site_title(){
+    return \'' . $sm['config']['title'] . '\';
+}   
+function theme_source(){
+    return \'' . $sm['config']['theme_url'] . '\';
+}
+function site_url(){
+    return \'' . $sm['config']['site_url'] . '\';
+}   
+var current_user_id = 0;
+var user_name;  
+</script>';
+?>
+
+<?php if(!empty($sm['plugins']['analytics']['ga_id'])){ ?>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=<?= $sm['plugins']['analytics']['ga_id']; ?>"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', '<?= $sm['plugins']['analytics']['ga_id']; ?>');
+</script>    
+<?php } ?>
+
+<?= $sm['plugins']['customHtml']['landing_header']; ?>
+
+</head>
+
+<body class="">
+  <div id="loading">
+    <div class="load-circle"><span class="one"></span></div>
+  </div>
+  <div class="site-wrapper overflow-hidden">
+    <!-- Header Area -->
+    <header class="site-header sticky-header">
+      <div class="container-fluid pr-lg--30 pl-lg--30">
+        <nav class="navbar site-navbar offcanvas-active navbar-expand-lg navbar-light">
+          <!-- Brand Logo-->
+          <div class="brand-logo mr--30">
+            <a href="javascript:"><img src="<?= $sm['landing']['logo']['val']; ?>"></a>
+         </div>
+          <div class="collapse navbar-collapse" id="mobile-menu">
+            <div class="navbar-nav mr--10 ml-lg-auto">
+              <ul class="navbar-nav main-menu">
+                <li class="nav-item">
+                  <a class="nav-link nav-btn-bg" href="<?= $sm['config']['site_url']; ?>login" role="button" aria-expanded="false"><span><?= $sm['landingLang'][5]['text']; ?></span></a>
+                </li>
+                <li class="nav-item nav-btn-bg">
+                  <a class="nav-link umami--click--Register" href="<?= $sm['config']['site_url']; ?>register" role="button" aria-expanded="false"><span><?= $sm['landingLang'][4]['text']; ?></span></a>
+                </li>                
+              </ul>
+              <button class="btn-close navbar-toggler" type="button" data-toggle="collapse" data-target="#mobile-menu" aria-controls="mobile-menu" aria-expanded="true" aria-label="Toggle navigation">
+                <i class="icon icon-simple-remove"></i>
+              </button>
+            </div>
+          </div>
+          <button class="navbar-toggler btn-close-off-canvas" type="button" data-toggle="collapse" data-target="#mobile-menu" aria-controls="mobile-menu" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="icon icon-simple-remove icon-close"></i>
+            <i class="icon icon-menu-34 icon-burger"></i>
+          </button>
+        </nav>
+      </div>
+    </header>
+
+    <?php if($sm['landing']['headerStyle']['val'] == 'Style1'){ ?>
+        <div class="omga-07__content-section-3 mt--100 ">
+            <div class="hero-area bg-image mx--40 mx--lg--80 mx--xl--110 border-radius-15" style="background-image: url(<?= $sm['landing']['background_image']['val']; ?>);">        
+              <div class="container maxH-650">
+                <div class="row align-items-center ">
+                  <div class="col-lg-6 mb--30 mb--md-0 order-lg-2">
+                    <div class="comga-07__ontent-image-3" data-aos="fade-right" data-aos-duration="500" data-aos-delay="200" data-aos-once="true">
+                      <img class="m-t-48" src="<?= $sm['landing']['girl_image']['val']; ?>" alt="">
+                    </div>
+                  </div>
+                  <div class="col-lg-6 col-md-9 order-lg-1">
+                    <div class="omga-07__content-text ">
+                        <h2 class="title header1_h2"><?= $sm['landingLang'][1]['text']; ?></h2>
+                        <p class="header1_p"><?= $sm['landingLang'][2]['text']; ?></p>
+                        <form action="register" class="mt--35">
+                            <div class="omga-02__hero-form">
+                              <div class="input-group">
+                                <select name="looking" id="looking" placeholder="<?= $sm['lang'][31]['text']; ?>">
+                                    <option value="" disabled selected hidden><?= $sm['lang'][530]['text']; ?>...</option>
+                                    <?php
+                                        foreach($sm['genders'] as $entry){
+                                            echo '<option value="'.$entry['id'].'">
+                                            '.$sm['lang'][530]['text'].' '.strtolower($entry['text']).'</option>';
+                                        }
+                                    ?>
+                                </select>
+                              </div>
+                              <button type="submit" class="btn--primary hvr-bounce-to-left"><?= $sm['landingLang'][3]['text']; ?></button>
+                            </div>
+                        </form>                       
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+        </div>
+    <?php } ?>
+    <?php if($sm['landing']['headerStyle']['val'] == 'Style2'){ ?>
+        <div class="omga-02__hero-area pt-lg--200 section-padding">
+          <div class="container">
+            <div class="row">
+              <div class="col-lg-5 order-lg-2"></div>
+              <div class="col-md-9 col-lg-7 order-lg-1" data-aos="fade-right" data-aos-duration="500" data-aos-once="true">
+                <div class="omga-02__hero-content pr-lg--80">
+                  <h1 class="title"><?= $sm['landingLang'][1]['text']; ?></h1>
+                  <form action="register" class="mt--35">
+                    <div class="omga-02__hero-form">
+                      <div class="input-group">
+                        <select name="looking" id="looking" placeholder="<?= $sm['lang'][31]['text']; ?>">
+                            <option value="" disabled selected hidden><?= $sm['lang'][530]['text']; ?>...</option>
+                            <?php
+                                foreach($sm['genders'] as $entry){
+                                    echo '<option value="'.$entry['id'].'">
+                                    '.$sm['lang'][530]['text'].' '.strtolower($entry['text']).'</option>';
+                                }
+                            ?>
+                        </select>
+                      </div>
+                      <button type="submit" class="btn--primary hvr-bounce-to-left"><?= $sm['landingLang'][3]['text']; ?></button>
+                    </div>
+                  </form>                  
+                  <p class="header-text-bg"><?= $sm['landingLang'][2]['text']; ?></p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    <?php } ?>    
+
+    <div class="omga-07__content-section-2 py--60">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-lg-6 mb--30 mb--md-0">
+            <div class="omga-07__content-image-2 omga-07__content-image-group">
+              <div class="single-image">
+                <img src="<?= $sm['landing']['people_image1']['val']; ?>" alt="" data-aos="zoom-in" data-aos-duration="500" data-aos-once="true">
+                <img src="<?= $sm['landing']['people_image2']['val']; ?>" alt="" data-aos="zoom-in" data-aos-duration="500" data-aos-delay="600" data-aos-once="true">
+              </div>
+              <div class="single-image">
+                <img src="<?= $sm['landing']['people_image3']['val']; ?>" alt="" data-aos="zoom-in" data-aos-duration="500" data-aos-delay="1000" data-aos-once="true">
+                <img src="<?= $sm['landing']['people_image4']['val']; ?>" alt="" data-aos="zoom-in" data-aos-duration="500" data-aos-delay="1500" data-aos-once="true">
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-6 col-md-9 ">
+            <div class="omga-07__content-text">
+              <h2 class="title"><?= $sm['landingLang'][8]['text']; ?></h2>
+                <p><?= $sm['landingLang'][9]['text']; ?></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="omga-07__content-section-3">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-lg-6 mb--30 mb--md-0 order-lg-2">
+            <div class="comga-07__ontent-image-3" data-aos="fade-right" data-aos-duration="500" data-aos-delay="200" data-aos-once="true">
+              <img src="https://cdn.discordapp.com/attachments/376210432681050112/754029452073369801/1109.png" alt="">
+            </div>
+          </div>
+          <div class="col-lg-6 col-md-9 order-lg-1">
+            <div class="omga-07__content-text">
+              <h2 class="title"><?= $sm['landingLang'][10]['text']; ?></h2>
+                <p><?= $sm['landingLang'][11]['text']; ?></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  <?php if($sm['plugins']['iosApp']['enabled'] == 'Yes' || $sm['plugins']['androidApp']['enabled'] == "Yes"){ ?>
+    <div class="omga-07__content-section-3">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-8">
+            <div class="omga-07__cta-content ">
+              <h2 class="title"><?= $sm['landingLang'][12]['text']; ?></h2>
+                <div class="cta-btns">
+                  <?php if($sm['plugins']['iosApp']['enabled'] == 'Yes'){ ?>
+                  <a href="<?= $sm['plugins']['iosApp']['link']; ?>" class="apple-store">
+                    <img src="<?php echo $sm['config']['theme_url_landing']; ?>/img/app-store.png" alt="">
+                  </a>
+                  <?php } ?>
+                  <?php if($sm['plugins']['androidApp']['enabled'] == 'Yes'){ ?>
+                  <a href="<?= $sm['plugins']['androidApp']['link']; ?>" class="google-play">
+                    <img src="<?php echo $sm['config']['theme_url_landing']; ?>/img/google-play.png" alt="">
+                  </a>
+                  <?php } ?>
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <?php } ?>
+    <!-- Footer section -->
+    <div class="footer-section dark-theme footer-4 bg-black-squeeze">
+      <div class="container">
+        <div class="footer-top">
+          <div class="row justify-content-center">
+            <div class="col-lg-6 col-md-6 mb--30 text-lg-left text-center">
+              <div class=" d-lg-flex">
+                <p class="copyright-text">
+                  &copy; <?= date('Y'); ?> <?= $sm['config']['name']; ?>
+                </p>
+              </div>
+            </div>
+            <div class="col-lg-6 text-center mb--30 ml-auto">
+              <ul class="footer-list list-inline">
+                <li>
+                    <a href="mailto:<?= $sm['config']['email']; ?>">
+                        <?= $sm['lang'][64]['text']; ?>
+                    </a>
+                </li>
+                <li>
+                    <a href="<?= $sm['config']['site_url']; ?>/index.php?page=tac" target="_blank">
+                        <?= $sm['lang'][43]['text']; ?>
+                    </a>
+                </li>
+                <li>
+                    <a href="<?= $sm['config']['site_url']; ?>/index.php?page=pp" target="_blank">
+                        <?= $sm['lang'][45]['text']; ?>    
+                    </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+<?php if($sm['plugins']['terms']['showCookies'] == 'Yes'){ ?>
+    <script type="text/javascript" id="cookieinfo"
+        src="<?php echo $sm['config']['theme_url']; ?>/js/vendor/cookieinfo.min.js">
+    </script>
+<?php } ?>
+
+<script src="<?php echo $sm['config']['theme_url_landing']; ?>/plugins/jquery/jquery.min.js"></script>
+<script src="<?php echo $sm['config']['theme_url_landing']; ?>/plugins/jquery/jquery-migrate.min.js"></script>
+<script src="<?php echo $sm['config']['theme_url_landing']; ?>/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- Plugin's Scripts -->
+<script src="<?php echo $sm['config']['theme_url_landing']; ?>/plugins/fancybox/jquery.fancybox.min.js"></script>
+<script src="<?php echo $sm['config']['theme_url_landing']; ?>/plugins/nice-select/jquery.nice-select.min.js"></script>
+<script src="<?php echo $sm['config']['theme_url_landing']; ?>/plugins/aos/aos.min.js"></script>
+<script src="<?php echo $sm['config']['theme_url_landing']; ?>/plugins/slick/slick.min.js"></script>
+<!-- Activation Script -->
+<script src="<?php echo $sm['config']['theme_url_landing']; ?>/js/custom.js"></script>
+
+<?php if($sm['plugins']['terms']['showCookies'] == 'Yes'){ ?>
+    <?= getAbsolutePage('terms/cookiesLaw'); ?>
+<?php } ?>
+<?= $sm['plugins']['customHtml']['landing_footer']; ?>
+</body>
+
+</html>
+
+

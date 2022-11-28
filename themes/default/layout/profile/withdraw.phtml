@@ -1,0 +1,161 @@
+<?php 
+  if($sm['plugins']['withdrawal']['enabled'] == "No"){
+    header('Location:'.$sm['config']['site_url']);
+  }
+?>
+
+<script>
+url = "withdraw";
+</script>       
+<?php if($sm['theme']['design_style_wide']['val'] == 'Yes'){ ?>
+    <div class="col s2 real" style="padding-right: 0px;" >
+    <?php 
+        if($sm['plugins']['adsWeb']['enabled'] == 'Yes' && $sm['plugins']['adsWeb']['enable_160x600'] == "Yes"){ 
+            echo '<div class="ad-zone-vertical">'.$sm['plugins']['adsWeb']['160x600'].'</div>';
+        }
+    ?>      
+    </div>
+    <div class="col s8 real mainContentBorderColor"  id="site-content" style="background: <?=$sm['theme']['wall_bg_withdraw']['val']; ?>;">
+<?php } else { ?>
+    <div class="col s8 real fix-width-content mainContentBorderColor" style="padding-right: 0px;background: <?=$sm['theme']['wall_bg_withdraw']['val']; ?>;" id="site-content">
+<?php } ?>            
+    <div class="wall meetContent mainContentBorderColor" style="background: <?= $sm['theme']['wall_bg_withdraw']['val']; ?>;">  
+
+
+    <div class="wallet-iphone" style="background: <?= $sm['theme']['wall_bg_withdraw']['val']; ?>" >
+      <div class="wallet-header <?= $sm['theme']['withdraw_header_bg']['val']; ?>" style="background: <?= $sm['theme']['withdraw_header_bg']['val']; ?>" >
+        <div class="wallet-header-summary">
+          <div class="wallet-summary-text" >
+            <?= $sm['lang'][706]['text']; ?>
+          </div>
+          <div class="wallet-summary-text-2">
+            <?= $sm['user']['credits']; ?> <?= $sm['lang'][73]['text']; ?>
+          </div>          
+          <div class="wallet-summary-balance">
+            <?= $sm['plugins']['settings']['currency']; ?> <?= $sm['user']['payout']; ?>
+          </div>
+        </div>
+        <div class="wallet-user-profile ">
+          <div class="wallet-user-photo box-shadow-left-profile profile-photo" data-src="<?= $sm['user']['profile_photo']; ?>"></div>
+        </div>
+      </div>
+      <div class="wallet-content" >
+
+        <div class="wallet-transactions"><span class="wallet-t-desc" style="text-align: center;color: <?=$sm['theme']['btn_color']['val']; ?>"><?= $sm['lang'][705]['text']; ?></span>
+        <?php if(checkWithdrawExist($sm['user']['id']) == 1){ 
+            $method = getData('users_withdraw','withdraw_method','WHERE u_id = '.$sm['user']['id'].' ORDER BY id DESC');
+            $details = getData('users_withdraw','withdraw_details','WHERE u_id = '.$sm['user']['id'].' ORDER BY id DESC');
+        ?>
+          <div class="wallet-transaction" >
+            <div class="wallet-t-details">
+              <div class="wallet-t-title"><?= $sm['lang'][542]['text']; ?></div>
+              <div class="wallet-t-time"><?= $sm['lang'][543]['text']; ?> <strong><?= $method; ?></strong></div>
+              <div class="wallet-t-time" style="margin-top:20px"><?= $details; ?></div>
+            </div>
+          </div>      
+        <?php } else { ?>
+
+            <?php 
+            $payouts = explode(',', $sm['plugins']['withdrawal']['payouts']);
+            foreach ($payouts as $p) { 
+                $onlyEmail = 0;
+                if (strpos($p, '(e)') !== false) {
+                    $onlyEmail = 1;
+                    $p = str_replace('(e)','',$p);
+                }
+            ?>
+                <div class="wallet-transaction" style="cursor: pointer;margin-left: 20%;max-width: 60%;" onclick="showWithdraw('<?=$p;?>',<?= $onlyEmail; ?>);">
+                    <div class="wallet-t-details">
+                      <div class="wallet-t-title"><?= $p; ?></div>
+                    </div>
+                    <div class="wallet-t-amount"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#0e0e0e" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg></div>
+                </div>
+            <?php } ?>
+        <?php } ?>
+        </div>        
+      </div>
+
+    </div>
+
+
+    <?php 
+    $checkWE= getData('users_withdraw','status','WHERE u_id = '.$sm['user']['id'].' AND status = "Compelted" OR u_id = '.$sm['user']['id'].' AND status = "Canceled"');
+    if($checkWE != 'noData'){ ?>
+        <style>
+            tr th{
+                padding-left:0!important
+            }
+        </style>               
+        
+        <div class="payment-promo__content" style="background:#fff;border-radius: 10px;margin:40px">         
+          <center><h5><?= $sm['lang'][891]['text']; ?></h5><br></center>
+          <div class="table-container" style="margin:0 10% 0 10%;text-align: left;color:#333!important;font-weight:500;font-size:1rem!important ">
+            <table class="table">
+              <tbody class="table__tbody">
+                
+                <?php $arr = getArray('users_withdraw','WHERE u_id = '.$sm['user']['id'],'ID DESC',''); 
+                foreach ($arr as $a) { 
+                    if($a['status'] == 'Pending'){ continue; }
+                    if($a['status'] == 'Canceled'){ 
+                        $statusColor = '#383b40'; 
+                    } else {
+                        $statusColor = '#2aa71b';
+                    }
+                ?>
+                <tr class="table-row">
+                    <td style="height: 40px;text-align:justify-all;color:<?= $statusColor; ?>;">
+                        <?= date('d M h:ia',$a['withdraw_sent']); ?>: <?= $sm['lang'][894]['text']; ?> <strong><?= $sm['plugins']['settings']['currency']; ?> <?=$a['withdraw_amount']; ?></strong> <?= $sm['lang'][895]['text']; ?> <?=$a['withdraw_method']; ?> <?= $sm['lang'][896]['text']; ?> <strong><?= strtolower($a['status']); ?></strong>
+                    </td>
+                </tr>
+                <?php } ?>
+                
+              </tbody>
+            </table>
+          </div>
+
+        </div>
+    <?php } ?>   
+
+    <div class="payment-promo__content" style="background:#fff;border-radius: 10px;margin:40px">
+        <center>            
+        <h5><?= $sm['lang'][559]['text']; ?></h5><br>
+        <p class="payment-promo__txt" style="margin:0 10% 0 10%;text-align: left;color:#333!important;font-weight:500;font-size:1rem!important ">
+            <?= $sm['lang'][565]['text']; ?> <b><?= $sm['plugins']['settings']['currency']; ?> <?= $sm['plugins']['withdrawal']['minRequired']; ?></b>.<br><br>
+            <?= $sm['lang'][566]['text']; ?> <b><?= $sm['plugins']['withdrawal']['minRequired']; ?> (<?= $sm['plugins']['settings']['currency']; ?>)</b> <?= $sm['lang'][567]['text']; ?> <?= $sm['config']['name']; ?> <?= $sm['lang'][568]['text']; ?>.<br>
+        </p>
+        <br>
+    </div>
+  
+    <div class="payment-promo__content" style="padding-bottom: 50px;background: #fff;border-radius: 10px;margin: 40px;padding-top: 25px;"><center>            
+        <h5 class="comforta">FAQ</h5><br>
+
+        <p class="payment-promo__txt" style="margin:0 10% 0 10%;text-align: left;color:#333!important;font-weight:500;font-size:1rem!important ">
+<b><?= $sm['lang'][570]['text']; ?></b><br>
+<b><?= $sm['config']['name']; ?></b> <?= $sm['lang'][571]['text']; ?>.<br><br>
+
+<b><?= $sm['lang'][572]['text']; ?></b><br>
+<?= $sm['lang'][573]['text']; ?>.<br><br>
+
+<b><?= $sm['lang'][574]['text']; ?></b><br>
+<?= $sm['lang'][575]['text']; ?> <b><?= $sm['config']['name']; ?></b> <?= $sm['lang'][576]['text']; ?><br><?= $sm['plugins']['withdrawal']['days']; ?> <?= $sm['lang'][577]['text']; ?>.<br><br>
+
+<b><?= $sm['lang'][578]['text']; ?></b><br>
+<b><?= $sm['config']['name']; ?></b> <?= $sm['lang'][579]['text']; ?> <b><?= $sm['config']['name']; ?></b> credits-to-<?= $sm['plugins']['settings']['currency']; ?> <?= $sm['lang'][580]['text']; ?>.<br><br>
+        </p>
+        <br></center>                      
+    </div>
+
+    </div>
+        <?= getAbsolutePage('footer'); ?>                   
+    </div>
+</div>      
+
+<?php if($sm['theme']['design_style_wide']['val'] == 'Yes'){ ?>
+    <div class="col s2 real" style="position: relative;">
+        <?php 
+            if($sm['plugins']['adsWeb']['enabled'] == 'Yes' && $sm['plugins']['adsWeb']['enable_160x600'] == "Yes"){ 
+                echo '<div class="ad-zone-vertical" style="margin-left:79px;">'.$sm['plugins']['adsWeb']['160x600'].'</div>';
+            }
+        ?>  
+    </div>
+<?php }?>

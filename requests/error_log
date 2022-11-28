@@ -1,0 +1,224 @@
+[10-Mar-2022 09:38:44 America/Detroit] PHP Fatal error:  Uncaught PusherException: Invalid channel name Your Pusher Key in /home/firstdecddfs/public_html/sbx2/assets/includes/pusher.php:220
+Stack trace:
+#0 /home/firstdecddfs/public_html/sbx2/assets/includes/pusher.php(207): Pusher->validate_channel('Your Pusher Key')
+#1 /home/firstdecddfs/public_html/sbx2/assets/includes/pusher.php(390): Pusher->validate_channels(Array)
+#2 /home/firstdecddfs/public_html/sbx2/requests/rt.php(190): Pusher->trigger(Array, 'videocall0', Array)
+#3 {main}
+  thrown in /home/firstdecddfs/public_html/sbx2/assets/includes/pusher.php on line 220
+[10-Mar-2022 09:38:44 America/Detroit] PHP Warning:  A non-numeric value encountered in /home/firstdecddfs/public_html/sbx2/requests/api.php on line 2281
+[10-Mar-2022 12:36:41 America/Detroit] PHP Fatal error:  Uncaught PusherException: Invalid channel name Your Pusher Key in /home/firstdecddfs/public_html/sbx2/assets/includes/pusher.php:220
+Stack trace:
+#0 /home/firstdecddfs/public_html/sbx2/assets/includes/pusher.php(207): Pusher->validate_channel('Your Pusher Key')
+#1 /home/firstdecddfs/public_html/sbx2/assets/includes/pusher.php(390): Pusher->validate_channels(Array)
+#2 /home/firstdecddfs/public_html/sbx2/requests/rt.php(190): Pusher->trigger(Array, 'videocall0', Array)
+#3 {main}
+  thrown in /home/firstdecddfs/public_html/sbx2/assets/includes/pusher.php on line 220
+[10-Mar-2022 12:36:41 America/Detroit] PHP Warning:  A non-numeric value encountered in /home/firstdecddfs/public_html/sbx2/requests/api.php on line 2281
+[10-Mar-2022 12:37:51 America/Detroit] PHP Fatal error:  Uncaught PusherException: Invalid channel name Your Pusher Key in /home/firstdecddfs/public_html/sbx2/assets/includes/pusher.php:220
+Stack trace:
+#0 /home/firstdecddfs/public_html/sbx2/assets/includes/pusher.php(207): Pusher->validate_channel('Your Pusher Key')
+#1 /home/firstdecddfs/public_html/sbx2/assets/includes/pusher.php(390): Pusher->validate_channels(Array)
+#2 /home/firstdecddfs/public_html/sbx2/requests/rt.php(190): Pusher->trigger(Array, 'videocall16', Array)
+#3 {main}
+  thrown in /home/firstdecddfs/public_html/sbx2/assets/includes/pusher.php on line 220
+[10-Mar-2022 12:37:51 America/Detroit] PHP Warning:  A non-numeric value encountered in /home/firstdecddfs/public_html/sbx2/requests/api.php on line 2281
+[10-Mar-2022 12:37:54 America/Detroit] PHP Fatal error:  Uncaught PusherException: Invalid channel name Your Pusher Key in /home/firstdecddfs/public_html/sbx2/assets/includes/pusher.php:220
+Stack trace:
+#0 /home/firstdecddfs/public_html/sbx2/assets/includes/pusher.php(207): Pusher->validate_channel('Your Pusher Key')
+#1 /home/firstdecddfs/public_html/sbx2/assets/includes/pusher.php(390): Pusher->validate_channels(Array)
+#2 /home/firstdecddfs/public_html/sbx2/requests/rt.php(190): Pusher->trigger(Array, 'videocall2', Array)
+#3 {main}
+  thrown in /home/firstdecddfs/public_html/sbx2/assets/includes/pusher.php on line 220
+[10-Mar-2022 12:37:55 America/Detroit] PHP Warning:  A non-numeric value encountered in /home/firstdecddfs/public_html/sbx2/requests/api.php on line 2281
+[10-Mar-2022 13:28:38 America/Detroit] PHP Fatal error:  Uncaught PusherException: Invalid channel name Your Pusher Key in /home/firstdecddfs/public_html/sbx2/assets/includes/pusher.php:220
+Stack trace:
+#0 /home/firstdecddfs/public_html/sbx2/assets/includes/pusher.php(207): Pusher->validate_channel('Your Pusher Key')
+#1 /home/firstdecddfs/public_html/sbx2/assets/includes/pusher.php(390): Pusher->validate_channels(Array)
+#2 /home/firstdecddfs/public_html/sbx2/requests/rt.php(190): Pusher->trigger(Array, 'videocall0', Array)
+#3 {main}
+  thrown in /home/firstdecddfs/public_html/sbx2/assets/includes/pusher.php on line 220
+[10-Mar-2022 13:28:39 America/Detroit] PHP Warning:  A non-numeric value encountered in /home/firstdecddfs/public_html/sbx2/requests/api.php on line 2281
+[10-Mar-2022 13:29:58 America/Detroit] PHP Fatal error:  Uncaught PusherException: Invalid channel name Your Pusher Key in /home/firstdecddfs/public_html/sbx2/assets/includes/pusher.php:220
+Stack trace:
+#0 /home/firstdecddfs/public_html/sbx2/assets/includes/pusher.php(207): Pusher->validate_channel('Your Pusher Key')
+#1 /home/firstdecddfs/public_html/sbx2/assets/includes/pusher.php(390): Pusher->validate_channels(Array)
+#2 /home/firstdecddfs/public_html/sbx2/requests/rt.php(190): Pusher->trigger(Array, 'videocall0', Array)
+#3 {main}
+  thrown in /home/firstdecddfs/public_html/sbx2/assets/includes/pusher.php on line 220
+[10-Mar-2022 13:29:58 America/Detroit] PHP Warning:  A non-numeric value encountered in /home/firstdecddfs/public_html/sbx2/requests/api.php on line 2281
+[10-Mar-2022 13:30:31 America/Detroit] PHP Fatal error:  Uncaught PusherException: Invalid channel name Your Pusher Key in /home/firstdecddfs/public_html/sbx2/assets/includes/pusher.php:220
+Stack trace:
+#0 /home/firstdecddfs/public_html/sbx2/assets/includes/pusher.php(207): Pusher->validate_channel('Your Pusher Key')
+#1 /home/firstdecddfs/public_html/sbx2/assets/includes/pusher.php(390): Pusher->validate_channels(Array)
+#2 /home/firstdecddfs/public_html/sbx2/requests/rt.php(190): Pusher->trigger(Array, 'videocall2', Array)
+#3 {main}
+  thrown in /home/firstdecddfs/public_html/sbx2/assets/includes/pusher.php on line 220
+[10-Mar-2022 13:30:31 America/Detroit] PHP Warning:  A non-numeric value encountered in /home/firstdecddfs/public_html/sbx2/requests/api.php on line 2281
+[10-Mar-2022 13:30:48 America/Detroit] PHP Fatal error:  Uncaught PusherException: Invalid channel name Your Pusher Key in /home/firstdecddfs/public_html/sbx2/assets/includes/pusher.php:220
+Stack trace:
+#0 /home/firstdecddfs/public_html/sbx2/assets/includes/pusher.php(207): Pusher->validate_channel('Your Pusher Key')
+#1 /home/firstdecddfs/public_html/sbx2/assets/includes/pusher.php(390): Pusher->validate_channels(Array)
+#2 /home/firstdecddfs/public_html/sbx2/requests/rt.php(190): Pusher->trigger(Array, 'videocall0', Array)
+#3 {main}
+  thrown in /home/firstdecddfs/public_html/sbx2/assets/includes/pusher.php on line 220
+[10-Mar-2022 13:30:48 America/Detroit] PHP Warning:  A non-numeric value encountered in /home/firstdecddfs/public_html/sbx2/requests/api.php on line 2281
+[10-Mar-2022 13:32:41 America/Detroit] PHP Warning:  A non-numeric value encountered in /home/firstdecddfs/public_html/sbx2/requests/api.php on line 2281
+[10-Mar-2022 13:32:41 America/Detroit] PHP Fatal error:  Uncaught PusherException: Invalid channel name Your Pusher Key in /home/firstdecddfs/public_html/sbx2/assets/includes/pusher.php:220
+Stack trace:
+#0 /home/firstdecddfs/public_html/sbx2/assets/includes/pusher.php(207): Pusher->validate_channel('Your Pusher Key')
+#1 /home/firstdecddfs/public_html/sbx2/assets/includes/pusher.php(390): Pusher->validate_channels(Array)
+#2 /home/firstdecddfs/public_html/sbx2/requests/rt.php(190): Pusher->trigger(Array, 'videocall12', Array)
+#3 {main}
+  thrown in /home/firstdecddfs/public_html/sbx2/assets/includes/pusher.php on line 220
+[10-Mar-2022 13:32:49 America/Detroit] PHP Fatal error:  Uncaught PusherException: Invalid channel name Your Pusher Key in /home/firstdecddfs/public_html/sbx2/assets/includes/pusher.php:220
+Stack trace:
+#0 /home/firstdecddfs/public_html/sbx2/assets/includes/pusher.php(207): Pusher->validate_channel('Your Pusher Key')
+#1 /home/firstdecddfs/public_html/sbx2/assets/includes/pusher.php(390): Pusher->validate_channels(Array)
+#2 /home/firstdecddfs/public_html/sbx2/requests/rt.php(190): Pusher->trigger(Array, 'videocall2', Array)
+#3 {main}
+  thrown in /home/firstdecddfs/public_html/sbx2/assets/includes/pusher.php on line 220
+[10-Mar-2022 13:32:49 America/Detroit] PHP Warning:  A non-numeric value encountered in /home/firstdecddfs/public_html/sbx2/requests/api.php on line 2281
+[10-Mar-2022 13:33:19 America/Detroit] PHP Fatal error:  Uncaught PusherException: Invalid channel name Your Pusher Key in /home/firstdecddfs/public_html/sbx2/assets/includes/pusher.php:220
+Stack trace:
+#0 /home/firstdecddfs/public_html/sbx2/assets/includes/pusher.php(207): Pusher->validate_channel('Your Pusher Key')
+#1 /home/firstdecddfs/public_html/sbx2/assets/includes/pusher.php(390): Pusher->validate_channels(Array)
+#2 /home/firstdecddfs/public_html/sbx2/requests/rt.php(190): Pusher->trigger(Array, 'videocall16', Array)
+#3 {main}
+  thrown in /home/firstdecddfs/public_html/sbx2/assets/includes/pusher.php on line 220
+[10-Mar-2022 13:33:20 America/Detroit] PHP Warning:  A non-numeric value encountered in /home/firstdecddfs/public_html/sbx2/requests/api.php on line 2281
+[10-Mar-2022 13:33:27 America/Detroit] PHP Fatal error:  Uncaught PusherException: Invalid channel name Your Pusher Key in /home/firstdecddfs/public_html/sbx2/assets/includes/pusher.php:220
+Stack trace:
+#0 /home/firstdecddfs/public_html/sbx2/assets/includes/pusher.php(207): Pusher->validate_channel('Your Pusher Key')
+#1 /home/firstdecddfs/public_html/sbx2/assets/includes/pusher.php(390): Pusher->validate_channels(Array)
+#2 /home/firstdecddfs/public_html/sbx2/requests/rt.php(190): Pusher->trigger(Array, 'videocall12', Array)
+#3 {main}
+  thrown in /home/firstdecddfs/public_html/sbx2/assets/includes/pusher.php on line 220
+[10-Mar-2022 13:33:27 America/Detroit] PHP Warning:  A non-numeric value encountered in /home/firstdecddfs/public_html/sbx2/requests/api.php on line 2281
+[10-Mar-2022 13:48:21 America/Detroit] PHP Fatal error:  Uncaught PusherException: Invalid channel name Your Pusher Key in /home/firstdecddfs/public_html/sbx2/assets/includes/pusher.php:220
+Stack trace:
+#0 /home/firstdecddfs/public_html/sbx2/assets/includes/pusher.php(207): Pusher->validate_channel('Your Pusher Key')
+#1 /home/firstdecddfs/public_html/sbx2/assets/includes/pusher.php(390): Pusher->validate_channels(Array)
+#2 /home/firstdecddfs/public_html/sbx2/requests/rt.php(190): Pusher->trigger(Array, 'videocall12', Array)
+#3 {main}
+  thrown in /home/firstdecddfs/public_html/sbx2/assets/includes/pusher.php on line 220
+[10-Mar-2022 13:48:22 America/Detroit] PHP Warning:  A non-numeric value encountered in /home/firstdecddfs/public_html/sbx2/requests/api.php on line 2281
+[10-Mar-2022 13:48:38 America/Detroit] PHP Fatal error:  Uncaught PusherException: Invalid channel name Your Pusher Key in /home/firstdecddfs/public_html/sbx2/assets/includes/pusher.php:220
+Stack trace:
+#0 /home/firstdecddfs/public_html/sbx2/assets/includes/pusher.php(207): Pusher->validate_channel('Your Pusher Key')
+#1 /home/firstdecddfs/public_html/sbx2/assets/includes/pusher.php(390): Pusher->validate_channels(Array)
+#2 /home/firstdecddfs/public_html/sbx2/requests/rt.php(190): Pusher->trigger(Array, 'videocall9', Array)
+#3 {main}
+  thrown in /home/firstdecddfs/public_html/sbx2/assets/includes/pusher.php on line 220
+[10-Mar-2022 13:48:38 America/Detroit] PHP Warning:  A non-numeric value encountered in /home/firstdecddfs/public_html/sbx2/requests/api.php on line 2281
+[10-Mar-2022 13:49:37 America/Detroit] PHP Fatal error:  Uncaught PusherException: Invalid channel name Your Pusher Key in /home/firstdecddfs/public_html/sbx2/assets/includes/pusher.php:220
+Stack trace:
+#0 /home/firstdecddfs/public_html/sbx2/assets/includes/pusher.php(207): Pusher->validate_channel('Your Pusher Key')
+#1 /home/firstdecddfs/public_html/sbx2/assets/includes/pusher.php(390): Pusher->validate_channels(Array)
+#2 /home/firstdecddfs/public_html/sbx2/requests/rt.php(190): Pusher->trigger(Array, 'videocall16', Array)
+#3 {main}
+  thrown in /home/firstdecddfs/public_html/sbx2/assets/includes/pusher.php on line 220
+[10-Mar-2022 13:49:38 America/Detroit] PHP Warning:  A non-numeric value encountered in /home/firstdecddfs/public_html/sbx2/requests/api.php on line 2281
+[10-Mar-2022 13:49:42 America/Detroit] PHP Fatal error:  Uncaught PusherException: Invalid channel name Your Pusher Key in /home/firstdecddfs/public_html/sbx2/assets/includes/pusher.php:220
+Stack trace:
+#0 /home/firstdecddfs/public_html/sbx2/assets/includes/pusher.php(207): Pusher->validate_channel('Your Pusher Key')
+#1 /home/firstdecddfs/public_html/sbx2/assets/includes/pusher.php(390): Pusher->validate_channels(Array)
+#2 /home/firstdecddfs/public_html/sbx2/requests/rt.php(190): Pusher->trigger(Array, 'videocall12', Array)
+#3 {main}
+  thrown in /home/firstdecddfs/public_html/sbx2/assets/includes/pusher.php on line 220
+[10-Mar-2022 13:49:42 America/Detroit] PHP Warning:  A non-numeric value encountered in /home/firstdecddfs/public_html/sbx2/requests/api.php on line 2281
+[10-Mar-2022 13:50:51 America/Detroit] PHP Fatal error:  Uncaught PusherException: Invalid channel name Your Pusher Key in /home/firstdecddfs/public_html/sbx2/assets/includes/pusher.php:220
+Stack trace:
+#0 /home/firstdecddfs/public_html/sbx2/assets/includes/pusher.php(207): Pusher->validate_channel('Your Pusher Key')
+#1 /home/firstdecddfs/public_html/sbx2/assets/includes/pusher.php(390): Pusher->validate_channels(Array)
+#2 /home/firstdecddfs/public_html/sbx2/requests/rt.php(190): Pusher->trigger(Array, 'videocall9', Array)
+#3 {main}
+  thrown in /home/firstdecddfs/public_html/sbx2/assets/includes/pusher.php on line 220
+[10-Mar-2022 13:50:51 America/Detroit] PHP Warning:  A non-numeric value encountered in /home/firstdecddfs/public_html/sbx2/requests/api.php on line 2281
+[10-Mar-2022 13:51:37 America/Detroit] PHP Fatal error:  Uncaught PusherException: Invalid channel name Your Pusher Key in /home/firstdecddfs/public_html/sbx2/assets/includes/pusher.php:220
+Stack trace:
+#0 /home/firstdecddfs/public_html/sbx2/assets/includes/pusher.php(207): Pusher->validate_channel('Your Pusher Key')
+#1 /home/firstdecddfs/public_html/sbx2/assets/includes/pusher.php(390): Pusher->validate_channels(Array)
+#2 /home/firstdecddfs/public_html/sbx2/requests/rt.php(190): Pusher->trigger(Array, 'videocall12', Array)
+#3 {main}
+  thrown in /home/firstdecddfs/public_html/sbx2/assets/includes/pusher.php on line 220
+[10-Mar-2022 13:51:37 America/Detroit] PHP Warning:  A non-numeric value encountered in /home/firstdecddfs/public_html/sbx2/requests/api.php on line 2281
+[10-Mar-2022 13:53:58 America/Detroit] PHP Fatal error:  Uncaught PusherException: Invalid channel name Your Pusher Key in /home/firstdecddfs/public_html/sbx2/assets/includes/pusher.php:220
+Stack trace:
+#0 /home/firstdecddfs/public_html/sbx2/assets/includes/pusher.php(207): Pusher->validate_channel('Your Pusher Key')
+#1 /home/firstdecddfs/public_html/sbx2/assets/includes/pusher.php(390): Pusher->validate_channels(Array)
+#2 /home/firstdecddfs/public_html/sbx2/requests/rt.php(190): Pusher->trigger(Array, 'videocall0', Array)
+#3 {main}
+  thrown in /home/firstdecddfs/public_html/sbx2/assets/includes/pusher.php on line 220
+[10-Mar-2022 13:53:58 America/Detroit] PHP Warning:  A non-numeric value encountered in /home/firstdecddfs/public_html/sbx2/requests/api.php on line 2281
+[10-Mar-2022 13:54:47 America/Detroit] PHP Fatal error:  Uncaught PusherException: Invalid channel name Your Pusher Key in /home/firstdecddfs/public_html/sbx2/assets/includes/pusher.php:220
+Stack trace:
+#0 /home/firstdecddfs/public_html/sbx2/assets/includes/pusher.php(207): Pusher->validate_channel('Your Pusher Key')
+#1 /home/firstdecddfs/public_html/sbx2/assets/includes/pusher.php(390): Pusher->validate_channels(Array)
+#2 /home/firstdecddfs/public_html/sbx2/requests/rt.php(190): Pusher->trigger(Array, 'videocall12', Array)
+#3 {main}
+  thrown in /home/firstdecddfs/public_html/sbx2/assets/includes/pusher.php on line 220
+[10-Mar-2022 13:54:47 America/Detroit] PHP Warning:  A non-numeric value encountered in /home/firstdecddfs/public_html/sbx2/requests/api.php on line 2281
+[10-Mar-2022 13:54:49 America/Detroit] PHP Fatal error:  Uncaught PusherException: Invalid channel name Your Pusher Key in /home/firstdecddfs/public_html/sbx2/assets/includes/pusher.php:220
+Stack trace:
+#0 /home/firstdecddfs/public_html/sbx2/assets/includes/pusher.php(207): Pusher->validate_channel('Your Pusher Key')
+#1 /home/firstdecddfs/public_html/sbx2/assets/includes/pusher.php(390): Pusher->validate_channels(Array)
+#2 /home/firstdecddfs/public_html/sbx2/requests/rt.php(190): Pusher->trigger(Array, 'videocall9', Array)
+#3 {main}
+  thrown in /home/firstdecddfs/public_html/sbx2/assets/includes/pusher.php on line 220
+[10-Mar-2022 13:54:49 America/Detroit] PHP Warning:  A non-numeric value encountered in /home/firstdecddfs/public_html/sbx2/requests/api.php on line 2281
+[10-Mar-2022 13:55:46 America/Detroit] PHP Fatal error:  Uncaught PusherException: Invalid channel name Your Pusher Key in /home/firstdecddfs/public_html/sbx2/assets/includes/pusher.php:220
+Stack trace:
+#0 /home/firstdecddfs/public_html/sbx2/assets/includes/pusher.php(207): Pusher->validate_channel('Your Pusher Key')
+#1 /home/firstdecddfs/public_html/sbx2/assets/includes/pusher.php(390): Pusher->validate_channels(Array)
+#2 /home/firstdecddfs/public_html/sbx2/requests/rt.php(190): Pusher->trigger(Array, 'videocall9', Array)
+#3 {main}
+  thrown in /home/firstdecddfs/public_html/sbx2/assets/includes/pusher.php on line 220
+[10-Mar-2022 13:55:46 America/Detroit] PHP Warning:  A non-numeric value encountered in /home/firstdecddfs/public_html/sbx2/requests/api.php on line 2281
+[10-Mar-2022 13:55:47 America/Detroit] PHP Fatal error:  Uncaught PusherException: Invalid channel name Your Pusher Key in /home/firstdecddfs/public_html/sbx2/assets/includes/pusher.php:220
+Stack trace:
+#0 /home/firstdecddfs/public_html/sbx2/assets/includes/pusher.php(207): Pusher->validate_channel('Your Pusher Key')
+#1 /home/firstdecddfs/public_html/sbx2/assets/includes/pusher.php(390): Pusher->validate_channels(Array)
+#2 /home/firstdecddfs/public_html/sbx2/requests/rt.php(190): Pusher->trigger(Array, 'videocall12', Array)
+#3 {main}
+  thrown in /home/firstdecddfs/public_html/sbx2/assets/includes/pusher.php on line 220
+[10-Mar-2022 13:55:47 America/Detroit] PHP Warning:  A non-numeric value encountered in /home/firstdecddfs/public_html/sbx2/requests/api.php on line 2281
+[10-Mar-2022 13:59:21 America/Detroit] PHP Fatal error:  Uncaught PusherException: Invalid channel name Your Pusher Key in /home/firstdecddfs/public_html/sbx2/assets/includes/pusher.php:220
+Stack trace:
+#0 /home/firstdecddfs/public_html/sbx2/assets/includes/pusher.php(207): Pusher->validate_channel('Your Pusher Key')
+#1 /home/firstdecddfs/public_html/sbx2/assets/includes/pusher.php(390): Pusher->validate_channels(Array)
+#2 /home/firstdecddfs/public_html/sbx2/requests/rt.php(190): Pusher->trigger(Array, 'videocall12', Array)
+#3 {main}
+  thrown in /home/firstdecddfs/public_html/sbx2/assets/includes/pusher.php on line 220
+[10-Mar-2022 13:59:21 America/Detroit] PHP Warning:  A non-numeric value encountered in /home/firstdecddfs/public_html/sbx2/requests/api.php on line 2281
+[10-Mar-2022 13:59:52 America/Detroit] PHP Fatal error:  Uncaught PusherException: Invalid channel name Your Pusher Key in /home/firstdecddfs/public_html/sbx2/assets/includes/pusher.php:220
+Stack trace:
+#0 /home/firstdecddfs/public_html/sbx2/assets/includes/pusher.php(207): Pusher->validate_channel('Your Pusher Key')
+#1 /home/firstdecddfs/public_html/sbx2/assets/includes/pusher.php(390): Pusher->validate_channels(Array)
+#2 /home/firstdecddfs/public_html/sbx2/requests/rt.php(190): Pusher->trigger(Array, 'videocall12', Array)
+#3 {main}
+  thrown in /home/firstdecddfs/public_html/sbx2/assets/includes/pusher.php on line 220
+[10-Mar-2022 13:59:52 America/Detroit] PHP Warning:  A non-numeric value encountered in /home/firstdecddfs/public_html/sbx2/requests/api.php on line 2281
+[10-Mar-2022 13:59:53 America/Detroit] PHP Fatal error:  Uncaught PusherException: Invalid channel name Your Pusher Key in /home/firstdecddfs/public_html/sbx2/assets/includes/pusher.php:220
+Stack trace:
+#0 /home/firstdecddfs/public_html/sbx2/assets/includes/pusher.php(207): Pusher->validate_channel('Your Pusher Key')
+#1 /home/firstdecddfs/public_html/sbx2/assets/includes/pusher.php(390): Pusher->validate_channels(Array)
+#2 /home/firstdecddfs/public_html/sbx2/requests/rt.php(190): Pusher->trigger(Array, 'videocall9', Array)
+#3 {main}
+  thrown in /home/firstdecddfs/public_html/sbx2/assets/includes/pusher.php on line 220
+[10-Mar-2022 13:59:53 America/Detroit] PHP Warning:  A non-numeric value encountered in /home/firstdecddfs/public_html/sbx2/requests/api.php on line 2281
+[10-Mar-2022 14:00:23 America/Detroit] PHP Fatal error:  Uncaught PusherException: Invalid channel name Your Pusher Key in /home/firstdecddfs/public_html/sbx2/assets/includes/pusher.php:220
+Stack trace:
+#0 /home/firstdecddfs/public_html/sbx2/assets/includes/pusher.php(207): Pusher->validate_channel('Your Pusher Key')
+#1 /home/firstdecddfs/public_html/sbx2/assets/includes/pusher.php(390): Pusher->validate_channels(Array)
+#2 /home/firstdecddfs/public_html/sbx2/requests/rt.php(190): Pusher->trigger(Array, 'videocall9', Array)
+#3 {main}
+  thrown in /home/firstdecddfs/public_html/sbx2/assets/includes/pusher.php on line 220
+[10-Mar-2022 14:00:23 America/Detroit] PHP Warning:  A non-numeric value encountered in /home/firstdecddfs/public_html/sbx2/requests/api.php on line 2281
+[10-Mar-2022 14:00:24 America/Detroit] PHP Fatal error:  Uncaught PusherException: Invalid channel name Your Pusher Key in /home/firstdecddfs/public_html/sbx2/assets/includes/pusher.php:220
+Stack trace:
+#0 /home/firstdecddfs/public_html/sbx2/assets/includes/pusher.php(207): Pusher->validate_channel('Your Pusher Key')
+#1 /home/firstdecddfs/public_html/sbx2/assets/includes/pusher.php(390): Pusher->validate_channels(Array)
+#2 /home/firstdecddfs/public_html/sbx2/requests/rt.php(190): Pusher->trigger(Array, 'videocall12', Array)
+#3 {main}
+  thrown in /home/firstdecddfs/public_html/sbx2/assets/includes/pusher.php on line 220
+[10-Mar-2022 14:00:24 America/Detroit] PHP Warning:  A non-numeric value encountered in /home/firstdecddfs/public_html/sbx2/requests/api.php on line 2281

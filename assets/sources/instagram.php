@@ -1,0 +1,2 @@
+<?php
+die('nothing here');

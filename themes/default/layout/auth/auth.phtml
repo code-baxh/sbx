@@ -1,0 +1,588 @@
+<html lang="en">
+    <head>
+        <title><?= $sm['lang'][24]['text']; ?> - <?= $sm['config']['name']; ?></title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=0" />
+        <meta name="description" content="">
+        <link rel="stylesheet" type="text/css" href="<?php echo $sm['config']['theme_url']; ?>/css/vendor/sweetalert.css">       
+        <link rel="icon" type="image/png" href="<?= $sm['theme']['favicon']['val']; ?>" sizes="32x32">  
+        <link rel="stylesheet" type="text/css" href="<?php echo $sm['config']['theme_url']; ?>/css/auth.css">
+        <link href="<?php echo $sm['config']['theme_url']; ?>/css/vendor/autocomplete.css" rel="stylesheet" type="text/css" />           
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">        
+        <?php
+        $site_lang = json_encode($sm['lang']);
+        $site_config = json_encode($sm['config']);
+        $sm['genders'] = siteGenders($_SESSION['lang']);
+        echo 
+        '<script>
+        var url; 
+        var site_config = '. $site_config  . ';
+        var site_lang = '. $site_lang  . ';
+        
+        function request_source(){
+            return \'' . $sm['config']['ajax_path'] . '\';
+        }
+        function site_title(){
+            return \'' . $sm['config']['title'] . '\';
+        }   
+        function theme_source(){
+            return \'' . $sm['config']['theme_url'] . '\';
+        }
+        function site_url(){
+            return \'' . $sm['config']['site_url'] . '\';
+        }
+        </script>';
+        ?>   
+        <style>
+        .sweet-alert button{
+            background-color: #000 !important;
+        }
+        .sweet-alert p{
+            font-family: 'Inter' !important;
+            font-weight: 400 !important;
+        }        
+        </style>              
+    </head>
+    <?php if(isset($_GET['gender'])){
+        $gender = secureEncode($_GET['gender']);
+    } else {
+        $gender = '';
+    } ?>
+    <?php if(isset($_GET['page'])){
+        $page = secureEncode($_GET['page']);
+        if($page == 'register'){
+            $register = 'display:block;';
+            $login = 'display:none;';
+            $forget = 'display:none;';
+        }
+        if($page == 'login'){
+            $register = 'display:none;';
+            $login = 'display:block;';
+            $forget = 'display:none;';
+        }
+        if($page == 'forget'){
+            $register = 'display:none;';
+            $forget = 'display:block;';
+            $login = 'display:none;';
+        }
+    }?>    
+    <body cz-shortcut-listen="true" >
+        <div>
+            <div>
+                <div class="bl-main-wrap">
+                    <div>
+                        <div class="flex-both-center py-64 xs:py-0" >
+                            <div class="xs:w-full xs:h-screen xs:bg-white xs:pt-32" >
+                                <a href="<?= $sm['config']['site_url'].$page; ?>" style="margin-bottom:20px">
+                                    <center><img src="<?= $sm['theme']['logo']['val']; ?>" style="width:180px;"></center>
+                                </a>
+
+                                <div class="xs:bg-white mt-24" data-page="register" style="<?=$register;?>" >
+                                    <div class="auth-main-wrap bg-white rounded-md p-32 xs:w-full xs:pt-16">
+                                        <div class="flex text-center w-full">
+                                            <div class="font-inter font-bold text-20 text-blDark w-full">
+                                                <?= $sm['lang'][24]['text']; ?>
+                                            </div>                                          
+                                        </div>
+                                        <div class="font-inter text-center text-14 w-full">
+                                            <?= $sm['lang'][25]['text']; ?>
+                                        </div>                                          
+                                        <form id="register" method="post" class="mt-24">
+                                            <div data-step="1" class="flex justify-between w-full">
+                                                <div class="input-main-wrap overflow-hidden rounded-sm mr-12">
+                                                    <input type="text"  required="" name="name" placeholder="<?= $sm['lang'][26]['text']; ?>" class="bl-input w-full p-16 text-14 font-normal font-inter placeholder-grey hover:bg-bl-bg-grey focus:bg-white" />
+                                                </div>
+                                                <div class="input-main-wrap overflow-hidden rounded-sm">
+                                                    <input type="text" required="" name="email" placeholder="<?= $sm['lang'][28]['text']; ?>" class="bl-input w-full p-16 text-14 font-normal font-inter placeholder-grey hover:bg-bl-bg-grey focus:bg-white" />
+                                                </div>                                          
+                                            </div>                                                                                
+                                            <div data-step="1" class="relative bl-input-with-suffix-wrap mt-12">
+                                                <div class="bl-input-prefix text-14 text-blDark font-inter font-normal absolute" id="site_url_input" 
+                                                style="line-height:20px;">
+                                                    <?php
+                                                    $parse = parse_url($sm['config']['site_url']);
+                                                    echo $parse['host'].'/';
+                                                    ?>                                                    
+                                                </div>
+                                                <div class="input-main-wrap overflow-hidden rounded-sm" id="usernameInput">
+                                                    <input type="text" required="" value="" placeholder="<?= $sm['lang'][331]['text']; ?>" name="username" id="username" class="bl-input-with-prefix bl-input w-full p-16 text-14 font-normal font-inter bg-white hover:bg-bl-bg-grey focus:bg-white" style="" />
+                                                </div>
+                                            </div> 
+
+                                            <div data-step="1" class="relative bl-input-with-suffix-wrap mt-12">
+                                                <div class="input-main-wrap overflow-hidden rounded-sm">
+                                                    <input required="" name="pass" id="pass" placeholder="<?= $sm['lang'][29]['text']; ?>" type="password" class="bl-input w-full p-16 text-14 font-normal font-inter placeholder-grey hover:bg-bl-bg-grey focus:bg-white" />
+                                                </div>
+                                                <div class="bl-input-with-suffix-icon enable-on-change absolute cursor-pointer" onclick="togglePswd('pass')">
+                                                    <svg width="18" height="14" viewBox="0 0 18 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                        <path
+                                                            fill-rule="evenodd"
+                                                            clip-rule="evenodd"
+                                                            d="M5.74805 7.00018C5.74805 8.77796 7.20333 10.2244 9.00008 10.2244C10.7887 10.2244 12.244 8.77796 12.244 7.00018C12.244 5.21432 10.7887 3.76786 9.00008 3.76786C7.20333 3.76786 5.74805 5.21432 5.74805 7.00018ZM13.7806 2.03855C15.2033 3.13754 16.4147 4.74562 17.2846 6.75774C17.3497 6.91127 17.3497 7.08905 17.2846 7.23451C15.5448 11.2587 12.4472 13.6668 9.00008 13.6668H8.99195C5.55293 13.6668 2.45537 11.2587 0.715529 7.23451C0.650488 7.08905 0.650488 6.91127 0.715529 6.75774C2.45537 2.7335 5.55293 0.333496 8.99195 0.333496H9.00008C10.7237 0.333496 12.3578 0.931476 13.7806 2.03855ZM9.00106 9.01049C10.1149 9.01049 11.0254 8.10544 11.0254 6.99837C11.0254 5.88321 10.1149 4.97816 9.00106 4.97816C8.9035 4.97816 8.80594 4.98625 8.71651 5.00241C8.68399 5.8913 7.95228 6.60241 7.04984 6.60241H7.00919C6.9848 6.7317 6.96854 6.86099 6.96854 6.99837C6.96854 8.10544 7.87911 9.01049 9.00106 9.01049Z"
+                                                            fill="#230B34"
+                                                        ></path>
+                                                    </svg>
+                                                </div>
+                                            </div>
+
+                                            <div class="flex justify-between w-full mt-12" data-step="2" >
+                                                <div class="input-main-wrap overflow-hidden rounded-sm mr-6">
+                                                    <select name="day" class="bl-input w-full px-16 text-14 font-normal font-inter placeholder-grey hover:bg-bl-bg-grey focus:bg-white" id="day" required>
+                                                        <option value="1" disabled selected>
+                                                            <?= $sm['lang'][272]['text']; ?>
+                                                        </option>
+                                                        <?= date_dropdown_landing(1,0,0); ?>
+                                                    </select>                                                    
+                                                </div>
+                                                <div class="input-main-wrap overflow-hidden rounded-sm mr-6">
+                                                    <select name="month" class="bl-input w-full px-16 text-14 font-normal font-inter placeholder-grey hover:bg-bl-bg-grey focus:bg-white" id="month" required>
+                                                        <option value="1" disabled selected>
+                                                            <?= $sm['lang'][273]['text']; ?>
+                                                        </option>
+                                                        <?= date_dropdown_landing(0,1,0); ?>
+                                                    </select>  
+                                                </div> 
+                                                <div class="input-main-wrap overflow-hidden rounded-sm">
+                                                    <select name="year" class="bl-input w-full px-16 text-14 font-normal font-inter placeholder-grey hover:bg-bl-bg-grey focus:bg-white" id="year" required>
+                                                        <option value="1995" disabled selected>
+                                                            <?= $sm['lang'][274]['text']; ?> 
+                                                        </option>  
+                                                        <?= date_dropdown_landing(0,0,1); ?>
+                                                    </select> 
+                                                </div>                                                                                          
+                                            </div>  
+
+                                            <div data-step="2" >
+                                                <div class="input-main-wrap  rounded-sm mt-12">
+                                                    <input type="text" id="loc" autocomplete="new-password" placeholder="<?= $sm['lang'][33]['text']; ?>" class="bl-input w-full p-16 text-14 font-normal font-inter placeholder-grey hover:bg-bl-bg-grey focus:bg-white" />
+                                                    <small class="pl-5"></small>
+                                                </div>
+                                            </div>
+
+                                            <?php if($sm['settings']['selectGender'] == 'true'){ ?>
+                                                <div data-step="2" class="flex justify-between w-full mt-12">
+                                                    <div class="input-main-wrap overflow-hidden rounded-sm mr-8">
+                                                        <select name="gender" class="bl-input w-full px-16 text-14 font-normal font-inter placeholder-grey hover:bg-bl-bg-grey focus:bg-white" id="gender" placeholder="<?= $sm['lang'][31]['text']; ?>" required>
+                                                                <option value="" disabled selected hidden><?= $sm['lang'][529]['text']; ?>...</option>
+                                                                <?php
+                                                                    foreach($sm['genders'] as $entry){
+                                                                        echo '<option value="'.$entry['id'].'" style="color:#000;">
+                                                                        '.$sm['lang'][529]['text'].' '.strtolower($entry['text']).'</option>';
+                                                                    }
+                                                                ?>
+                                                        </select> 
+                                                    </div>
+                                                    <div class="input-main-wrap overflow-hidden rounded-sm">
+                                                        <select name="looking" class="bl-input w-full px-16 text-14 font-normal font-inter placeholder-grey hover:bg-bl-bg-grey focus:bg-white" id="looking" placeholder="<?= $sm['lang'][31]['text']; ?>" required>
+                                                                <option value="" disabled selected hidden><?= $sm['lang'][530]['text']; ?>...</option>
+                                                                <?php
+                                                                    foreach($sm['genders'] as $entry){
+                                                                        echo '<option value="'.$entry['id'].'" style="color:#000;">
+                                                                        '.$sm['lang'][530]['text'].' '.strtolower($entry['text']).'</option>';
+                                                                    }
+                                                                ?>
+                                                        </select> 
+                                                    </div>                                          
+                                                </div>                                                                                                     
+                                            <?php } else { ?>
+                                                <input type="hidden" name="gender" value="<?= $sm['settings']['selectGenderBase']; ?>" />
+                                                <input type="hidden" name="looking" value="<?= $sm['settings']['selectGenderTarget']; ?>" />
+                                            <?php } ?>
+ 
+                                            <input type="hidden" value="register" name="action" />
+                                            <?php
+                                            $ref = '';
+                                            if(isset($_COOKIE['ref'])){
+                                                $ref = $_COOKIE['ref'];
+                                            }
+                                            ?>
+                                            <input type="hidden" value="<?= $ref; ?>" name="ref" />
+                                            <input type="hidden" value="" name="photo" id="photo" />
+                                            <input type="hidden" name="city" id="locality" />
+                                            <input type="hidden" name="country" id="country" />
+                                            <input type="hidden" name="checkbox" id="checkboxVal" value="<?= $sm['plugins']['settings']['showTermsCheckboxRegister']; ?>" />
+                                            <input type="hidden" name="lat" id="lat" />
+                                            <input type="hidden" name="lng" id="lng"  /> 
+
+                                            <div class="flex justify-between w-full mt-12 p-12">
+                                              <div class="flex items-center">
+                                                <?php if($sm['plugins']['settings']['showTermsCheckboxRegister'] == 'Yes'){ ?>
+                                                <input required id="reg_checkbox" onchange="updateCheckbox('change')" type="checkbox" class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded">
+                                                <?php } ?>
+                                                <label for="reg_checkbox"  class="ml-2 block text-sm p-4 px-12 text-gray-900" style="padding-left: 10px !important;font-size: 12px;">
+                                                    <?= $sm['lang'][42]['text']; ?> <a href="<?= $sm['config']['site_url']; ?>/index.php?page=tac" style="color:#aaa;" onclick="javascript:void window.open('<?= $sm['config']['site_url']; ?>index.php?page=tac','1430115090715','width=700,height=500,toolbar=0,menubar=0,location=0,status=1,scrollbars=1,resizable=1,left=0,top=0');return false;"><?= $sm['lang'][43]['text']; ?> </a> <?= $sm['lang'][44]['text']; ?> 
+                                                    <a href="<?= $sm['config']['site_url']; ?>/index.php?page=pp" style="color:#aaa;" onclick="javascript:void window.open('<?= $sm['config']['site_url']; ?>index.php?page=pp','1430115090715','width=700,height=500,toolbar=0,menubar=0,location=0,status=1,scrollbars=1,resizable=1,left=0,top=0');return false;"><?= $sm['lang'][45]['text']; ?></a>
+                                                </label>
+                                              </div>
+
+                                            </div>
+
+                                            <button data-step="2" class="bl-btn bl-btn-md bl-bg text-white rounded-sm leading-17 relative flex-both-center mt-24 w-full uppercase tracking-2" style="background: linear-gradient(to bottom right, #ffa42b, #eb4227) !important;" type="submit" id="regBtn">
+                                                <span class="login-text"><?= $sm['lang'][8]['text']; ?></span>
+                                                <span class="login-loader bl-circle-loader absolute" style="display:none"></span>
+                                            </button>
+                                               
+                                        </form>
+
+                                        <?php if($sm['plugins']['facebook']['enabled'] == 'Yes' || $sm['plugins']['google']['enabled'] == 'Yes' || $sm['plugins']['instagram']['enabled'] == 'Yes' || $sm['plugins']['twitter']['enabled'] == 'Yes') { ?>
+                                                <div class="flex items-center mt-24">
+                                                    <div class="grey-border-block w-2/4 mr-16"></div>
+                                                    <div class="text-blGrey text-14 font-inter font-normal">
+                                                        <?= $sm['lang'][96]['text']; ?>
+                                                    </div>
+                                                    <div class="grey-border-block w-2/4 ml-16"></div>
+                                                </div>      
+                                                <div class="mt-32">                                      
+                                                <?php if($sm['plugins']['facebook']['enabled'] == 'Yes') { ?>
+                                                <a href="javascript:;" onclick="fbLogin()">
+                                                    <button class="font-semibold text-14 relative flex-both-center bl-trans-btn text-blDark rounded-md w-full h-40">
+                                                        <span class="flex">
+                                                            <span class="flex items-center mr-8">
+                                                                <svg width="9" height="16" viewBox="0 0 9 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                    <path
+                                                                        d="M8.55416 0.00332907L6.42212 0C4.02684 0 2.47891 1.54552 2.47891 3.93762V5.75313H0.335243C0.150004 5.75313 0 5.89927 0 6.07954V8.71001C0 8.89028 0.150175 9.03625 0.335243 9.03625H2.47891V15.6737C2.47891 15.854 2.62892 16 2.81416 16H5.61104C5.79628 16 5.94628 15.8539 5.94628 15.6737V9.03625H8.45273C8.63797 9.03625 8.78797 8.89028 8.78797 8.71001L8.789 6.07954C8.789 5.99299 8.75359 5.91009 8.69082 5.84884C8.62805 5.78758 8.54253 5.75313 8.45359 5.75313H5.94628V4.2141C5.94628 3.47438 6.12741 3.09886 7.11758 3.09886L8.55382 3.09836C8.73888 3.09836 8.88889 2.95222 8.88889 2.77211V0.329578C8.88889 0.149642 8.73905 0.00366197 8.55416 0.00332907Z"
+                                                                        fill="#3B5998"
+                                                                    ></path>
+                                                                </svg>    
+                                                            </span>
+                                                            <?= $sm['lang'][7]['text']; ?> Facebook
+                                                        </span>
+                                                        <span class="bl-circle-loader absolute hidden"></span>
+                                                    </button>
+                                                </a> 
+                                                <?php } if($sm['plugins']['google']['enabled'] == 'Yes') { ?>
+                                                <a href="social.php?page=google">
+                                                    <button class="font-semibold text-14 relative flex-both-center bl-trans-btn text-blDark rounded-md w-full h-40 mt-12">
+                                                        <span class="flex">
+                                                            <span class="flex items-center mr-8">
+                                                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                    <path
+                                                                        d="M15.6835 8.18411C15.6835 7.64031 15.6394 7.09357 15.5453 6.55859H7.99973V9.63914H12.3207C12.1414 10.6327 11.5653 11.5116 10.7217 12.0701V14.0689H13.2996C14.8134 12.6756 15.6835 10.618 15.6835 8.18411Z"
+                                                                        fill="#4285F4"
+                                                                    ></path>
+                                                                    <path
+                                                                        d="M7.99973 16C10.1573 16 11.9768 15.2916 13.3025 14.0688L10.7246 12.07C10.0074 12.5579 9.08145 12.8342 8.00267 12.8342C5.91565 12.8342 4.1461 11.4262 3.51118 9.5332H0.850967V11.5938C2.209 14.2951 4.97502 16 7.99973 16Z"
+                                                                        fill="#34A853"
+                                                                    ></path>
+                                                                    <path
+                                                                        d="M3.50824 9.53314C3.17314 8.5396 3.17314 7.46376 3.50824 6.47023V4.40967H0.850973C-0.283658 6.67011 -0.283658 9.33326 0.850973 11.5937L3.50824 9.53314Z"
+                                                                        fill="#FBBC04"
+                                                                    ></path>
+                                                                    <path
+                                                                        d="M7.99973 3.16633C9.14023 3.1487 10.2425 3.57786 11.0685 4.36563L13.3525 2.08167C11.9063 0.723645 9.9868 -0.0229766 7.99973 0.000539093C4.97502 0.000539093 2.209 1.70542 0.850967 4.40972L3.50824 6.47028C4.14022 4.57433 5.91271 3.16633 7.99973 3.16633Z"
+                                                                        fill="#EA4335"
+                                                                    ></path>
+                                                                </svg>   
+                                                            </span>
+                                                            <?= $sm['lang'][7]['text']; ?> Google
+                                                        </span>
+                                                        <span class="bl-circle-loader absolute hidden"></span>
+                                                    </button>
+                                                </a> 
+                                                <?php } if($sm['plugins']['instagram']['enabled'] == 'Yes') { ?>
+                                                <a href="social.php?page=instagram">
+                                                    <button class="font-semibold text-14 relative flex-both-center bl-trans-btn text-blDark rounded-md w-full h-40">
+                                                        <span class="flex">
+                                                            <span class="flex items-center mr-8">
+                                                            </span>
+                                                            <?= $sm['lang'][7]['text']; ?> Instagram
+                                                        </span>
+                                                        <span class="bl-circle-loader absolute hidden"></span>
+                                                    </button>
+                                                </a> 
+                                                <?php } if($sm['plugins']['twitter']['enabled'] == 'Yes') { ?>
+                                                <a href="social.php?page=twitter">
+                                                    <button class="font-semibold text-14 relative flex-both-center bl-trans-btn text-blDark rounded-md w-full h-40">
+                                                        <span class="flex">
+                                                            <span class="flex items-center mr-8">
+                                                                <svg width="17" height="15" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                    <g clip-path="url(#clip0)">
+                                                                        <path
+                                                                            d="M24 4.5585C23.1075 4.95 22.1565 5.2095 21.165 5.3355C22.185 4.7265 22.9635 3.7695 23.3295 2.616C22.3785 3.183 21.3285 3.5835 20.2095 3.807C19.3065 2.8455 18.0195 2.25 16.6155 2.25C13.8915 2.25 11.6985 4.461 11.6985 7.1715C11.6985 7.5615 11.7315 7.9365 11.8125 8.2935C7.722 8.094 4.1025 6.1335 1.671 3.147C1.2465 3.8835 0.9975 4.7265 0.9975 5.634C0.9975 7.338 1.875 8.8485 3.183 9.723C2.3925 9.708 1.617 9.4785 0.96 9.117C0.96 9.132 0.96 9.1515 0.96 9.171C0.96 11.562 2.6655 13.548 4.902 14.0055C4.5015 14.115 4.065 14.1675 3.612 14.1675C3.297 14.1675 2.979 14.1495 2.6805 14.0835C3.318 16.032 5.127 17.4645 7.278 17.511C5.604 18.8205 3.4785 19.6095 1.1775 19.6095C0.774 19.6095 0.387 19.5915 0 19.542C2.1795 20.9475 4.7625 21.75 7.548 21.75C16.602 21.75 21.552 14.25 21.552 7.749C21.552 7.5315 21.5445 7.3215 21.534 7.113C22.5105 6.42 23.331 5.5545 24 4.5585Z"
+                                                                            fill="#03A9F4"
+                                                                        ></path>
+                                                                    </g>
+                                                                    <defs>
+                                                                        <clipPath id="clip0"><rect width="24" height="24" fill="white"></rect></clipPath>
+                                                                    </defs>
+                                                                </svg>
+                                                            </span>
+                                                            <?= $sm['lang'][7]['text']; ?> Twitter
+                                                        </span>
+                                                        <span class="bl-circle-loader absolute hidden"></span>
+                                                    </button>
+                                                </a> 
+                                                </div>
+                                                <?php } 
+                                            }?>
+                                        </div>
+                                        <div class="mt-24 text-14 font-inter font-normal text-blGrey text-center xs:mt-0"><?= $sm['lang'][1000]['text']; ?> <a href="<?= $sm['config']['site_url']; ?>login" class="underline hover:no-underline font-bold delay-75"><?= $sm['lang'][13]['text']; ?></a></div>
+                                </div>
+
+
+                                <div class="xs:bg-white mt-24" data-page="login" style="<?=$login;?>" >
+                                    <div class="auth-main-wrap bg-white rounded-md p-32 xs:w-full xs:pt-16">
+                                        <div class="flex justify-between w-full">
+                                            <div class="font-inter font-bold text-20 text-blDark w-full">
+                                                <?= $sm['lang'][9]['text']; ?>
+                                            </div>                                            
+                                        </div>
+                                        <form id="login" method="post" class="mt-24">
+                                            <div class="input-main-wrap overflow-hidden rounded-sm">
+                                                <input type="text"  required="" name="login_email" id="login_email" placeholder="<?= $sm['lang'][10]['text']; ?>" class="bl-input w-full p-16 text-14 font-normal font-inter placeholder-grey hover:bg-bl-bg-grey focus:bg-white" />
+                                            </div>                                                                   
+                                            <div class="input-main-wrap overflow-hidden rounded-sm mt-12">
+                                                <input type="password"  required="" name="login_pass" id="login_pass" placeholder="<?= $sm['lang'][11]['text']; ?>" class="bl-input w-full p-16 text-14 font-normal font-inter placeholder-grey hover:bg-bl-bg-grey focus:bg-white" />
+                                            </div>                                                      
+ 
+                                            <input type="hidden" value="login" name="action" />
+                                            <button class="bl-btn bl-btn-md bl-bg text-white rounded-sm leading-17 relative flex-both-center mt-24 w-full uppercase tracking-2" style="background: linear-gradient(to bottom right, #ffa42b, #eb4227) !important;" type="submit" id="loginBtn">
+                                                <span class="login-text"><?= $sm['lang'][13]['text']; ?></span>
+                                                <span class="login-loader bl-circle-loader absolute" style="display:none"></span>
+                                            </button>
+                                               
+                                            <div class="text-center">
+                                                <a href="<?= $sm['config']['site_url']; ?>forget" class="mt-12 text-blPrimary text-14 font-inter font-normal inline-block leading-24">
+                                                    <?= $sm['lang'][15]['text']; ?>
+                                                </a>
+                                            </div>
+                                        </form>
+
+                                        <?php if($sm['plugins']['facebook']['enabled'] == 'Yes' || $sm['plugins']['google']['enabled'] == 'Yes' || $sm['plugins']['instagram']['enabled'] == 'Yes' || $sm['plugins']['twitter']['enabled'] == 'Yes') { ?>
+                                                <div class="flex items-center mt-24">
+                                                    <div class="grey-border-block w-2/4 mr-16"></div>
+                                                    <div class="text-blGrey text-14 font-inter font-normal">
+                                                        <?= $sm['lang'][96]['text']; ?>
+                                                    </div>
+                                                    <div class="grey-border-block w-2/4 ml-16"></div>
+                                                </div>      
+                                                <div class="mt-32">                                      
+                                                <?php if($sm['plugins']['facebook']['enabled'] == 'Yes') { ?>
+                                                <a href="javascript:;" onclick="fbLogin()">
+                                                    <button class="font-semibold text-14 relative flex-both-center bl-trans-btn text-blDark rounded-md w-full h-40">
+                                                        <span class="flex">
+                                                            <span class="flex items-center mr-8">
+                                                                <svg width="9" height="16" viewBox="0 0 9 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                    <path
+                                                                        d="M8.55416 0.00332907L6.42212 0C4.02684 0 2.47891 1.54552 2.47891 3.93762V5.75313H0.335243C0.150004 5.75313 0 5.89927 0 6.07954V8.71001C0 8.89028 0.150175 9.03625 0.335243 9.03625H2.47891V15.6737C2.47891 15.854 2.62892 16 2.81416 16H5.61104C5.79628 16 5.94628 15.8539 5.94628 15.6737V9.03625H8.45273C8.63797 9.03625 8.78797 8.89028 8.78797 8.71001L8.789 6.07954C8.789 5.99299 8.75359 5.91009 8.69082 5.84884C8.62805 5.78758 8.54253 5.75313 8.45359 5.75313H5.94628V4.2141C5.94628 3.47438 6.12741 3.09886 7.11758 3.09886L8.55382 3.09836C8.73888 3.09836 8.88889 2.95222 8.88889 2.77211V0.329578C8.88889 0.149642 8.73905 0.00366197 8.55416 0.00332907Z"
+                                                                        fill="#3B5998"
+                                                                    ></path>
+                                                                </svg>    
+                                                            </span>
+                                                            <?= $sm['lang'][7]['text']; ?> Facebook
+                                                        </span>
+                                                        <span class="bl-circle-loader absolute hidden"></span>
+                                                    </button>
+                                                </a> 
+                                                <?php } if($sm['plugins']['google']['enabled'] == 'Yes') { ?>
+                                                <a href="social.php?page=google">
+                                                    <button class="font-semibold text-14 relative flex-both-center bl-trans-btn text-blDark rounded-md w-full h-40 mt-12">
+                                                        <span class="flex">
+                                                            <span class="flex items-center mr-8">
+                                                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                    <path
+                                                                        d="M15.6835 8.18411C15.6835 7.64031 15.6394 7.09357 15.5453 6.55859H7.99973V9.63914H12.3207C12.1414 10.6327 11.5653 11.5116 10.7217 12.0701V14.0689H13.2996C14.8134 12.6756 15.6835 10.618 15.6835 8.18411Z"
+                                                                        fill="#4285F4"
+                                                                    ></path>
+                                                                    <path
+                                                                        d="M7.99973 16C10.1573 16 11.9768 15.2916 13.3025 14.0688L10.7246 12.07C10.0074 12.5579 9.08145 12.8342 8.00267 12.8342C5.91565 12.8342 4.1461 11.4262 3.51118 9.5332H0.850967V11.5938C2.209 14.2951 4.97502 16 7.99973 16Z"
+                                                                        fill="#34A853"
+                                                                    ></path>
+                                                                    <path
+                                                                        d="M3.50824 9.53314C3.17314 8.5396 3.17314 7.46376 3.50824 6.47023V4.40967H0.850973C-0.283658 6.67011 -0.283658 9.33326 0.850973 11.5937L3.50824 9.53314Z"
+                                                                        fill="#FBBC04"
+                                                                    ></path>
+                                                                    <path
+                                                                        d="M7.99973 3.16633C9.14023 3.1487 10.2425 3.57786 11.0685 4.36563L13.3525 2.08167C11.9063 0.723645 9.9868 -0.0229766 7.99973 0.000539093C4.97502 0.000539093 2.209 1.70542 0.850967 4.40972L3.50824 6.47028C4.14022 4.57433 5.91271 3.16633 7.99973 3.16633Z"
+                                                                        fill="#EA4335"
+                                                                    ></path>
+                                                                </svg>   
+                                                            </span>
+                                                            <?= $sm['lang'][7]['text']; ?> Google
+                                                        </span>
+                                                        <span class="bl-circle-loader absolute hidden"></span>
+                                                    </button>
+                                                </a> 
+                                                <?php } if($sm['plugins']['instagram']['enabled'] == 'Yes') { ?>
+                                                <a href="social.php?page=instagram">
+                                                    <button class="font-semibold text-14 relative flex-both-center bl-trans-btn text-blDark rounded-md w-full h-40">
+                                                        <span class="flex">
+                                                            <span class="flex items-center mr-8">
+                                                            </span>
+                                                            <?= $sm['lang'][7]['text']; ?> Instagram
+                                                        </span>
+                                                        <span class="bl-circle-loader absolute hidden"></span>
+                                                    </button>
+                                                </a> 
+                                                <?php } if($sm['plugins']['twitter']['enabled'] == 'Yes') { ?>
+                                                <a href="social.php?page=twitter">
+                                                    <button class="font-semibold text-14 relative flex-both-center bl-trans-btn text-blDark rounded-md w-full h-40">
+                                                        <span class="flex">
+                                                            <span class="flex items-center mr-8">
+                                                                <svg width="17" height="15" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                    <g clip-path="url(#clip0)">
+                                                                        <path
+                                                                            d="M24 4.5585C23.1075 4.95 22.1565 5.2095 21.165 5.3355C22.185 4.7265 22.9635 3.7695 23.3295 2.616C22.3785 3.183 21.3285 3.5835 20.2095 3.807C19.3065 2.8455 18.0195 2.25 16.6155 2.25C13.8915 2.25 11.6985 4.461 11.6985 7.1715C11.6985 7.5615 11.7315 7.9365 11.8125 8.2935C7.722 8.094 4.1025 6.1335 1.671 3.147C1.2465 3.8835 0.9975 4.7265 0.9975 5.634C0.9975 7.338 1.875 8.8485 3.183 9.723C2.3925 9.708 1.617 9.4785 0.96 9.117C0.96 9.132 0.96 9.1515 0.96 9.171C0.96 11.562 2.6655 13.548 4.902 14.0055C4.5015 14.115 4.065 14.1675 3.612 14.1675C3.297 14.1675 2.979 14.1495 2.6805 14.0835C3.318 16.032 5.127 17.4645 7.278 17.511C5.604 18.8205 3.4785 19.6095 1.1775 19.6095C0.774 19.6095 0.387 19.5915 0 19.542C2.1795 20.9475 4.7625 21.75 7.548 21.75C16.602 21.75 21.552 14.25 21.552 7.749C21.552 7.5315 21.5445 7.3215 21.534 7.113C22.5105 6.42 23.331 5.5545 24 4.5585Z"
+                                                                            fill="#03A9F4"
+                                                                        ></path>
+                                                                    </g>
+                                                                    <defs>
+                                                                        <clipPath id="clip0"><rect width="24" height="24" fill="white"></rect></clipPath>
+                                                                    </defs>
+                                                                </svg>
+                                                            </span>
+                                                            <?= $sm['lang'][7]['text']; ?> Twitter
+                                                        </span>
+                                                        <span class="bl-circle-loader absolute hidden"></span>
+                                                    </button>
+                                                </a> 
+                                                </div>
+                                                <?php } 
+                                            }?>
+                                    </div>
+                                    <div class="mt-24 text-14 font-inter font-normal text-blGrey text-center xs:mt-0"><?= $sm['lang'][24]['text']; ?> <a href="<?= $sm['config']['site_url']; ?>register" class="underline hover:no-underline font-bold delay-75"><?= $sm['lang'][8]['text']; ?></a></div>
+                                </div>
+
+                                <div class="xs:bg-white mt-24" data-page="forget" style="<?=$forget;?>" >
+                                    <div class="auth-main-wrap bg-white rounded-md p-32 xs:w-full xs:pt-16">
+                                        <div class="flex justify-between w-full">
+                                            <div class="font-inter font-bold text-20 text-blDark w-full">
+                                                <?= $sm['lang'][15]['text']; ?>
+                                            </div>                                            
+                                        </div>
+                                        <form id="recover" method="post" class="mt-24">
+                                            <div class="input-main-wrap overflow-hidden rounded-sm">
+                                                <input type="text"  required="" name="recover_email" id="recover_email" placeholder="<?= $sm['lang'][10]['text']; ?>" class="bl-input w-full p-16 text-14 font-normal font-inter placeholder-grey hover:bg-bl-bg-grey focus:bg-white" />
+                                            </div>                                                                   
+                                            <input type="hidden" value="recover" name="action" />
+                                            <button class="bl-btn bl-btn-md bl-bg text-white rounded-sm leading-17 relative flex-both-center mt-24 w-full uppercase tracking-2" style="background: linear-gradient(to bottom right, #ffa42b, #eb4227) !important;" type="submit" id="forgetBtn">
+                                                <span class="login-text"><?= $sm['lang'][90]['text']; ?></span>
+                                                <span class="login-loader bl-circle-loader absolute" style="display:none"></span>
+                                            </button>
+
+                                        </form>
+
+                                    </div>
+                                    <div class="mt-24 text-14 font-inter font-normal text-blGrey text-center xs:mt-0"><a href="<?= $sm['config']['site_url']; ?>login" class="underline hover:no-underline font-bold delay-75"><?= $sm['lang'][1]['text']; ?></a></div>
+                                </div>                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script src="<?php echo $sm['config']['theme_url']; ?>/js/vendor/jquery-2.1.1.js"></script>
+        <script src="<?php echo $sm['config']['theme_url']; ?>/js/vendor/sweetalert.min.js"></script>
+        <script src="<?php echo $sm['config']['theme_url']; ?>/js/vendor/autocomplete.js"></script>
+        <script src="<?php echo $sm['config']['theme_url']; ?>/js/login.js"></script>
+        <script>
+            current_url = "register";
+            if(current_url == 'register'){
+
+                $('[data-step='+step+']').show();
+                var username_width = $('#site_url_input').width();
+                $('#username').css('padding-left',username_width+22);
+            }  
+
+            var clickedCheckbox = false;
+            function updateCheckbox(type){
+                if(type == 'click'){
+                    if(!clickedCheckbox){
+                        clickedCheckbox = true;    
+                        var $checkbox = $('#reg_checkbox').find(':checkbox');
+                        var checkBoxes = $("input[type='checkbox']");
+                        if(checkBoxes.prop("checked")==true){
+                            checkBoxes.prop("checked", false); 
+                            $('#checkboxVal').val('NO');
+                        } else {
+                            $('#checkboxVal').val('OK');
+                            checkBoxes.prop("checked", true)        
+                        }    
+                    }
+                    setTimeout(function(){
+                        clickedCheckbox = false;
+                    },20);
+                }
+
+                if(type == 'change'){
+                    var $checkbox = $('#reg_checkbox').find(':checkbox');
+                    var checkBoxes = $("input[type='checkbox']");
+                    if(checkBoxes.prop("checked")==true){
+                        $('#checkboxVal').val('OK');
+                    } else {
+                        $('#checkboxVal').val('NO');      
+                    }    
+                }
+            }
+
+        </script>
+        <?php if($sm['plugins']['facebook']['enabled'] == 'Yes'){ ?>
+        <script>
+        window.fbAsyncInit = function() {
+            FB.init({
+              appId      : '<?= $sm['plugins']['facebook']['id']; ?>',
+              cookie     : true,
+              xfbml      : true,  
+              version    : 'v4.0' 
+            });
+        };
+
+        (function(d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s); js.id = id;
+            js.src = "https://connect.facebook.net/en_US/sdk.js";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+
+
+        function fbLogin() {
+            FB.login(function (response) {
+                if (response.authResponse) {
+                    getFbUserData();
+                }
+            }, {scope: 'public_profile,email'});
+        }
+
+        function getFbUserData(){
+            FB.api('/me', {locale: 'en_US', fields: 'id,first_name,last_name,email,link,gender,locale,picture.width(400).height(400)'},
+            function (response) {
+                $('.social').hide();
+                var username = Math.floor((Math.random() * 1021423) + 1);
+                var name = response.first_name;
+                name = name.toLowerCase();
+                var last_name = response.last_name.toLowerCase();
+                last_name = last_name.toLowerCase();
+                $('#facebookPhoto').fadeIn();
+                $('#facebookPhotoSrc').attr('src',response.picture.data.url);
+                $('#photo').val(response.picture.data.url);
+                $('#email').val(response.email);
+                $('#name').val(response.first_name +' '+response.last_name);
+                $('#username').val(response.first_name+response.last_name+username);
+                $.ajax({
+                    data:  {
+                        action:'loginFB',
+                        email:response.email
+                    },
+                    url:   request_source()+'/api.php',
+                    type:  'post', 
+                    dataType: 'JSON',       
+                    success:  function (response) { 
+                        if(response.valid == 'Yes'){
+                            window.location=site_config['site_url']+'meet';
+                        } else {
+                            $('[data-lid="2"]').click();
+                        }
+                    }
+                });        
+            });
+        }
+
+        </script>
+        <?php } ?>
+
+    </body>
+</html>
