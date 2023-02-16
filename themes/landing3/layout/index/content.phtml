@@ -155,10 +155,10 @@ var user_name;
     <div class="offcanvas-body">
       <ul class="nav nav-minimal" id="toc-nav">
         <li class="nav-item">
-          <a class="nav-link fs-4" href="<?= $sm['config']['site_url']; ?>login"><?= $sm['lang'][1]['text']; ?></a>
+          <a class="nav-link fs-4" href="<?= $sm['config']['site_url']; ?>index.php?page=login"><?= $sm['lang'][1]['text']; ?></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link fs-4" href="<?= $sm['config']['site_url']; ?>register"><?= $sm['lang'][8]['text']; ?></a>
+          <a class="nav-link fs-4" href="<?= $sm['config']['site_url']; ?>index.php?page=register"><?= $sm['lang'][8]['text']; ?></a>
         </li>
       </ul>
     </div>
@@ -179,7 +179,7 @@ var user_name;
             <div class="col-md-8 col-lg-5 text-center text-lg-start">
               <span class="badge bg-opaque-yellow text-yellow rounded-pill"><?= $sm['landingLang'][1]['text'];?></span>
               <h1 class="display-2 fw-bold lh-sm my-2 my-xl-4"><?= $sm['landingLang'][2]['text'];?></h1>
-              <a href="<?= $sm['config']['site_url']; ?>register" class="btn btn-with-icon btn-yellow rounded-pill"><?= $sm['landingLang'][3]['text'];?> <i class="bi bi-arrow-right"></i></a>
+              <a href="<?= $sm['config']['site_url']; ?>index.php?page=register" class="btn btn-with-icon btn-yellow rounded-pill"><?= $sm['landingLang'][3]['text'];?> <i class="bi bi-arrow-right"></i></a>
             </div>
           </div>
         </div>
@@ -226,7 +226,7 @@ var user_name;
                 }
               ?>
               <li class="mb-1 cities-list">
-                <a href="<?= $sm['config']['site_url']; ?>register" class="text-reset text-primary-hover text-gray"><?= $c['city']; ?></a>
+                <a href="<?= $sm['config']['site_url']; ?>index.php?page=register" class="text-reset text-primary-hover text-gray"><?= $c['city']; ?></a>
               </li>
               <?php } ?>
             </ul>            
