@@ -1,10 +1,10 @@
 <?php
 
 $db_host = 'localhost';
-$db_name = 'sbx';
-$db_username = 'root';
-$db_password = '';
-$site_url = 'http://sbx.local/';
+$db_name = 'sbxserver_main';
+$db_username = 'sbxserver_main';
+$db_password = 'SbxPassword123@';
+$site_url = 'https://socialbusinessexperience.com/';
 
 
 //SOCIAL AND APPS SETTINGS
