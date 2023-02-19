@@ -395,14 +395,7 @@ angular.module('starter.controllers', [])
 		}
 		$scope.locCity = user.city;
 		$scope.focusInput = true;
-		var tele = new TeleportAutocomplete({ el: '#loc', maxItems: 1,geoLocate:false});
-		tele.on('change', function(value) {
-			console.log(value);
-			if (value && $scope.currentGeonameId !== value.geonameId) {
-				$scope.currentGeonameId = value.geonameId;
-				$rootScope.closeChangeLocModal();
-			}
-		});
+		new TeleportAutocomplete({ el: '#loc', maxItems: 1,geoLocate:false});
 	};
 
 	$rootScope.closeChangeLocModal = function() {
@@ -849,7 +842,7 @@ angular.module('starter.controllers', [])
 		visitors = [];
 		$ionicSideMenuDelegate.toggleLeft();
 		$scope.closeEditProfileModal();
-		window.location.href = siteUrl+'mobile';
+		window.location.href = siteUrl+'logout';	
 	}
 
   $ionicModal.fromTemplateUrl('templates/'+mobileTheme+'/modals/profile_edit.html', {
@@ -2150,12 +2143,6 @@ angular.module('starter.controllers', [])
     $rootScope.modalProfileUser = modal;
   });
 
-
-  $rootScope.getGenderName = function(gender) {
-	  const g = (config.genders || []).find(g => g.id === gender);
-	  return g ? g.text : gender;
-  };
-
   $rootScope.openProfileModal = function(id,name,photo,age,city,status=0) {
 		$('#topPhoto').removeClass('sblack');
 		$rootScope.pLoad = true;
@@ -2249,7 +2236,7 @@ angular.module('starter.controllers', [])
 		  });
 		}	
 
-	    $('#hasStory').hide();
+    $('#hasStory').hide();
 		$('.profile').addClass('desenfocame'); 	
 		var addvisit = user.id+','+id;
 		if(user.id != id){
@@ -2287,15 +2274,6 @@ angular.module('starter.controllers', [])
 				});	
 
 				$rootScope.question = current_user.question;
-				/**
-				 * Lets try finding title of user as we need title in heading
-				 * Comment By Malik Ahsan
-				 */
-				let userFound = (current_user.question || []).find(quest=>quest.question == "Title:")
-				let title = userFound.userAnswer || '';
-				$rootScope.titleName = title;
-				console.log("Title found" , title);
-				console.log("Whats in questions" , current_user.question );
 				$rootScope.id = current_user.id;	
 				$rootScope.cu = current_user;
 				$rootScope.unlocked = current_user.unlocked;
@@ -3198,7 +3176,7 @@ angular.module('starter.controllers', [])
 		$scope.check = user.city;	
 	}
 	if(user.s_radius > 30 && user.s_radius < 500 || user.s_radius > 550 && user.s_radius < 1000){
-		$scope.check = user.s_radius+' MILES';	
+		$scope.check = user.s_radius+' KM';	
 	}
 
     var n = new Date().getTime() / 1000;
@@ -4325,7 +4303,7 @@ angular.module('starter.controllers', [])
 		  $scope.ajaxRequest.$promise.then(function(){	
 
 
-		if($scope.ajaxRequest.game != 'error' && $scope.ajaxRequest.game.length > 3){
+		if($scope.ajaxRequest.game != 'error' && (($scope.ajaxRequest || {}).game || []).length > 3){
 			$scope.ajaxRequest.game.forEach(function(entry) {
 				if(cards.indexOf(entry) !== -1) {
 						console.log('alredy in game');
@@ -5000,6 +4978,7 @@ angular.module('starter.controllers', [])
 	} else {
 		$ionicViewSwitcher.nextDirection("back");
 	}
+
 	goBackGlobal = 'profile';
 
 	if(config == '' || user == '' || user.id === undefined){
@@ -5184,9 +5163,9 @@ angular.module('starter.controllers', [])
 	if(user.looking == 3){
 		$scope.gender = lang[122].text;			
 	}
-	var l = user.looking;
-	let genderFound = (config.genders || []).find(g=>g.id == l);
-	$scope.gender = genderFound ? genderFound.text : '';		
+	var l = user.looking-1;
+	console.log("Looking at gender " , l );
+	$scope.gender = (config.genders[l] || {}).text;		
 
 	$scope.updateGender = function() {
 	  var hideSheet = $ionicActionSheet.show({
