@@ -4303,7 +4303,7 @@ angular.module('starter.controllers', [])
 		  $scope.ajaxRequest.$promise.then(function(){	
 
 
-		if($scope.ajaxRequest.game != 'error' && $scope.ajaxRequest.game.length > 3){
+		if($scope.ajaxRequest.game != 'error' && (($scope.ajaxRequest || {}).game || []).length > 3){
 			$scope.ajaxRequest.game.forEach(function(entry) {
 				if(cards.indexOf(entry) !== -1) {
 						console.log('alredy in game');
@@ -5164,7 +5164,8 @@ angular.module('starter.controllers', [])
 		$scope.gender = lang[122].text;			
 	}
 	var l = user.looking-1;
-	$scope.gender = config.genders[l].text;		
+	console.log("Looking at gender " , l );
+	$scope.gender = (config.genders[l] || {}).text;		
 
 	$scope.updateGender = function() {
 	  var hideSheet = $ionicActionSheet.show({
