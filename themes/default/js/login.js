@@ -70,7 +70,7 @@ $('#register').submit(function(e) {
 					$(span[1]).hide();			        
 					$("#create-acc").html(site_lang[8].text);
 				} else {
-					 window.location=site_config['site_url']+'meet';
+					 window.location=site_config['site_url'];
 				}
 			}
 	});					
@@ -102,7 +102,7 @@ $('#login').submit(function(e) {
 					$(span[1]).hide();			        
 					$("#login-now").html(site_lang[13].text);
 				} else {
-					 window.location=site_config['site_url']+'meet';
+					 window.location=site_config['site_url'];
 				}
 			}
 	});					
