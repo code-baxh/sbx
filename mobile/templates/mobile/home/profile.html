@@ -1,5 +1,5 @@
 <ion-view title="" hide-nav-bar="true">
-  <ion-nav-title> 
+  <ion-nav-title>
             <div class="layout__header vivify fadeIn delay-50" >
                 <div class="navigation-bar  navigation-bar--static navigation-bar--no-background" style="background: #fff">
                     <div class="navigation-bar__primary" style="margin-left: -10px;">
@@ -41,7 +41,7 @@
                         <div class="brick__image box-shadow-credits" ng-class="showStory ? 'storyOn' : ''" style="background-image: url('{{me.profile_photo}}');border-radius: 70px"></div>
                     </div>                  
                 </div>                             
-                <div class="own-profile__username" ng-click="openEditProfileModal()" style="font-size: 22px;margin-bottom: 50px;margin-top: 25px">{{me.name}}, {{me.age}}</div>
+                <div class="own-profile__username" ng-click="openEditProfileModal()" style="font-size: 22px;margin-bottom: 50px;margin-top: 25px">{{me.name}}, {{me.question[0].userAnswer}}</div>
                 <div class="own-profile__payments">
                     <div class="own-profile__payments-row">
                         <div class="own-profile__payments-item" ng-click="openCreditsModal();">
