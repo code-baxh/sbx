@@ -842,7 +842,7 @@ angular.module('starter.controllers', [])
 		visitors = [];
 		$ionicSideMenuDelegate.toggleLeft();
 		$scope.closeEditProfileModal();
-		window.location.href = siteUrl+'logout';	
+		window.location.href = siteUrl+'index.php?page=logout';
 	}
 
   $ionicModal.fromTemplateUrl('templates/'+mobileTheme+'/modals/profile_edit.html', {
