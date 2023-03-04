@@ -57,6 +57,11 @@ $enableFastMessage = true;
 if($checkIfMessageSent == 1){
 	$enableFastMessage = false;
 }
+
+$entry = profileQuestion($sm['user']['lang'],$sm['profile']['gender']);
+$title = userProfileAnswer($sm['profile']['id'],$entry[0]['id'],$sm['user']['lang']);
+
+
 echo 
 '<script>
 current_user_id = ' . $sm['profile']['id'] .';
@@ -123,7 +128,7 @@ url = "profile";
 			} ?>
 		<?php } else { ?>
 			<h2 class="montserrat" style="left: 110px;font-weight: 700">
-				<?= $sm['profile']['name']; ?>, <?= $sm['profile']['age']; ?>
+				<?= $sm['profile']['name']; ?>, <?= $title; ?>
 				<?php if($sm['profile']['premium'] == 1){
 					echo '<div class="premium" data-badge-premium data-tooltip="'.$sm['lang'][438]['text'].'"><i class="mdi-editor-attach-money"></i></div>';
 				}?>
