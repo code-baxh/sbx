@@ -10,7 +10,7 @@ $domain = $_SERVER["SERVER_NAME"];
 
 // Is Mobile
 if (preg_match("/(android|blackberry|iphone|ipod|palm|windows\s+ce)/i", $_SERVER["HTTP_USER_AGENT"])) {
-    header('Location: http://'.$domain.'/sbx/mobile');
+    header('Location: http://'.$domain.'/mobile/intro');
 }
 else{
     header('Location: http://'.$domain.'/sbx');
