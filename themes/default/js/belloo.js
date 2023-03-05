@@ -1396,7 +1396,7 @@ function profileLinks(){
 			case "chat":
 				d_url = 'chat';
 				if(user_info.guest == 1){
-					window.location.href= site_config.site_url+'logout';
+					window.location.href= site_config.site_url+'index.php?page=logout';
 					return false;
 				}				
 				title = 0;
@@ -3932,7 +3932,7 @@ function game_btns2(){
 	$('[data-like-game]').click(function(){
 
 		if(user_info.guest == 1){
-			window.location.href= site_config.site_url+'logout';
+			window.location.href= site_config.site_url+'index.php?page=logout';
 			return false;
 		}									  	
 		var uid = $(this).attr('data-id');

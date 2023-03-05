@@ -26,7 +26,7 @@ if($sm['user']['id'] == $sm['profile']['id']) {
 	$me = true;
 	$sm['user'] = $sm['profile'];
 	if($sm['user']['guest'] == 1){
-		header('Location:'.$sm['config']['site_url'].'logout');
+		header('Location:'.$sm['config']['site_url'].'index.php?page=logout');
 	}
 	$checkIfMessageSent = 0;
 } else {
