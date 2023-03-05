@@ -903,7 +903,7 @@ angular.module('starter.controllers', [])
 				$localstorage.setObject('account_premium', $scope.ajaxRequest.account_premium);
 				$localstorage.setObject('gifts', $scope.ajaxRequest.gifts);
 				$rootScope.appGifts = $scope.ajaxRequest.gifts;
-				$rootScope.languages = site_config.languages;
+				$rootScope.languages = site_config && site_config.languages || [];
 
 				if($scope.ajaxRequest.user != ''){
 
