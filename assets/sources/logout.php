@@ -7,11 +7,10 @@ if (isset($_SESSION['new_user'])) {
     unset($_SESSION['new_user']);
 }
 $domain = $_SERVER["SERVER_NAME"];
-
 // Is Mobile
-if (preg_match("/(android|blackberry|iphone|ipod|palm|windows\s+ce)/i", $_SERVER["HTTP_USER_AGENT"])) {
-    header('Location: http://'.$domain.'/mobile/intro');
+if(is_numeric(strpos(strtolower($_SERVER["HTTP_USER_AGENT"]), "mobile"))){
+    header('Location: http://'.$domain.'/mobile/');
 }
 else{
-    header('Location: http://'.$domain.'/sbx');
+    header('Location: http://'.$domain);
 }
