@@ -8,10 +8,6 @@ if (isset($_SESSION['new_user'])) {
 }
 $domain = $_SERVER["SERVER_NAME"];
 
-$fp = fopen('data.txt', 'a');//opens file in append mode
-fwrite($fp, $_SERVER["HTTP_USER_AGENT"].PHP_EOL);
-fclose($fp);
-
 // Is Mobile
 if(is_numeric(strpos(strtolower($_SERVER["HTTP_USER_AGENT"]), "mobile"))){
     header('Location: http://'.$domain.'/mobile/');

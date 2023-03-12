@@ -1215,9 +1215,19 @@ angular.module('starter.controllers', [])
 				}
 			  });
 		  } else {
-
-		  }
-
+		  	let userAnswerId = 'userAnswer-'+q.question+'-'+q.id;
+				let val = document.getElementById(userAnswerId).value;
+				var message = user.id+'[divider]'+q.id+'[divider]'+val;
+				$scope.loading = true;
+				var e = angular.element(document.getElementsByClassName('userAnswer'+q.id));
+				e.text(val);
+				e.css('color', '#111');
+				$scope.ajaxRequest34 = A.Query.get({action: 'updateUserExtended', query: message});
+				$scope.ajaxRequest34.$promise.then(function(){
+					$localstorage.setObject('user', $scope.ajaxRequest34.user);
+					$scope.loading = false;
+				});
+			}
 		}
 
 	  $rootScope.showPhotoOptions = function(val,pid,blocked,profile,approved) {
@@ -6642,7 +6652,7 @@ angular.module('starter.controllers', [])
 		//END MESSAGING CONTROLLER
 	})
 
-	
+
 	//JAVASCRIPT FUNCTIONS
 
 	function goToProfile(id){

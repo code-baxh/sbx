@@ -86,16 +86,16 @@
             <label class="toggle" style="font-size:16px;top:14px;" >
           <span ng-if="q.userAnswer != ''" class="userAnswer{{q.id}}"  style="color: #111">{{q.userAnswer}}</span>
           <span ng-if="q.userAnswer == ''" class="userAnswer{{q.id}}" style="color: #999">{{noData}}</span>
-            </label> 
-        </div> 
+            </label>
+        </div>
 
       <div class="list m-n " ng-repeat="q in questions"  ng-click="updateUserQuestion(q,q.answers)" ng-if="q.method == 'text'">
           <div class="item item-divider b-none"></div>
-          <div class="item item-divider b-none text-u-c comforta">{{q.question}}</div>         
+          <div class="item item-divider b-none text-u-c comforta">{{q.question}}</div>
           <div class="item">
-            <textarea style="width:100%;font-size:16px;line-height: 22px">{{q.userAnswer}}</textarea>
+            <textarea style="width:100%;font-size:16px;line-height: 22px" id="userAnswer-{{q.question}}-{{q.id}}">{{q.userAnswer}}</textarea>
           </div>
-        </div>                       
+      </div>
       
     </div>	
 	
