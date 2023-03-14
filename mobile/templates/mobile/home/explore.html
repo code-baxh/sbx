@@ -198,19 +198,21 @@
                 <div class="profiles-wrapper" style="padding-bottom: 50px;" ng-show="exploreResult">
                     <div class="encounters__card" style="height: {{h}}px;">
                         <div class="profile-action vivify popInLeft box-shadow-credits" id="likeBtn" ng-if="!loading"
-                            style="position:absolute;right:-25px;top: 35%;z-index: 9999;border-radius: 50%"
-                            ng-click="like();">
+                            style="position:absolute;right:-35px;top: 35%;z-index: 9999;border-radius: 50%;display: flex;
+                            align-items: center;
+                            justify-content: center;" ng-click="like();">
                             <!--<i class="icon-svg icon-svg--stretch">-->
                             <!--  <svg viewBox="0 0 64 64" id="icon-floating-yes" width="90px" height="90px"><circle fill="#fff" cx="32" cy="32" r="32"></circle><path d="M18.5 29.7c0-4.25 3.43-7.7 7.65-7.7A7.67 7.67 0 0 1 32 24.73 7.67 7.67 0 0 1 37.85 22a7.68 7.68 0 0 1 7.65 7.7C45.5 36.57 36.46 45 32 45s-13.5-8.42-13.5-15.3z" fill="#ef5464"></path></svg>-->
                             <!--</i>-->
                             <img src="https://sbx2.firstdecentral.com/mobile/img/orange-check2.png"
-                                style="height: 85px;">
+                                style="height: 55px;">
                         </div>
                         <div class="profile-action vivify popInRight box-shadow-credits" id="nolikeBtn" ng-if="!loading"
-                            style="position:absolute;left:-35px;top: 35%;z-index: 9999;border-radius: 50%"
-                            ng-click="nolike();">
-                            <i class="icon-svg icon-svg--stretch">
-                                <svg viewBox="0 0 64 64" id="icon-floating-no" width="90px" height="90px">
+                            style="position:absolute;left:-35px;top: 35%;z-index: 9999;border-radius: 50%;display: flex;
+                            justify-content: center;
+                            align-items: center;" ng-click="nolike();">
+                            <i class="icon-svg icon-svg--stretch" style="display: flex;margin-top: 10px; justify-content: center;">
+                                <svg viewBox="0 0 64 64" id="icon-floating-no" width="65px" height="65px">
                                     <circle fill="rgba(255,255,255,1)" cx="32" cy="32" r="32"></circle>
                                     <path
                                         d="M32 29.82l-7.37-7.37a1.54 1.54 0 1 0-2.18 2.18L29.83 32l-7.38 7.37a1.54 1.54 0 1 0 2.18 2.18L32 34.17l7.37 7.38a1.54 1.54 0 1 0 2.18-2.18L34.17 32l7.38-7.37a1.54 1.54 0 1 0-2.18-2.18L32 29.83z"

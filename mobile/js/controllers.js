@@ -906,8 +906,8 @@ angular.module('starter.controllers', [])
 				$rootScope.languages = site_config && site_config.languages || [];
 
 				if($scope.ajaxRequest.user != ''){
-
-					$localstorage.setObject('usPhotos', $scope.ajaxRequest.user.photos);
+					// console.log('here is user',$scope.ajaxRequest.user);
+					$localstorage.setObject('usPhotos', $scope.ajaxRequest.user.photos || '');
 					usPhotos = $scope.ajaxRequest.user.photos;
 					sape = $scope.ajaxRequest.user.slike;
 					userId = $scope.ajaxRequest.user.id;
@@ -1472,7 +1472,8 @@ angular.module('starter.controllers', [])
 			});				
 		});
 
-		var l = user.gender - 1;
+		var l = user.s_gender;
+		// console.log(user,'here is gender: ',l);
 		$scope.gender = config.genders[l].text;		
 
 		$scope.updateUserGender = function() {
@@ -3186,7 +3187,7 @@ angular.module('starter.controllers', [])
 		$scope.check = user.city;	
 	}
 	if(user.s_radius > 30 && user.s_radius < 500 || user.s_radius > 550 && user.s_radius < 1000){
-		$scope.check = user.s_radius+' KM';	
+		$scope.check = user.s_radius+' MILES';	
 	}
 
     var n = new Date().getTime() / 1000;

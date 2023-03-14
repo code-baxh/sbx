@@ -3811,7 +3811,7 @@ function game_start(val=0){
 			$("[data-like-game]").attr('data-id', game_array[0].id);
 			$('[data-game-photo]').attr('data-src', game_array[0].photo);
 			if(mobile == true){
-				$("#dis_distance").html(game_array[0].distance + ' KM');
+				$("#dis_distance").html(game_array[0].distance + ' MILES');
 			} else {
 			  //$("#dis_fans").html(game_array[0].total);	
 			}
