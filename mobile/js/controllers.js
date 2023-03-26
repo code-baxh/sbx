@@ -1192,30 +1192,36 @@ angular.module('starter.controllers', [])
 				});	
 			}		
 		}
-
-		$rootScope.updateUserQuestion = function(q,a) {
-		  if(q.method == 'select'){
-			  var hideSheet = $ionicActionSheet.show({
-				buttons: a,
-				cancelText: alang[2].text,
-				cancel: function() {
-				  },
-				buttonClicked: function(index,val) {
-					var message = user.id+'[divider]'+q.id+'[divider]'+val.text;
-					$scope.loading = true;
-					var e = angular.element(document.getElementsByClassName('userAnswer'+q.id));
-					e.text(val.text);
-					e.css('color', '#111');
-					$scope.ajaxRequest34 = A.Query.get({action: 'updateUserExtended', query: message});
-					$scope.ajaxRequest34.$promise.then(function(){											
-						$localstorage.setObject('user', $scope.ajaxRequest34.user);
-						$scope.loading = false;
-					});				
-				  return true;
-				}
-			  });
-		  } else {
-		  	let userAnswerId = 'userAnswer-'+q.question+'-'+q.id;
+		function debounce(func, wait) {
+			let timeout;
+			return function(...args) {
+				clearTimeout(timeout);
+				timeout = setTimeout(() => func.apply(this, args), wait);
+			};
+		}
+		$rootScope.updateUserQuestion = debounce((q,a) =>{
+			if(q.method == 'select'){
+				var hideSheet = $ionicActionSheet.show({
+					buttons: a,
+					cancelText: alang[2].text,
+					cancel: function() {
+					},
+					buttonClicked: function(index,val) {
+						var message = user.id+'[divider]'+q.id+'[divider]'+val.text;
+						$scope.loading = true;
+						var e = angular.element(document.getElementsByClassName('userAnswer'+q.id));
+						e.text(val.text);
+						e.css('color', '#111');
+						$scope.ajaxRequest34 = A.Query.get({action: 'updateUserExtended', query: message});
+						$scope.ajaxRequest34.$promise.then(function(){
+							$localstorage.setObject('user', $scope.ajaxRequest34.user);
+							$scope.loading = false;
+						});
+						return true;
+					}
+				});
+			} else {
+				let userAnswerId = 'userAnswer-'+q.question+'-'+q.id;
 				let val = document.getElementById(userAnswerId).value;
 				var message = user.id+'[divider]'+q.id+'[divider]'+val;
 				$scope.loading = true;
@@ -1228,7 +1234,8 @@ angular.module('starter.controllers', [])
 					$scope.loading = false;
 				});
 			}
-		}
+		}, 500);
+
 
 	  $rootScope.showPhotoOptions = function(val,pid,blocked,profile,approved) {
 	   		if(approved == 0){
